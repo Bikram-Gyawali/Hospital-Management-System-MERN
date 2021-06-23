@@ -8,18 +8,22 @@ const appointmentSchema = mongoose.Schema(
     service: {
       type: String,
     },
-    location:{
+    location: {
       type: String,
-      required: true
+      required: true,
     },
     desc: {
       type: String,
     },
-    contact:{
-      type: Number
+    contact: {
+      type: Number,
     },
     date: {
       type: Date,
+    },
+    age: {
+      type: Number,
+      required: true,
     },
     status: {
       pending: {
@@ -56,10 +60,10 @@ const appointmentSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    reqPickup:{
+    reqPickup: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   { timestamps: true }
 );

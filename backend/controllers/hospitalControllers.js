@@ -1,3 +1,4 @@
+
 const route= require('express').Router()
 const asyncHandler= require('express-async-handler')
 const Hospitals= require('../models/hospitalSchema')
@@ -62,3 +63,6 @@ const individualHospital= asyncHandler(async(req, res)=>{
     }
 })
 module.exports= {registerHospital, loginHospital, individualHospital}
+
+
+
