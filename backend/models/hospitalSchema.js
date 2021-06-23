@@ -30,6 +30,7 @@ const hospitalSchema = new mongoose.Schema(
           required: true,
         },
         desc: String,
+        serviceCharge: Number,
         serviceImg: String,
       },
     ],

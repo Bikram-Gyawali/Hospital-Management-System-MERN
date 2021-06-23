@@ -8,8 +8,15 @@ const appointmentSchema = mongoose.Schema(
     service: {
       type: String,
     },
+    location:{
+      type: String,
+      required: true
+    },
     desc: {
       type: String,
+    },
+    contact:{
+      type: Number
     },
     date: {
       type: Date,
@@ -49,6 +56,10 @@ const appointmentSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    reqPickup:{
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );
