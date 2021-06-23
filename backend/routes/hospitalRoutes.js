@@ -1,7 +1,9 @@
 const route= require('express').Router()
-const hiHospital= require('../controllers/hospitalControllers')
+const {registerHospital, loginHospital, individualHospital}= require('../controllers/hospitalControllers')
 
-route.get('/', hiHospital)
+route.post('/registerHospital', registerHospital)
+route.post('/loginHospital', loginHospital)
+route.get('/:id', individualHospital)
 
 
 module.exports= route

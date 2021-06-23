@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs')
+
+
 const hospitalSchema = new mongoose.Schema(
   {
     name: {
@@ -9,12 +12,15 @@ const hospitalSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    contacts: {
-      type: Array,
-      default: [],
+    contact1: {
+      type: String,
       required: true,
     },
-    emailId: {
+    contact2: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
     },
@@ -27,7 +33,6 @@ const hospitalSchema = new mongoose.Schema(
       {
         topic: {
           type: String,
-          required: true,
         },
         desc: String,
         serviceCharge: Number,
@@ -53,27 +58,25 @@ const hospitalSchema = new mongoose.Schema(
         ref: "Doctors",
       },
     ],
-    contacts: [
-      {
-        name: {
-          type: String,
-          required: true,
-        },
-        number: {
-          type: Number,
-          required: true,
-        },
-      },
-    ],
+    // contacts: [
+    //   {
+    //     name: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     number: {
+    //       type: Number,
+    //       required: true,
+    //     },
+    //   },
+    // ],
     emergencyContacts: [
       {
         name: {
           type: String,
-          required: true,
         },
         number: {
           type: Number,
-          required: true,
         },
       },
     ],
@@ -130,5 +133,22 @@ const hospitalSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+
+hospitalSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    // Password is not modified
+    next();
+  }
+  // Password is modified
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+hospitalSchema.methods.matchPassword= async function(enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
 
 module.exports = mongoose.model("Hospitals", hospitalSchema);
