@@ -1,19 +1,20 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config();
 const cors = require("cors");
+const connectDb= require('./config/db')
 
-mongoose.connect(
-  process.env.DATABASE_URI,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-  () => {
-    console.log("Connected to MongoDB");
-  }
-);
+const app = express();
+
+dotenv.config();
+
 app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({extended: false}))
 
-app.listen(5000, () => {
-  console.log("Backend server is running!");
+//database
+connectDb()
+
+app.listen(process.env.PORT, () => {
+  console.log("SERVER UP AND RUNNING".bold.cyan);
 });
