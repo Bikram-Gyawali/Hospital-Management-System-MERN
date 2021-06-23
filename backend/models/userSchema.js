@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    age:{
+      type: Number,
+      required: true
+    },
     password: {
       type: String,
       required: true,
@@ -27,6 +31,13 @@ const userSchema = mongoose.Schema(
     reports: {
       type: String,
     },
+    isDisabled:{
+      type: Boolean,
+    },
+    // funds: {
+    //   status: Boolean,
+    //   default: false
+    // }
   },
   {
     timestamps: true,
