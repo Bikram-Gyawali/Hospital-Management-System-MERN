@@ -1,8 +1,8 @@
-const route= require('express').Router()
-const asyncHandler= require('express-async-handler')
+const route = require("express").Router();
+const asyncHandler = require("express-async-handler");
 
-const hiHospital= asyncHandler(async(req, res)=>{
-    res.send('hi')
-})
+const hiHospital = asyncHandler(async (req, res) => {
+  res.send("hi");
+});
 
-module.exports= hiHospital
+module.exports = hiHospital;

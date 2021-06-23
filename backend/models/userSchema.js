@@ -10,16 +10,15 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    age:{
-      type: Number,
-      required: true
-    },
     password: {
       type: String,
       required: true,
     },
     dob: {
-      type: Date,
+      type: Number,
+    },
+    age: {
+      type: Number,
     },
     contacts: {
       type: Number,
@@ -31,7 +30,7 @@ const userSchema = mongoose.Schema(
     reports: {
       type: String,
     },
-    isDisabled:{
+    isDisabled: {
       type: Boolean,
     },
     // funds: {

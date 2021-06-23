@@ -1,7 +1,6 @@
-const route= require('express').Router()
-const hiHospital= require('../controllers/hospitalControllers')
+const route = require("express").Router();
+const hiHospital = require("../controllers/hospitalControllers");
 
-route.get('/', hiHospital)
+route.get("/", hiHospital);
 
-
-module.exports= route
+module.exports = route;
