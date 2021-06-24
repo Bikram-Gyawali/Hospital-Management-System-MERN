@@ -62,7 +62,37 @@ const individualHospital= asyncHandler(async(req, res)=>{
         throw new Error(error)
     }
 })
-module.exports= {registerHospital, loginHospital, individualHospital}
+
+const upateHospital = asyncHandler(async(req, res)=>{
+    try {
+        const hospital= await Hospitals.findByIdAndUpdate(req.params.id, {$set: req.body})
+        res.status(200).json(hospital)
+    } catch (error) {
+        res.status(400)
+        throw new Error(error)
+    }
+})
+
+const addService= asyncHandler(async(req, res)=>{
+    try {
+        const {topic, desc, serviceCharge}= req.body
+        const hospital= await Hospitals.findByIdAndUpdate(req.params.id, {
+            $push: {
+                services:{
+                    topic, desc, serviceCharge
+                }
+            }
+        })
+        res.status(200).json(hospital)
+    } catch (error) {
+        res.status(400)
+        throw new Error(error)
+    }
+})
+
+
+
+module.exports= {registerHospital, loginHospital, individualHospital, upateHospital, addService}
 
 
 
