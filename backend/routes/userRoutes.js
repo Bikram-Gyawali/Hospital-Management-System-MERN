@@ -11,7 +11,7 @@ route.post("/register", userRegister);
 // user login
 route.post("/login", userLogin);
 
-// get user by id
-route.get("/:id/user", individualUser);
+// // get user by id
+// route.get("/:id/user", individualUser);
 
 module.exports = route;
