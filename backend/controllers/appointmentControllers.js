@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userSchema");
 const Hospitals = require("../models/hospitalSchema");
 const Appointments = require("../models/appointmentSchema");
+const appointmentSchema = require("../models/appointmentSchema");
 
 const appointmentDetails = asyncHandler(async (req, res) => {
   try {
@@ -44,4 +45,29 @@ const appointmentDetails = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { appointmentDetails };
+const eachHospitalAllAppointment = asyncHandler(async (req, res) => {
+  try {
+    const hospital = await Hospitals.findById(req.params.id)
+    let a = []
+    for (let i = 0; i < hospital.appointments.length; i++) {
+      const b = await Appointments.findById(hospital.appointments[i])
+      a.push(b)
+    }
+    res.status(200).json(a)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+const eachAppointmentDetails = asyncHandler(async (req, res) => {
+  try {
+    const appointment= await Appointments.findById(req.params.id)
+    res.status(200).json(appointment)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+module.exports = { appointmentDetails, eachHospitalAllAppointment, eachAppointmentDetails };
