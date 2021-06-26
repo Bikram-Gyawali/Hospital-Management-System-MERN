@@ -54,7 +54,7 @@ const individualUser = asyncHandler(async (req, res) => {
 });
 
 // update user
-const upateUser = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler(async (req, res) => {
   try {
     const hospital = await Hospitals.findByIdAndUpdate(req.params.id, {
       $set: req.body,
@@ -66,4 +66,4 @@ const upateUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { userRegister, userLogin, user };
+module.exports = { userRegister, userLogin, updateUser, individualUser };

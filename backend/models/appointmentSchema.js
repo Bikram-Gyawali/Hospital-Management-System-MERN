@@ -5,7 +5,7 @@ const appointmentSchema = mongoose.Schema(
     name: {
       type: String,
     },
-    service: {
+    services: {
       type: String,
     },
     location: {
@@ -28,7 +28,7 @@ const appointmentSchema = mongoose.Schema(
     status: {
       pending: {
         type: Boolean,
-        default: false,
+        default: true,
       },
       done: {
         type: Boolean,
@@ -50,11 +50,11 @@ const appointmentSchema = mongoose.Schema(
     },
     withHospital: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hospitals",
+      ref: "Hospitals", //pRms id
     },
     patient: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      ref: "Users", //logged user ko id
     },
     emergency: {
       type: Boolean,
