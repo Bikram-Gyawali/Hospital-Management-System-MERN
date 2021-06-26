@@ -13,7 +13,7 @@ const app = express();
 // routes
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
-
+const appointmentRoutes = require("./routes/appointmentRoutes");
 dotenv.config();
 
 //middlewares
@@ -45,6 +45,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/userAppointment", appointmentRoutes);
 //database
 connectDb();
 
