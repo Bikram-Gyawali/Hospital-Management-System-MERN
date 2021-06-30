@@ -6,4 +6,6 @@ route.post("/:id/appointment/setappointment", appointmentDetails);
 route.get("/:id/appointment/hospitalallappointments", eachHospitalAllAppointment, )
 route.get("/:id/appointment/oneappointment", eachAppointmentDetails, )
 
+//
+
 module.exports = route;
