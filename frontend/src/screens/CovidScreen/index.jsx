@@ -2,7 +2,7 @@ import Navbar from 'components/GlobalComponents/Navbar'
 import Footer from 'components/GlobalComponents/Footer'
 import styled from 'styled-components'
 
-const ServiceScreen = styled.div`
+const Covid19Container = styled.div`
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -11,10 +11,10 @@ const ServiceScreen = styled.div`
 
 const index = () => {
     return (
-        <ServiceScreen>
+        <Covid19Container>
             <Navbar />
             <Footer />
-        </ServiceScreen>
+        </Covid19Container>
     )
 }
 
