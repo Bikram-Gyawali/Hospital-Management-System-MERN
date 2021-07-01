@@ -1,9 +1,29 @@
-import { styles } from './LoginScreenCss'
+import {useState, useEffect } from 'react'
+import { styles} from './LoginScreenCss'
 import {Grid, Box, Typography } from '@material-ui/core'
+import {userLoginAction} from '../../actions/userActions'
 import {Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 
-const LoginScreen = () => {
+const LoginScreen = ({history}) => {
+    const [email, setemail] = useState("")
+    const [password, setpassword] = useState("")
     const classes = styles()
+
+    const dispatch = useDispatch()
+    const userLogin= useSelector(state=> state.userLogin)
+    const {loading, userInfo, error}= userLogin
+
+    useEffect(()=>{
+        if(userInfo){
+            history.push('/')
+        }
+    }, [userInfo, history])
+
+    const loginHandler=(e)=>{
+        e.preventDefault()
+        dispatch(userLoginAction(email, password))
+    }
     return (
         <>
             <div className={classes.main_loginScreenContainer}>
@@ -28,19 +48,24 @@ const LoginScreen = () => {
                                     <Box px={4}>
                                         <Typography  variant="h4">Log In</Typography>
                                         <Grid container className={classes.form_grid_container}>
+                                            {error && (
+                                                <Grid item className={classes.form_grid_item}>
+                                                    <Typography className={classes.typography}>{error}</Typography>
+                                                </Grid >
+                                            )}
                                             <Grid item className={classes.form_grid_item} xs={12}>
                                                 <label htmlFor="email">Email</label>
-                                                <input type="email" name="email" />
+                                                <input onChange={(e)=> setemail(e.target.value)} value={email} type="email" name="email" />
                                             </Grid>
                                             <Grid item className={classes.form_grid_item} xs={12}>
                                                 <label htmlFor="password">Password</label>
-                                                <input type="password" name="password" />
+                                                <input onChange={(e)=> setpassword(e.target.value)} value={password} type="password" name="password" />
                                             </Grid>
                                             <Grid item className={classes.form_grid_item}>
                                                 <Typography className={classes.typography}>Forget your password?</Typography>
                                             </Grid >
                                             <Grid item className={classes.form_grid_item} >
-                                                <button className={classes.button}>Login</button>
+                                                <button onClick={loginHandler} className={classes.button}>Login</button>
                                             </Grid>
                                         </Grid> 
                                     </Box>
