@@ -6,9 +6,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import RightHero from 'assets/images/right-hero.svg'
 import CovidDetails from 'components/HomeComponents/CovidDetails'
+import Layout from 'components/GlobalComponents/Layout'
+
+
 const HeroSectionContainer = styled(Section)`
-    padding-top: 80px;
-    padding-bottom: 100px;
 `
 
 const HeroSectionTop = styled.div`
@@ -64,37 +65,38 @@ const CovidTitle = styled.div`
 const HeroSection = () => {
     return (
         <HeroSectionContainer>
-            <HeroSectionTop>
-                <GridLeft>
-                    <H1>
-                        <span>Take appointments</span>
-                        <br />
-                        <span>online with best</span>
-                        <br />
-                        <span>doctors</span>
-                    </H1>
-                    <Description>
-                        <span>Our skilled doctors have tremendous experience with</span>
-                        <br />
-                        <span>wide range of diseases to serve the needs of our</span>
-                        <br />
-                        <span>patients</span>
-                    </Description>
-                    <CTAButton>
-                        <CTALink to="/register">Get Started</CTALink>
-                    </CTAButton>
-                </GridLeft>
-                <GridRight>
-                    <img src={RightHero} alt={"A man having xray"} />
-                </GridRight>
-            </HeroSectionTop>
-            <HeroSectionBottom>
-                <CovidTitle>
-                    Current Covid Status In Nepal
-                </CovidTitle>
-                <CovidDetails />
-            </HeroSectionBottom>
-
+            <Layout>
+                <HeroSectionTop>
+                    <GridLeft>
+                        <H1>
+                            <span>Take appointments</span>
+                            <br />
+                            <span>online with best</span>
+                            <br />
+                            <span>doctors</span>
+                        </H1>
+                        <Description>
+                            <span>Our skilled doctors have tremendous experience with</span>
+                            <br />
+                            <span>wide range of diseases to serve the needs of our</span>
+                            <br />
+                            <span>patients</span>
+                        </Description>
+                        <CTAButton>
+                            <CTALink to="/register">Get Started</CTALink>
+                        </CTAButton>
+                    </GridLeft>
+                    <GridRight>
+                        <img src={RightHero} alt={"A man having xray"} />
+                    </GridRight>
+                </HeroSectionTop>
+                <HeroSectionBottom>
+                    <CovidTitle>
+                        Current Covid Status In World
+                    </CovidTitle>
+                    <CovidDetails />
+                </HeroSectionBottom>
+            </Layout>
         </HeroSectionContainer>
     )
 }
