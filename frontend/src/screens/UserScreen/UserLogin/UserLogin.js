@@ -1,7 +1,7 @@
 import {useState, useEffect } from 'react'
-import { styles} from './LoginScreenCss'
+import { styles} from './UserLoginCss'
 import {Grid, Box, Typography } from '@material-ui/core'
-import {userLoginAction} from '../../actions/userActions'
+import {userLoginAction} from '../../../actions/userActions'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -35,7 +35,7 @@ const LoginScreen = ({history}) => {
                             </Link>
                             <div className={classes.login}>
                                 <span>New to DoctorSahab? </span>
-                                <span ><Link to="/login" className={classes.highlight}>Register</Link></span>
+                                <span ><Link to="/user_register" className={classes.highlight}>Register</Link></span>
                             </div>
                         </Grid>
                         <Grid item className={classes.form_root_container}>
@@ -46,7 +46,7 @@ const LoginScreen = ({history}) => {
                                 <div className={classes.line}></div>
                                 <div className={classes.form_container}>
                                     <Box px={4}>
-                                        <Typography  variant="h4">Log In</Typography>
+                                        <Typography  variant="h4">Client LogIn</Typography>
                                         <Grid container className={classes.form_grid_container}>
                                             {error && (
                                                 <Grid item className={classes.form_grid_item}>
@@ -62,7 +62,10 @@ const LoginScreen = ({history}) => {
                                                 <input onChange={(e)=> setpassword(e.target.value)} value={password} type="password" name="password" />
                                             </Grid>
                                             <Grid item className={classes.form_grid_item}>
-                                                <Typography className={classes.typography}>Forget your password?</Typography>
+                                                <Typography className={classes.link_highlighter}>Forget your password?</Typography>
+                                            </Grid >
+                                            <Grid item className={classes.form_grid_item}>
+                                                <Typography>Login for hospital? <Link className={classes.link_highlighter} to="/hospital_login">Click Here</Link></Typography>
                                             </Grid >
                                             <Grid item className={classes.form_grid_item} >
                                                 <button onClick={loginHandler} className={classes.button}>Login</button>

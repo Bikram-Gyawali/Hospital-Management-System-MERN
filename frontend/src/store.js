@@ -3,12 +3,15 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {userLoginReducer, userRegisterReducer} from './reducers/userReducers'
+import {hospitalLoginReducer} from './reducers/hospitalReducers'
 
 
 const reducer= combineReducers({
     userLogin: userLoginReducer,
-    userRegister: userRegisterReducer
+    userRegister: userRegisterReducer,
+    hospitalLogin: hospitalLoginReducer
 })
+
 const initialState={}
 const middleware= [thunk]
 

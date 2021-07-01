@@ -102,6 +102,10 @@ export const styles= createUseStyles({
 
         }
     },
+    link_highlighter:{
+        color: ' #4dadbd',
+        cursor: 'pointer',
+    },
     button:{
         width: '150px',
         height: '45px',

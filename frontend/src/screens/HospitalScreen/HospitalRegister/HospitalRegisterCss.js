@@ -70,11 +70,39 @@ export const styles= createUseStyles({
             outline: 'none',
             border: '1px solid #4dadbd',
             background: 'rgba(77, 173, 189, 0.1)',
-            fontSize: '1rem',
-            fontWeight: '600'
+            fontSize: '1rem'
         }
     },
-    typography:{
+    styled_form:{
+        display: 'flex',
+        flex: 1,
+
+        '& div:first-child':{
+            marginRight: '5px',
+        },
+        '& div:last-child':{
+            marginLeft: '5px',
+        }
+    },
+    styled_inner_form:{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        paddingBottom: '1.1rem',
+
+        '& input':{
+            padding: '0.6rem',
+            borderRadius: '8px',
+            border: 'none',
+            outling: 'none',
+            border: '1px solid #4dadbd',
+            background: 'rgba(77, 173, 189, 0.1)',
+            fontSize: '1rem',
+
+        }
+    },
+    link_highlighter:{
         color: ' #4dadbd',
         cursor: 'pointer',
     },
