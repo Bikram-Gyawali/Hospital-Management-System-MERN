@@ -90,11 +90,14 @@ const hospitalSchema = new mongoose.Schema(
       ventilator: Number,
       other: Number,
     },
-    vaccancy: {
-      status: Boolean,
-      position: String,
-      amount: Number,
-    },
+    vaccancy: [
+      {
+        status: Boolean,
+        position: String,
+        amount: Number,
+        desc: String,
+      },
+    ],
     appointments: [
       {
         type: mongoose.Schema.Types.ObjectId,
