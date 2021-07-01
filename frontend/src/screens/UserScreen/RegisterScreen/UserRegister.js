@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react'
-import { styles } from './RegisterScreenCss'
+import { styles } from './UserRegisterCss'
 import {Grid, Box, Typography } from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
-import {userRegisterAction} from '../../actions/userActions'
+import {userRegisterAction} from '../../../actions/userActions'
 import {Link} from 'react-router-dom'
 
 const LoginScreen = ({history}) => {
@@ -44,7 +44,7 @@ const LoginScreen = ({history}) => {
                             </Link>
                             <div className={classes.login}>
                                 <span>Already have and account? </span>
-                                <span ><Link to="/register" className={classes.highlight}>Login</Link></span>
+                                <span ><Link to="/user_login" className={classes.highlight}>Login</Link></span>
                             </div>
                         </Grid>
                         <Grid item className={classes.form_root_container}>
@@ -55,7 +55,7 @@ const LoginScreen = ({history}) => {
                                 <div className={classes.line}></div>
                                 <div className={classes.form_container}>
                                     <Box px={4}>
-                                        <Typography variant="h4">Create Account</Typography>
+                                        <Typography variant="h4">Client Account</Typography>
                                         <Grid container className={classes.form_grid_container}>
                                             <Grid item className={classes.form_grid_item} xs={12}>
                                                 <label htmlFor="name">Name</label>
@@ -83,6 +83,9 @@ const LoginScreen = ({history}) => {
                                                 <label htmlFor="cpassword">Confirm Password</label>
                                                 <input onChange={(e)=> setcpassword(e.target.value)} type="password" name="cpassword" />
                                             </Grid>
+                                            <Grid item className={classes.form_grid_item}>
+                                                <Typography>Need account for hospital? <Link className={classes.link_highlighter} to="/hospital_register">Click Here</Link></Typography>
+                                            </Grid >
                                             <Grid item className={classes.form_grid_item} >
                                                 <button onClick={registerHandler} className={classes.button}>GET STARTED</button>
                                             </Grid>
