@@ -17,16 +17,9 @@ const userRegister = asyncHandler(async (req, res) => {
       password: hashedPassword,
     });
     const user = await newUser.save();
-    res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      dob: user.dob,
-      contacts: user.contacts
-    });
+    res.status(200).json(user);
   } catch (error) {
-    res.status(400)
-    throw new Error("Failed to Register")
+    res.status(500).json("Unable to create new User", error.message);
   }
 });
 
@@ -34,31 +27,18 @@ const userLogin = asyncHandler(async (req, res) => {
   try {
     // check for the user
     const user = await User.findOne({ email: req.body.email });
-    if(!user){
-      res.status(400)
-      throw new Error("Invalid Credientials")
-    }
-
+    !user && res.status(404).json("user not found");
+    console.log(user);
     // compaare password
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
-    if(!validPassword){
-      res.status(400)
-      throw new Error("Invalid Credientails")
-    }
+    !validPassword && res.status(400).json("wrong password");
 
-    res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      dob: user.dob,
-      contacts: user.contacts
-    });
+    res.status(200).json(user);
   } catch (error) {
-    res.status(400)
-    throw new Error("Invalid Credientails")
+    res.status(500).json(error);
   }
 });
 

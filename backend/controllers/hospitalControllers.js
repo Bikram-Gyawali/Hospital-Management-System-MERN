@@ -5,20 +5,20 @@ const Hospitals= require('../models/hospitalSchema')
 
 const registerHospital= asyncHandler(async(req, res)=>{
     try {
-        const {name, email, password, contact1, contact2}= await req.body
-        if(!name || !email || !password || !contact1 || !contact2 ){
+        const {name, address, email, password, contact1, contact2}= await req.body
+        if(!name ||  !address || !email || !password || !contact1 || !contact2 ){
             res.status(400)
             throw new Error('ALL FIELDS REQUIRED')
         }
         const existHospital= await Hospitals.findOne({email})
         if(!existHospital){
-            const newHopital= new Hospitals({name, email, password, contact1, contact2}).save((err, hospital)=>{
+            const newHopital= new Hospitals({name, address, email, password, contact1, contact2}).save((err, hospital)=>{
                 if(err){
                     res.status(400)
                     throw new Error(err)
                 }
                 if(hospital){
-                    res.status(200).json(hospital)
+                    res.status(200).json({hospital})
                 }
             })
         }else{
@@ -40,7 +40,7 @@ const loginHospital= asyncHandler(async(req, res)=>{
             throw new Error('ALL FIELDS REQUIRED')
         }
 
-        const existHospital= await Hospitals.findOne({email})
+        const existHospital= await Hospitals.findOne({email: email})
         if(existHospital && await existHospital.matchPassword(password)){
             res.status(200).json(existHospital)
         }else{
@@ -49,7 +49,7 @@ const loginHospital= asyncHandler(async(req, res)=>{
         }
     } catch (error) {
         res.status(400)
-        throw new Error("Invalid Credientals")
+        throw new Error(error)
     }
 })
 

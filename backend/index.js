@@ -10,8 +10,6 @@ const morgan = require("morgan");
 
 const app = express();
 
-const {notFound, errorHandler}= require('./middleware/errorHandlers')
-
 // routes
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -50,10 +48,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
 //database
 connectDb();
-
-app.use(notFound);
-app.use(errorHandler);
-
 
 app.listen(process.env.PORT, () => {
   console.log("SERVER UP AND RUNNING".bold.cyan);
