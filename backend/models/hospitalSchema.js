@@ -56,18 +56,7 @@ const hospitalSchema = new mongoose.Schema(
         ref: "Doctors",
       },
     ],
-    // contacts: [
-    //   {
-    //     name: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //     number: {
-    //       type: Number,
-    //       required: true,
-    //     },
-    //   },
-    // ],
+
     emergencyContacts: [
       {
         name: {
