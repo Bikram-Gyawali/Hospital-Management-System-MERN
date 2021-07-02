@@ -78,7 +78,7 @@ const Navbar = () => {
                     </LinkContainer>
                     <ButtonContainer>
                         <Button>
-                            <ButtonLink to="/register">Sign Up</ButtonLink>
+                            <ButtonLink to="/user_register">Sign Up</ButtonLink>
                         </Button>
                     </ButtonContainer>
                 </NavRight>

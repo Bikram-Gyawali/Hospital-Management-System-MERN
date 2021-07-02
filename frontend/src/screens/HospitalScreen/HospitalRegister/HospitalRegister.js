@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { styles } from './HospitalRegisterCss'
 import { Grid, Box, Typography } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-// import {userRegisterAction} from '../../actions/userActions'
+import {hospitalRegisterAction} from '../../../actions/hospitalActions'
 import { Link } from 'react-router-dom'
 
 const HospitalRegisterScreen = ({ history }) => {
@@ -10,24 +10,24 @@ const HospitalRegisterScreen = ({ history }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [cpassword, setcpassword] = useState('')
-    const [dob, setdob] = useState('')
-    const [contacts, setcontacts] = useState('')
+    const [contact1, setcontact1] = useState('')
+    const [contact2, setcontact2] = useState('')
 
     const classes = styles()
     const dispatch = useDispatch()
-    const userRegister = useSelector(state => state.userRegister)
-    const { loading, error, userInfo } = userRegister
+    const hospitalRegister = useSelector(state => state.hospitalRegister)
+    const { loading, error, hospitalInfo } = hospitalRegister
 
     useEffect(() => {
-        if (userInfo) {
+        if (hospitalInfo) {
             history.push('/')
         }
-    }, [userInfo, history])
+    }, [hospitalInfo, history])
 
     const registerHandler = (e) => {
         e.preventDefault()
         if (password === cpassword) {
-            // dispatch(userRegisterAction(name, email, dob, contacts, password))
+            dispatch(hospitalRegisterAction(name, email, password, contact1, contact2))
         } else {
             alert('Password not matching')
         }
@@ -71,12 +71,12 @@ const HospitalRegisterScreen = ({ history }) => {
                                             </Grid> */}
                                             <Grid item xs={12} className={classes.styled_form}>
                                                 <div className={classes.styled_inner_form}>
-                                                    <label htmlFor="address">Contact1</label>
-                                                    <input onChange={(e) => setcontacts(e.target.value)} type="number" name="address" />
+                                                    <label htmlFor="contact1">Contact1</label>
+                                                    <input onChange={(e) => setcontact1(e.target.value)} type="number" name="contact1" />
                                                 </div>
                                                 <div className={classes.styled_inner_form}>
                                                     <label htmlFor="contact2">Contact2</label>
-                                                    <input onChange={(e) => setdob(e.target.value)} type="number" name="contact2" />
+                                                    <input onChange={(e) => setcontact2(e.target.value)} type="number" name="contact2" />
                                                 </div>
                                             </Grid>
                                             <Grid item className={classes.form_grid_item} xs={12}>

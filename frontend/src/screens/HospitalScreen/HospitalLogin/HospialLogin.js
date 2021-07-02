@@ -11,14 +11,14 @@ const LoginScreen = ({history}) => {
     const classes = styles()
 
     const dispatch = useDispatch()
-    const userLogin= useSelector(state=> state.userLogin)
-    const {loading, userInfo, error}= userLogin
+    const hospitalLogin= useSelector(state=> state.hospitalLogin)
+    const {loading, hospitalInfo, error}= hospitalLogin
 
     useEffect(()=>{
-        if(userInfo){
+        if(hospitalInfo){
             history.push('/')
         }
-    }, [userInfo, history])
+    }, [hospitalInfo, history])
 
     const loginHandler=(e)=>{
         e.preventDefault()
