@@ -1,7 +1,7 @@
 import React from "react";
 import "./userdashboard.css";
 
-import Navbar from "../nav/Navbar";
+import Navbar from "components/DashboardShared/Navbar";
 import UserSidebar from "../usersidebar/UserSidebar";
 function Userdashboard() {
   return (

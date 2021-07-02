@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../nav/Navbar";
+import Navbar from "components/DashboardShared/Navbar";
 import Sidebar from "../hospitalsidebar/Sidebar";
 import "./dashboard.css";
 import Medbox from "../medbox/Medbox";
