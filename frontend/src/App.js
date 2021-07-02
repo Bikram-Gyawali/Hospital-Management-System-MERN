@@ -19,8 +19,9 @@ const AppContainer = styled.div`
 `;
 function App() {
   return (
-    <Router>
-      <Switch>
+    
+    <AppContainer>
+      <Router>
         <Route path="/userDashboard" component={Userdahboard} />
         <Route path="/hospitalDashboard" component={Dashboard} />
         <Route exact path="/" component={HomeScreen} />
@@ -32,8 +33,8 @@ function App() {
         <Route exact path="/hospital_login" component={HospitalLogin} />
         <Route exact path="/hospital_register" component={HospitalRegister} />
         <Route exact path="/covid19" component={CovidScreen} />
-      </Switch>
-    </Router>
+      </Router>
+    </AppContainer>
   );
 }
 

@@ -8,11 +8,24 @@ export const hospitalLoginReducer=(state={}, action)=>{
         case HOSPITAL_LOGIN_REQUEST:
             return {loading: true}
         case HOSPITAL_LOGIN_SUCCESS:
-            return {loading: false, userInfo: action.payload}
+            return {loading: false, hospitalInfo: action.payload}
         case HOSPITAL_LOGIN_FAIL:
             return {loading: false, error: action.payload}
         case HOSPITAL_LOGOUT:
             return {}
+        default:
+            return state
+    }
+}
+
+export const hospitalRegisterReducer= (state={}, action)=>{
+    switch(action.type){
+        case HOSPITAL_REGISTER_REQUEST:
+            return {loading: true}
+        case HOSPITAL_REGISTER_SUCCESS:
+            return {loading: false, hospitalInfo: action.payload}
+        case HOSPITAL_REGISTER_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }
