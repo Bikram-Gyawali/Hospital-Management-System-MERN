@@ -11,9 +11,21 @@ const doctorSchema = mongoose.Schema(
     spec: {
       type: String,
     },
+    contacts: {
+      type: Number,
+    },
+    email: {
+      type: String,
+    },
+    pic: {
+      type: String,
+    },
     doctorId: String,
     graduatedFrom: {
       type: String,
+    },
+    newDate: {
+      type: Date,
     },
     reviews: [
       {
