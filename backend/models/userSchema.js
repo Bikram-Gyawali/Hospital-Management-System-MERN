@@ -33,6 +33,13 @@ const userSchema = mongoose.Schema(
     isDisabled: {
       type: Boolean,
     },
+    medicines: [
+      {
+        desc: String,
+        disease: String,
+        date1: [Date],
+      },
+    ],
     // funds: {
     //   status: Boolean,
     //   default: false
