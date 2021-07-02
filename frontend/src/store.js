@@ -3,16 +3,27 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {userLoginReducer, userRegisterReducer} from './reducers/userReducers'
-import {hospitalLoginReducer} from './reducers/hospitalReducers'
+import {hospitalLoginReducer, hospitalRegisterReducer} from './reducers/hospitalReducers'
 
 
 const reducer= combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-    hospitalLogin: hospitalLoginReducer
+    hospitalLogin: hospitalLoginReducer,
+    hospitalRegister: hospitalRegisterReducer
 })
 
-const initialState={}
+const userFromStrogae= localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')): null
+const hospitalFromStrogae= localStorage.getItem('hospitalInfo') ? JSON.parse(localStorage.getItem('hospitalInfo')): null
+
+const initialState={
+    userLogin:{
+        userInfo: userFromStrogae
+    },
+    hospitalLogin: {
+        hospitalInfo: hospitalFromStrogae
+    }
+}
 const middleware= [thunk]
 
 const store= createStore(
