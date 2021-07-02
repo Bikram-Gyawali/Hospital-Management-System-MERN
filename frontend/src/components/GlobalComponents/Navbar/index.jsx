@@ -11,6 +11,7 @@ const Nav = styled.nav`
     background: ${colors.white};
     position: sticky;
     top: 0;
+    z-index: 2;
 `
 const NavSection = styled(Section)`
     display: flex;
@@ -69,8 +70,8 @@ const Navbar = () => {
                         <StyledNavLink to="/about" exact activeStyle={{color: colors.primary}}>
                             About
                         </StyledNavLink>
-                        <StyledNavLink to="/services" exact activeStyle={{color: colors.primary}}>
-                            Services
+                        <StyledNavLink to="/covid19" exact activeStyle={{color: colors.primary}}>
+                            Covid19
                         </StyledNavLink>
                         <StyledNavLink to="/doctors" exact activeStyle={{color: colors.primary}}>
                             Doctors
