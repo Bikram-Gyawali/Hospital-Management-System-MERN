@@ -1,6 +1,6 @@
 import Userdahboard from "./screens/userdashboard/Userdashboard";
 import Dashboard from "./screens/hospitaldashboard/Dashboard";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginScreen from "./screens/UserScreen/RegisterScreen/UserRegister";
 import RegisterScreen from "./screens/UserScreen/UserLogin/UserLogin";
 import HomeScreen from "./screens/HomeScreen";
