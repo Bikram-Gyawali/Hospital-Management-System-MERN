@@ -1,9 +1,29 @@
-import { styles } from './LoginScreenCss'
+import {useState, useEffect } from 'react'
+import { styles} from './HospitalLoginCss'
 import {Grid, Box, Typography } from '@material-ui/core'
+import {hospitalLoginAction} from '../../../actions/hospitalActions'
 import {Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 
-const LoginScreen = () => {
+const LoginScreen = ({history}) => {
+    const [email, setemail] = useState("")
+    const [password, setpassword] = useState("")
     const classes = styles()
+
+    const dispatch = useDispatch()
+    const hospitalLogin= useSelector(state=> state.hospitalLogin)
+    const {loading, hospitalInfo, error}= hospitalLogin
+
+    useEffect(()=>{
+        if(hospitalInfo){
+            history.push('/')
+        }
+    }, [hospitalInfo, history])
+
+    const loginHandler=(e)=>{
+        e.preventDefault()
+        dispatch(hospitalLoginAction(email, password))
+    }
     return (
         <>
             <div className={classes.main_loginScreenContainer}>
@@ -15,7 +35,7 @@ const LoginScreen = () => {
                             </Link>
                             <div className={classes.login}>
                                 <span>New to DoctorSahab? </span>
-                                <span ><Link to="/login" className={classes.highlight}>Register</Link></span>
+                                <span ><Link to="/hospital_register" className={classes.highlight}>Register</Link></span>
                             </div>
                         </Grid>
                         <Grid item className={classes.form_root_container}>
@@ -26,21 +46,29 @@ const LoginScreen = () => {
                                 <div className={classes.line}></div>
                                 <div className={classes.form_container}>
                                     <Box px={4}>
-                                        <Typography  variant="h4">Log In</Typography>
+                                        <Typography  variant="h4">Hospital LogIn</Typography>
                                         <Grid container className={classes.form_grid_container}>
+                                            {error && (
+                                                <Grid item className={classes.form_grid_item}>
+                                                    <Typography className={classes.typography}>{error}</Typography>
+                                                </Grid >
+                                            )}
                                             <Grid item className={classes.form_grid_item} xs={12}>
                                                 <label htmlFor="email">Email</label>
-                                                <input type="email" name="email" />
+                                                <input onChange={(e)=> setemail(e.target.value)} value={email} type="email" name="email" />
                                             </Grid>
                                             <Grid item className={classes.form_grid_item} xs={12}>
                                                 <label htmlFor="password">Password</label>
-                                                <input type="password" name="password" />
+                                                <input onChange={(e)=> setpassword(e.target.value)} value={password} type="password" name="password" />
                                             </Grid>
                                             <Grid item className={classes.form_grid_item}>
-                                                <Typography className={classes.typography}>Forget your password?</Typography>
+                                                <Typography className={classes.link_highlighter}>Forget your password?</Typography>
+                                            </Grid >
+                                            <Grid item className={classes.form_grid_item}>
+                                                <Typography>Login for client? <Link to="/user_login" className={classes.link_highlighter}>Click Here</Link></Typography>
                                             </Grid >
                                             <Grid item className={classes.form_grid_item} >
-                                                <button className={classes.button}>Login</button>
+                                                <button onClick={loginHandler} className={classes.button}>Login</button>
                                             </Grid>
                                         </Grid> 
                                     </Box>

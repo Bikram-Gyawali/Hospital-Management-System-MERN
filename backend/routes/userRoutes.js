@@ -5,6 +5,7 @@ const {
   individualUser,
 } = require("../controllers/userControllers");
 
+
 // user register
 route.post("/register", userRegister);
 
