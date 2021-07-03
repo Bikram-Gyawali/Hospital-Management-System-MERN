@@ -12,7 +12,7 @@ const LoginScreen = ({history}) => {
 
     const dispatch = useDispatch()
     const hospitalLogin= useSelector(state=> state.hospitalLogin)
-    const {loading, hospitalInfo, error}= hospitalLogin
+    const {hospitalInfo, error}= hospitalLogin
 
     useEffect(()=>{
         if(hospitalInfo){

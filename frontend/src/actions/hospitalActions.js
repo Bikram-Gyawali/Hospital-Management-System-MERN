@@ -1,13 +1,8 @@
 import axios from "axios";
 import {
-  HOSPITAL_LOGIN_REQUEST,
-  HOSPITAL_LOGIN_SUCCESS,
-  HOSPITAL_LOGIN_FAIL,
-  HOSPITAL_LOGOUT,
-  HOSPITAL_REGISTER_REQUEST,
-  HOSPITAL_REGISTER_SUCCESS,
-  HOSPITAL_REGISTER_FAIL,
-} from "../constants/hospitalConstants";
+    HOSPITAL_LOGIN_REQUEST, HOSPITAL_LOGIN_SUCCESS, HOSPITAL_LOGIN_FAIL,
+    HOSPITAL_REGISTER_REQUEST, HOSPITAL_REGISTER_SUCCESS, HOSPITAL_REGISTER_FAIL,
+} from '../constants/hospitalConstants'
 
 export const hospitalLoginAction = (email, password) => async (
   dispatch,

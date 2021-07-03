@@ -16,7 +16,7 @@ const HospitalRegisterScreen = ({ history }) => {
     const classes = styles()
     const dispatch = useDispatch()
     const hospitalRegister = useSelector(state => state.hospitalRegister)
-    const { loading, error, hospitalInfo } = hospitalRegister
+    const {hospitalInfo } = hospitalRegister
 
     useEffect(() => {
         if (hospitalInfo) {

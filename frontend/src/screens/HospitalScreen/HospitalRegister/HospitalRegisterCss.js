@@ -94,7 +94,6 @@ export const styles= createUseStyles({
         '& input':{
             padding: '0.6rem',
             borderRadius: '8px',
-            border: 'none',
             outling: 'none',
             border: '1px solid #4dadbd',
             background: 'rgba(77, 173, 189, 0.1)',
