@@ -72,13 +72,13 @@ const AngleDownImage = styled.img`
 `
 
 
-function Navbar() {
+function Navbar({type}) {
   return (
     <Nav>
       <NavInner>
         <FlexContainer>
           <FlexLeft>
-            <Link to={"/hospitalDashboard"}>
+            <Link to={type === "hospital" ? "/hospitalDashboard" : "/userDashboard"}>
               <img src={Logo} alt={"Logo "} />
             </Link>
           </FlexLeft>
