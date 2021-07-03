@@ -26,7 +26,7 @@ const FlexContainer = styled.div`
 `
 
 const FlexLeft = styled.div`
-  width: 300px;
+  width: 280px;
 `
 
 const FlexRight = styled.div`
@@ -71,6 +71,11 @@ const AngleDownImage = styled.img`
   cursor: pointer;
 `
 
+const StyledLink = styled(Link)`
+  display: block;
+  max-width: max-content;
+`
+
 
 function Navbar({ type, id }) {
   console.log({id})
@@ -79,9 +84,9 @@ function Navbar({ type, id }) {
       <NavInner>
         <FlexContainer>
           <FlexLeft>
-            <Link to={type === "hospital" ? `/${id}/hospitalDashboard` : `/${id}/userDashboard`}>
+            <StyledLink to={type === "hospital" ? `/${id}/hospitalDashboard` : `/${id}/userDashboard`}>
               <img src={Logo} alt={"Logo "} />
-            </Link>
+            </StyledLink>
           </FlexLeft>
           <FlexRight>
             <SearchInput />
