@@ -3,12 +3,15 @@ import Logo from 'assets/images/Logo.svg';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import { colors } from "colors";
-import SearchIcon from 'assets/images/search-icon.svg'
+
 import Message from 'assets/images/message.svg'
 import Notifications from 'assets/images/notifications.svg'
 import ProfilePicture from 'assets/images/sampleProfilePic.jpg'
 import AngleDown from 'assets/images/angle-down.svg'
 import { fonts } from "fonts";
+import SearchInput from 'components/GlobalComponents/SearchInput'
+
+
 const Nav = styled.nav`
   padding: 20px 0;
 `
@@ -33,40 +36,7 @@ const FlexRight = styled.div`
   align-items: center;
 `
 
-const InputContainer = styled.div`
-  border-radius: 20px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: ${colors.white};
-  display: flex;
-  align-items: center;
-  flex: 1;
-  gap: 25px;
 
-`
-
-const SearchIconContainer = styled.div`
-  padding: 10px;
-`
-
-const Line = styled.div`
-  width: 1px;
-  background: ${colors.darkBrown};
-  height: 30px;
-`
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-`
-const Right = styled.div`
-  flex: 1;
-`
-
-const Input = styled.input`
-  outline: none;
-  border: none;
-  flex: 1;
-  width: 90%;
-`
 
 const NotificationsAndUser = styled.div`
   display: flex;
@@ -113,17 +83,7 @@ function Navbar() {
             </Link>
           </FlexLeft>
           <FlexRight>
-            <InputContainer>
-              <Left>
-                <SearchIconContainer>
-                  <img src={SearchIcon} alt={"Search Icon"} />
-                </SearchIconContainer>
-                <Line />
-              </Left>
-              <Right>
-                <Input type="text" placeholder="Search hospitals" />
-              </Right>
-            </InputContainer>
+            <SearchInput />
             <NotificationsAndUser>
               <ImagesContainer>
                 <ImageIcon>
@@ -142,7 +102,6 @@ function Navbar() {
                 </ProfileName>
                 <AngleDownImage src={AngleDown} alt={"Angle Down "} />
               </UserDetails>
-
             </NotificationsAndUser>
           </FlexRight>
         </FlexContainer>

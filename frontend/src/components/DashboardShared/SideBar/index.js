@@ -1,14 +1,34 @@
 import React from "react";
-import "./sidebar.css";
 import HomeIcon from "@material-ui/icons/Home";
 import MessageIcon from "@material-ui/icons/Message";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import DvrIcon from "@material-ui/icons/Dvr";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import {NavLink} from 'react-router-dom'
+import styled from "styled-components";
+import { colors } from "colors";
+
+
+const StyledNavLink = styled(NavLink)`
+  display: flex;
+  gap: 12px;
+  padding: 30px 30px 30px 60px;
+  background: ${colors.primary};
+  justify-content: center;
+  align-items: center;
+`
+
+
 function Sidebar() {
   return (
-    <div className="shadow shadow-lg  sidebar">
-      <div className="flex flex-col mx-2  mt-6 ">
+    <>
+
+      <StyledNavLink to="/hospitalDashboard">
+        <HomeIcon />
+        <span>Dashboard</span>
+      </StyledNavLink>
+
+
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
             <HomeIcon />
@@ -71,8 +91,7 @@ function Sidebar() {
           </h1>
           <h1>Subscription Plans</h1>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
 

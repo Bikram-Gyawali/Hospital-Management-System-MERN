@@ -1,5 +1,5 @@
-import Userdahboard from "./screens/userdashboard/Userdashboard";
-import Dashboard from "./screens/hospitaldashboard/Dashboard";
+import Userdahboard from "./screens/UserDashboardScreen/Userdashboard";
+import Dashboard from "./screens/HospitaldashboardScreen/Dashboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginScreen from "./screens/UserScreen/RegisterScreen/UserRegister";
 import RegisterScreen from "./screens/UserScreen/UserLogin/UserLogin";
