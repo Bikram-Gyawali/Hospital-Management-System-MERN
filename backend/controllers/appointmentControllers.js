@@ -62,7 +62,7 @@ const eachHospitalAllAppointment = asyncHandler(async (req, res) => {
 
 const eachAppointmentDetails = asyncHandler(async (req, res) => {
   try {
-    const appointment= await Appointments.findById(req.params.id)
+    const appointment = await Appointments.findById(req.params.id)
     res.status(200).json(appointment)
   } catch (error) {
     res.status(400)
@@ -70,4 +70,30 @@ const eachAppointmentDetails = asyncHandler(async (req, res) => {
   }
 })
 
-module.exports = { appointmentDetails, eachHospitalAllAppointment, eachAppointmentDetails };
+const approveAppointment = asyncHandler(async (req, res) => {
+  try {
+    const appointment = await Appointments.findOneAndUpdate(req.params.id, {
+      appointDate: req.body.date,
+      token: req.body.token,
+      docArrival: req.body.doctime,
+      status: { pending: false, done: true, rejected: false }
+    })
+    res.status(200).json(appointment)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+const rejectAppointment= asyncHandler(async(req, res)=>{
+  try {
+    const appointment = await Appointments.findOneAndUpdate(req.params.id, {
+      status: { pending: false, done: true, rejected: true }
+    })
+    res.status(200).json(appointment)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+module.exports = { appointmentDetails, eachHospitalAllAppointment, eachAppointmentDetails, approveAppointment, rejectAppointment };

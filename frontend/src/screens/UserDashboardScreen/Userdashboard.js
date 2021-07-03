@@ -42,7 +42,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap ">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="p"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -116,7 +116,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="k"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -189,7 +189,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap ">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="p"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -262,7 +262,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="k"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -335,7 +335,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap ">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="p"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -408,7 +408,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="k"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -481,7 +481,7 @@ function Userdashboard() {
                           <div class="flex items-start flex-wrap ">
                             <a
                               class="text-indigo-500 text-sm  inline-flex items-center md:mb-2 lg:mb-0"
-                              href="p"
+                              href="/"
                             >
                               Make Appointment
                               <svg
@@ -562,7 +562,7 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a class="text-indigo-500 inline-flex items-center mt-4">
+                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
                               class="w-4 h-4 ml-2"
@@ -601,7 +601,7 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a class="text-indigo-500 inline-flex items-center mt-4">
+                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
                               class="w-4 h-4 ml-2"
@@ -640,10 +640,10 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a class="text-indigo-500 inline-flex items-center mt-4">
+                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
-                              class="w-4 h-4 ml-2"
+                              class="w-4 h-4 ml-2"e
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                               stroke-width="2"

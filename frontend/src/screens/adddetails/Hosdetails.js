@@ -25,6 +25,8 @@ function Hosdetails() {
   const handleContacts = (e) => {
     e.preventDefault();
   };
+
+  console.log(file)
   return (
     <div className="mx-9">
       <div className="descForm mx-14 border-4 rounded-lg mt-8 shadow p-3">
