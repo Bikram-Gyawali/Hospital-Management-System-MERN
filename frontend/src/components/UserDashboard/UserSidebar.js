@@ -7,7 +7,7 @@ import DvrIcon from "@material-ui/icons/Dvr";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 function UserSidebar() {
   return (
-    <div className="shadow shadow-lg sidebar  ">
+    <div className="sidebar shadow-lg">
       <div className="flex flex-col mx-2  mt-6 ">
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
