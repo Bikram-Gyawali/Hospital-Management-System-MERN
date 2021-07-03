@@ -19,11 +19,10 @@ const AppContainer = styled.div`
 `;
 function App() {
   return (
-    
     <AppContainer>
       <Router>
-        <Route path="/userDashboard" component={Userdahboard} />
-        <Route path="/hospitalDashboard" component={Dashboard} />
+        <Route path="/:id/userDashboard" component={Userdahboard} />
+        <Route path="/:id/hospitalDashboard" component={Dashboard} />
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/about" component={AboutScreen} />
         <Route exact path="/services" component={ServiceScreen} />
