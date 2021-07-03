@@ -3,7 +3,7 @@ import Navbar from "components/DashboardShared/Navbar";
 import Sidebar from "components/DashboardShared/SideBar";
 import Hosdetails from "../../components/HospitalDashboard/HospitalDashboardRight";
 import styled from "styled-components";
-import hospitalMenuData from 'sampleDatas/hospitalDashboardMenu';
+import useGetHospitalData from 'hooks/useGetHospitalSidebarData';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -20,12 +20,14 @@ const FlexLeft = styled.div`
 `
 
 function Dashboard() {
+
+  const { hospitalId, hospitalMenuData } = useGetHospitalData()
   return (
     <div>
-      <Navbar type={ "hospital"}/>
+      <Navbar type={"hospital"} id={hospitalId} />
       <FlexContainer>
         <FlexLeft>
-          <Sidebar sidebarData = {hospitalMenuData} />
+          <Sidebar sidebarData={hospitalMenuData} />
         </FlexLeft>
         <FlexRight>
           <Hosdetails />

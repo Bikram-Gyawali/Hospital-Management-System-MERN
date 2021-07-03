@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from 'components/DashboardShared/Navbar'
 import SideBar from 'components/DashboardShared/SideBar'
 import styled from 'styled-components'
-import userMenuData from 'sampleDatas/userDashboardMenu';
+import useGetUserData from 'hooks/useGetUserSidebarData';
 
 
 const FlexContainer = styled.div`
@@ -21,9 +21,12 @@ const FlexLeft = styled.div`
 
 
 function Userdashboard() {
+
+  const {userId, userMenuData} = useGetUserData()
+  console.log(userMenuData, userId)
   return (
     <div>
-      <Navbar type={"user"}/>
+      <Navbar type={"user"} id={ userId}/>
       <FlexContainer>
         <FlexLeft>
           <SideBar sidebarData = {userMenuData} />
