@@ -6,5 +6,6 @@ export const colors = {
     primaryYellow: "#DADF74",
     grey: "#CEB699",
     white: "#ffffff",
+    secondaryWhite: "#FBFBFB",
     black: "#000000"
 }

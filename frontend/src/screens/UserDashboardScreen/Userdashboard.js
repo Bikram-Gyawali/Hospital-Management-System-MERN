@@ -1,20 +1,19 @@
 import React from "react";
-import Navbar from "../nav/Navbar";
-import Sidebar from "../hospitalsidebar/Sidebar";
-import "./dashboard.css";
-import Medbox from "../medbox/Medbox";
-import Hosdetails from "../adddetails/Hosdetails";
-function Dashboard() {
+import "./userdashboard.css";
+
+import Navbar from "components/DashboardShared/Navbar";
+import UserSidebar from "../../components/UserDashboard/UserSidebar";
+function Userdashboard() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-row bigBody">
-        <Sidebar />
-        {/* <section class="text-gray-600 body-font">
+      <div className="flex flex-row   bigBody ">
+        <UserSidebar />
+        <section class="text-gray-600 body-font">
           <div class="container px-2 py-2 mx-auto">
             <div class="flex flex-wrap -m-4">
               <div className="mx-auto text-lg mt-2 p-2 font-bold text-gray-600">
-                <h6>Other Hospitals</h6>
+                <h6>Hospitals and Clinics </h6>
               </div>
               <section class="text-gray-600 body-font">
                 <div class="container px-5 py-5  mx-auto">
@@ -312,7 +311,6 @@ function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <Medbox />
                     <div class="p-4 md:w-1/3  ">
                       <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img
@@ -535,8 +533,6 @@ function Dashboard() {
                   </div>
                 </div>
               </section>
-
-              
               <div className="mx-auto mt-12 color">
                 <h6 className="ml-30 font-semibold underline  text-blue-400 title-font text-3xl">
                   Events Organized By Hospitals Near You
@@ -668,11 +664,9 @@ function Dashboard() {
             </div>
           </div>
         </section>
-      */}
-        <Hosdetails />
       </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default Userdashboard;
