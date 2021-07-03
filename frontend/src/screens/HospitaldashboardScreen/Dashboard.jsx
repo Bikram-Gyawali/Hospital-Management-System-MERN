@@ -1,13 +1,12 @@
 import React from "react";
 import Navbar from "components/DashboardShared/Navbar";
 import Sidebar from "components/DashboardShared/SideBar";
-import Hosdetails from "../../components/HospitalDashboard/HospitalDashboardRight";
+import HospitalDetails from "../../components/HospitalDashboard/HospitalDashboardRight";
 import styled from "styled-components";
 import useGetHospitalData from 'hooks/useGetHospitalSidebarData';
 
 const FlexContainer = styled.div`
   display: flex;
-  padding: 0 20px 0 0px;
 
 `
 
@@ -30,7 +29,7 @@ function Dashboard() {
           <Sidebar sidebarData={hospitalMenuData} />
         </FlexLeft>
         <FlexRight>
-          <Hosdetails />
+          <HospitalDetails />
         </FlexRight>
       </FlexContainer>
 
