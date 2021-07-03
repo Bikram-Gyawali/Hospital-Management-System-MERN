@@ -17,11 +17,15 @@ const AppContainer = styled.div`
   max-width: 1600px;
   margin: auto;
 `;
+
+
 function App() {
+  
+  
   return (
     <AppContainer>
       <Router>
-        <Route path="/:id/userDashboard" component={Userdahboard} />
+        <Route path="/:id/userDashboard/" component={Userdahboard} />
         <Route path="/:id/hospitalDashboard" component={Dashboard} />
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/about" component={AboutScreen} />

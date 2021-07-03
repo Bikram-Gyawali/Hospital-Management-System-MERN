@@ -27,18 +27,20 @@ const SPAN = styled.span`
   color: ${colors.primary};
 `
 
-function Sidebar({sidebarData}) {
+function Sidebar({ sidebarData }) {
+  console.log({sidebarData})
   return (
     <>
       {
-        sidebarData.map(data => (
+        sidebarData ? sidebarData.map(data => (
           <StyledNavLink to={data.route} id={data.id} exact>
             <ImageContainer>
               <img src={ data.icon } alt={data.title } />
             </ImageContainer>
             <SPAN>{ data.title }</SPAN>
           </StyledNavLink>
-          ))
+        ))
+          : null
       }
 
 
