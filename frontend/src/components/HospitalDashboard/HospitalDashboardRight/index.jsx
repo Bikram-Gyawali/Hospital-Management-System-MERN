@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { PermMedia } from "@material-ui/icons";
 import axios from "axios";
 import { useParams } from "react-router";
-import AppomntButton from "components/AppointmentButton/AppomntButton";
 
 function Hosdetails() {
   const local = "http://localhost:5000/api";
@@ -183,7 +182,6 @@ function Hosdetails() {
   // console.log(file);
   return (
     <div className="mx-9">
-      <AppomntButton />
       <div className="descForm mx-14 border-4 rounded-lg mt-8 shadow p-3">
         <form
           action="submit"
