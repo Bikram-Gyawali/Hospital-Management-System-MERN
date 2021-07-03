@@ -21,6 +21,15 @@ const appointmentSchema = mongoose.Schema(
     date: {
       type: Date,
     },
+    appointDate:{
+      type: String,
+    },
+    docArrival:{
+      type: String
+    },
+    token:{
+      type: Number
+    },
     age: {
       type: Number,
       required: true,

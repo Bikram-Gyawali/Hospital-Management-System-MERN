@@ -16,7 +16,7 @@ const LoginScreen = ({history}) => {
     const classes = styles()
     const dispatch = useDispatch()
     const userRegister= useSelector(state=> state.userRegister)
-    const {loading, error, userInfo}= userRegister
+    const {userInfo}= userRegister
 
     useEffect(() => {
         if(userInfo){
