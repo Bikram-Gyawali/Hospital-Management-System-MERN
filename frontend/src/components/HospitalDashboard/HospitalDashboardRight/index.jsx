@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PermMedia } from "@material-ui/icons";
 import axios from "axios";
 import { useParams } from "react-router";
+import AppomntButton from "components/AppointmentButton/AppomntButton";
 
 function Hosdetails() {
   const local = "http://localhost:5000/api";
@@ -15,13 +16,12 @@ function Hosdetails() {
   });
   const { hospitalInfo } = hospitalLogin;
   // const {...other,password}=hospitalInfol;
-  console.log(hospitalInfo);
+  // console.log(hospitalInfo);
 
   const bio = useRef();
   const serviceCharge = useRef();
   const serviceName = useRef();
   const serviceDesc = useRef();
-
   const eventname = useRef();
   const eventdesc = useRef();
   const eventdate = useRef();
@@ -148,6 +148,7 @@ function Hosdetails() {
   };
   const handleVaccancy = async (e) => {
     e.preventDefault();
+    console.log("handle vaccancy");
     const addVaccancy = {
       position: position.current.value,
       amount: reqTotal.current.value,
@@ -155,7 +156,7 @@ function Hosdetails() {
     };
     try {
       await axios.post(
-        `${local}/hospitals/${hospitalInfo?._id}/events/addEvents`,
+        `${local}/hospitals/${hospitalInfo._id}/addVaccancy`,
         addVaccancy
       );
     } catch (error) {
@@ -179,9 +180,10 @@ function Hosdetails() {
     }
   };
 
-  console.log(file)
+  // console.log(file);
   return (
     <div className="mx-9">
+      <AppomntButton />
       <div className="descForm mx-14 border-4 rounded-lg mt-8 shadow p-3">
         <form
           action="submit"
@@ -504,6 +506,8 @@ function Hosdetails() {
           </Button>{" "}
         </form>
       </div>
+
+      {/* bed types blocl */}
       <div className="bedTypes mx-14 mt-16 border-4 p-8 rounded-lg shadow">
         Bed Types in number.
         <form action="submit" onSubmit={handleBedTypes}>
@@ -560,7 +564,7 @@ function Hosdetails() {
             />
             Total No:
             <input
-              type="text"
+              type="number"
               required
               className="p-2 border-2 rounded-lg  border-blue-400 mr-2 ml-2"
               placeholder="Total required"
