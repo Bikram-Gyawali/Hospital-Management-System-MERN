@@ -1,35 +1,41 @@
-import {createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-import {userLoginReducer, userRegisterReducer} from './reducers/userReducers'
-import {hospitalLoginReducer, hospitalRegisterReducer} from './reducers/hospitalReducers'
+import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
+import {
+  hospitalLoginReducer,
+  hospitalRegisterReducer,
+} from "./reducers/hospitalReducers";
 
+const reducer = combineReducers({
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  hospitalLogin: hospitalLoginReducer,
+  hospitalRegister: hospitalRegisterReducer,
+});
 
-const reducer= combineReducers({
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
-    hospitalLogin: hospitalLoginReducer,
-    hospitalRegister: hospitalRegisterReducer
-})
+const userFromStrogae = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+const hospitalFromStrogae = localStorage.getItem("hospitalInfo")
+  ? JSON.parse(localStorage.getItem("hospitalInfo"))
+  : null;
 
-const userFromStrogae= localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')): null
-const hospitalFromStrogae= localStorage.getItem('hospitalInfo') ? JSON.parse(localStorage.getItem('hospitalInfo')): null
+const initialState = {
+  userLogin: {
+    userInfo: userFromStrogae,
+  },
+  hospitalLogin: {
+    hospitalInfo: hospitalFromStrogae,
+  },
+};
+const middleware = [thunk];
 
-const initialState={
-    userLogin:{
-        userInfo: userFromStrogae
-    },
-    hospitalLogin: {
-        hospitalInfo: hospitalFromStrogae
-    }
-}
-const middleware= [thunk]
+const store = createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-const store= createStore(
-    reducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
-)
-
-export default store
+export default store;
