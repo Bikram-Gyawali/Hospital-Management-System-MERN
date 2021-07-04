@@ -14,7 +14,7 @@ import "App.css";
 import styled from "styled-components";
 
 const AppContainer = styled.div`
-  max-width: 1600px;
+  max-width: 1800px;
   margin: auto;
 `;
 
