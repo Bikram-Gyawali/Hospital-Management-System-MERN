@@ -12,11 +12,12 @@ const LoginScreen = ({history}) => {
 
     const dispatch = useDispatch()
     const userLogin= useSelector(state=> state.userLogin)
-    const {userInfo, error}= userLogin
+    const { userInfo, error } = userLogin
+    console.log(userInfo)
 
     useEffect(()=>{
         if(userInfo){
-            history.push('/')
+            history.push(`/${userInfo._id}/userDashboard`)
         }
     }, [userInfo, history])
 
