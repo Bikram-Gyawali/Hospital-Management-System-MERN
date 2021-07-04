@@ -12,16 +12,14 @@ import HospitalLogin from "screens/HospitalScreen/HospitalLogin/HospialLogin";
 import HospitalRegister from "screens/HospitalScreen/HospitalRegister/HospitalRegister";
 import "App.css";
 import styled from "styled-components";
+import Appointments from "screens/HospitalAppoinment/Appointments";
 
 const AppContainer = styled.div`
   max-width: 1600px;
   margin: auto;
 `;
 
-
 function App() {
-  
-  
   return (
     <AppContainer>
       <Router>
@@ -36,6 +34,11 @@ function App() {
         <Route exact path="/hospital_login" component={HospitalLogin} />
         <Route exact path="/hospital_register" component={HospitalRegister} />
         <Route exact path="/covid19" component={CovidScreen} />
+        <Route
+          exact
+          path="/:hospitalId/appointments"
+          component={Appointments}
+        />
       </Router>
     </AppContainer>
   );
