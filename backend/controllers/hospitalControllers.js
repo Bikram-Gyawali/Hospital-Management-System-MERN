@@ -104,7 +104,7 @@ const addEvents = asyncHandler(async (req, res) => {
     const { eventName, date, desc, eventImg } = req.body;
     const hospital = await Hospitals.findByIdAndUpdate(req.params.id, {
       $push: {
-        services: {
+        events: {
           eventName,
           date,
           desc,
