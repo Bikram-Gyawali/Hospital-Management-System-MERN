@@ -4,13 +4,13 @@ import Messages from 'assets/images/dashboarsIcons/messages.svg'
 import Funds from 'assets/images/dashboarsIcons/funds.svg'
 import Emergency from 'assets/images/dashboarsIcons/emergency.svg'
 import BloodBank from 'assets/images/dashboarsIcons/blood-bank.svg'
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 const useGetUserData = () => {
-    // const userId = useSelector(state => state.id)
-    let userId = 123;
-        
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo, error } = userLogin
+    let userId = userInfo._id
     return ({
         userId,
         userMenuData: [
