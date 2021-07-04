@@ -31,7 +31,7 @@ const appointmentSchema = mongoose.Schema(
       type: String,
     },
     token: {
-      type: Number,
+      type: String,
     },
     age: {
       type: Number,
