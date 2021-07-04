@@ -10,7 +10,7 @@ import ProfilePicture from 'assets/images/sampleProfilePic.jpg'
 import AngleDown from 'assets/images/angle-down.svg'
 import { fonts } from "fonts";
 import SearchInput from 'components/GlobalComponents/SearchInput'
-
+import { useSelector } from "react-redux";
 
 const Nav = styled.nav`
   padding: 20px 0;
@@ -78,7 +78,15 @@ const StyledLink = styled(Link)`
 
 
 function Navbar({ type, id }) {
-  console.log({id})
+  const hospitalLogin = useSelector((state) => {
+    return state.hospitalLogin;
+  });
+  const userLogin = useSelector((state) => {
+    return state.userLogin;
+  })
+
+  let responseObject = id === userLogin._id ? {...userLogin.userInfo} : {...hospitalLogin.hospitalInfo}
+  console.log({responseObject})
   return (
     <Nav>
       <NavInner>
@@ -104,7 +112,7 @@ function Navbar({ type, id }) {
               </ProfilePictureContainer>
               <UserDetails>
                 <ProfileName>
-                  Ayush Mainali
+                  {responseObject?.name ? responseObject?.name : "Ayush Mainali"}
                 </ProfileName>
                 <AngleDownImage src={AngleDown} alt={"Angle Down "} />
               </UserDetails>

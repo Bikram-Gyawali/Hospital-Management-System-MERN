@@ -16,7 +16,7 @@ const LoginScreen = ({history}) => {
 
     useEffect(()=>{
         if(hospitalInfo){
-            history.push('/')
+            history.push(`/${hospitalInfo._id}/hospitalDashboard`)
         }
     }, [hospitalInfo, history])
 

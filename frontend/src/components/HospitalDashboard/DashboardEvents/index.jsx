@@ -4,8 +4,8 @@ import Card from 'components/HospitalDashboard/CardLayout'
 import AddButton from 'assets/images/add.svg'
 import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
-
-
+import {useState} from 'react'
+import AddEventsForm from 'components/HospitalDashboard/AddEventsForm'
 
 const Title = styled.div`
     font-size: 28px;
@@ -71,7 +71,10 @@ const EventHeadLeft = styled.div`
 const EventHeadRight = styled.div``
 const EventBody = styled.div``
 
-const index = () => {
+const Index = () => {
+
+    const [openEditForm, setOpenEditForm] = useState(false)
+    const [openAddForm, setOpenAddForm] = useState(false)
     return (
         <Card>
             <CardHeader>
@@ -79,7 +82,7 @@ const index = () => {
                     Events
                 </Title>
                 <Icons>
-                    <IconButton onClick={(e) => console.log("Click")}>
+                    <IconButton onClick={(e) => setOpenAddForm(true)}>
                         <img src={AddButton} alt={"Add Button "} />
                     </IconButton>
                 </Icons>
@@ -91,10 +94,10 @@ const index = () => {
                     <EventHead>
                         <EventHeadLeft>
                             <EventName>Event Number 1</EventName>
-                            <EventDate>(May 8 - May 21)</EventDate>
+                            <EventDate>May -8</EventDate>
                         </EventHeadLeft>
                         <EventHeadRight>
-                            <IconButton onClick={(e) => console.log("Click")}>
+                            <IconButton onClick={(e) => setOpenEditForm(true)}>
                                 <img src={EditButton} alt={"Edit Button "} />
                             </IconButton>
                         </EventHeadRight>
@@ -109,10 +112,10 @@ const index = () => {
                     <EventHead>
                         <EventHeadLeft>
                             <EventName>Event Number 2</EventName>
-                            <EventDate>(May 8 - May 21)</EventDate>
+                            <EventDate>May 25</EventDate>
                         </EventHeadLeft>
                         <EventHeadRight>
-                            <IconButton onClick={(e) => console.log("Click")}>
+                            <IconButton onClick={(e) => setOpenEditForm(true)}>
                                 <img src={EditButton} alt={"Edit Button "} />
                             </IconButton>
                         </EventHeadRight>
@@ -122,8 +125,10 @@ const index = () => {
                     </EventBody>
                 </EventContainer>
             </CardBody>
+            <AddEventsForm open={openAddForm} setOpen={setOpenAddForm} type="add"/>
+            <AddEventsForm open={openEditForm} setOpen={setOpenEditForm} type="edit"/>
         </Card>
     )
 }
 
-export default index
+export default Index

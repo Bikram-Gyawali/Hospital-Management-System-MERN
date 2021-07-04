@@ -4,9 +4,8 @@ import Card from 'components/HospitalDashboard/CardLayout'
 import AddButton from 'assets/images/add.svg'
 // import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
-import ProfilePicture from 'assets/images/sampleProfilePic.jpg'
 import { useState } from 'react';
-import DoctorsForm from 'components/HospitalDashboard/DoctorsForm'
+import ServiceForm from 'components/HospitalDashboard/ServiceForm'
 
 const Title = styled.div`
     font-size: 28px;
@@ -41,26 +40,23 @@ const Line = styled.div`
 
 const Icons = styled.div``
 
-const DoctorName = styled.div`
+const ServiceName = styled.div`
     font-size: 24px;
     font-weight: ${fonts.medium};
 `
 
-const DoctorSpeciality = styled.div`
+const ServiceSpeciality = styled.div`
     font-size: 18px;
     opacity: 0.8;
 `
 
 
-const DoctorContainer = styled.div`
+const ServiceContainer = styled.div`
     padding: 0 50px;
 `
 
-const DoctorProfilePicture = styled.div`
-    border-radius: 999px;
-`
 
-const Doctor = styled.div`
+const Service = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,74 +64,61 @@ const Doctor = styled.div`
     font-size: 22px;
     opacity: 0.8;
 `
-const DoctorLeft = styled.div`
+const ServiceLeft = styled.div`
     display: flex;
     gap: 12px;
     align-items: center;
 `
-const DoctorRight = styled.div``
+const ServiceRight = styled.div``
 const EventBody = styled.div``
 
-const DoctorIntro = styled.div`
+const ServiceIntro = styled.div`
     display: flex;
     flex-direction: column;
 `
 
-const DoctorPhoneNumber = styled.div`
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-    gap: 10px;
-`
 
 const Index = () => {
-    const [addDoctorOpen, setAddDoctorOpen] = useState(false);
-    // const [editDoctorOpen, setEditDoctorOpen] = useState(false);
+    const [addServiceOpen, setAddServiceOpen] = useState(false);
+    // const [editServiceOpen, setEditServiceOpen] = useState(false);
     return (
         <Card>
             <CardHeader>
                 <Title>
-                    Doctors Information
+                    Service Information
                 </Title>
                 <Icons>
-                    <IconButton onClick={(e) => setAddDoctorOpen(true)}>
+                    <IconButton onClick={(e) => setAddServiceOpen(true)}>
                         <img src={AddButton} alt={"Add Button "} />
                     </IconButton>
                 </Icons>
             </CardHeader>
             <Line />
             <CardBody>
-                <DoctorContainer>
+                <ServiceContainer>
 
-                    <Doctor>
-                        <DoctorLeft>
-                            <DoctorProfilePicture>
-                                <img src={ProfilePicture} alt={"Profile "} />
-                            </DoctorProfilePicture>
-                            <DoctorIntro>
-                                <DoctorName>Ranchoddas Chhacad</DoctorName>
-                                <DoctorSpeciality>Neuro Surgeon</DoctorSpeciality>
-                            </DoctorIntro>
+                    <Service>
+                        <ServiceLeft>
+                            <ServiceIntro>
+                                <ServiceName>Service 1</ServiceName>
+                                <ServiceSpeciality>Service Charge: <span>(Rs. 50,000)</span></ServiceSpeciality>
+                            </ServiceIntro>
 
-                        </DoctorLeft>
-                        <DoctorRight>
-                            {/* <IconButton onClick={(e) => setEditDoctorOpen(true)}>
+                        </ServiceLeft>
+                        <ServiceRight>
+                            {/* <IconButton onClick={(e) => setEditServiceOpen(true)}>
                                 <img src={EditButton} alt={"Edit Button "} />
                             </IconButton> */}
-                        </DoctorRight>
-                    </Doctor>
+                        </ServiceRight>
+                    </Service>
                     <EventBody>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.
                     </EventBody>
-                    <DoctorPhoneNumber>
-                        <span style={ {fontSize: "22px", color: "rgba(0, 0, 0, 0.8)"}}>Contact: </span>
-                        <span style={{ fontSize: "22px", fontWeight: fonts.medium, color: "rgba(0, 0, 0, 0.8)" }}>9811155565</span>
-                    </DoctorPhoneNumber>
-                </DoctorContainer>
+                </ServiceContainer>
                 <Line />
             </CardBody>
-            <DoctorsForm open={addDoctorOpen} setOpen={setAddDoctorOpen} type="add"/>
-            {/* <DoctorsForm open={editDoctorOpen} setOpen={setEditDoctorOpen} type="edit"/> */}
+            <ServiceForm open={addServiceOpen} setOpen={setAddServiceOpen} type="add" />
+            {/* <ServiceForm open={editServiceOpen} setOpen={setEditServiceOpen} type="edit" /> */}
         </Card>
     )
 }

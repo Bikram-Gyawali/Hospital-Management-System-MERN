@@ -10,14 +10,10 @@ const Button = styled.button`
     color: ${colors.white};
     cursor: pointer;
     background: ${colors.primary};
+    &:disabled {
+        background: #858585;
+    }
 `
 
-const index = ({children, className}) => {
-    return (
-        <Button className = {className}>
-            {children}
-        </Button>
-    )
-}
+export default Button;
 
-export default index

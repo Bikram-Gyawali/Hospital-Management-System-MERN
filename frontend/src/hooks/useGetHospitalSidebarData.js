@@ -4,13 +4,17 @@ import Messages from 'assets/images/dashboarsIcons/messages.svg'
 import Funds from 'assets/images/dashboarsIcons/funds.svg'
 import Emergency from 'assets/images/dashboarsIcons/emergency.svg'
 import BloodBank from 'assets/images/dashboarsIcons/blood-bank.svg'
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 
 const useGetHospitalData = () => {
-    // const hospitalId = useSelector(state => state.hospitalId)
-    const hospitalId = 123;
+    const hospitalLogin = useSelector((state) => {
+        return state.hospitalLogin;
+    });
+
+    let responseObject = { ...hospitalLogin.hospitalInfo }
+    let hospitalId = responseObject._id
 
     return ({
         hospitalId,

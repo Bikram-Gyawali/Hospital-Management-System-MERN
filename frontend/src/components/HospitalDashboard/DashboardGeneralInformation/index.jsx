@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import { colors } from "colors";
 import Card from 'components/HospitalDashboard/CardLayout'
+import EditProfileForm from 'components/HospitalDashboard/EditProfileForm'
 import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
+import { useState, useEffect } from 'react';
 
 
 
@@ -61,7 +63,14 @@ const CardItem = styled.div`
 const CardBodyRight = styled.div``
 const CardBodyLeft = styled.div``
 
-const index = () => {
+
+
+const Index = () => {
+
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        console.log(open)
+    }, [open])
     return (
         <Card>
             <CardHeader>
@@ -69,7 +78,7 @@ const index = () => {
                     Account
                 </Title>
                 <Icons>
-                    <IconButton onClick={(e) => console.log("Click")}>
+                    <IconButton onClick={()=>setOpen(true)}>
                         <img src={EditButton} alt={"Edit Button "} />
                     </IconButton>
                 </Icons>
@@ -111,18 +120,20 @@ const index = () => {
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa minima totam at ratione sint architecto eum dolor odio.
                         </CardBodyDescription>
                     </CardItem>
-                    <CardItem>
+                    {/* <CardItem>
                         <CardBodyTitle>
                             Services Provided
                         </CardBodyTitle>
                         <CardBodyDescription>
                             Ventilator, Covid Checkup, Spinal Surgery, Next Covid Virus, AIDS, Third Degree Cancer Treatment
                         </CardBodyDescription>
-                    </CardItem>
+                    </CardItem> */}
                 </CardBodyRight>
             </CardBody>
+
+            <EditProfileForm open={open} setOpen={ setOpen }/>
         </Card>
     )
 }
 
-export default index
+export default Index

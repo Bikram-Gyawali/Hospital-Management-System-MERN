@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import styled from 'styled-components'
 import { colors } from "colors";
 import Card from 'components/HospitalDashboard/CardLayout'
 import AddButton from 'assets/images/add.svg'
-import EditButton from 'assets/images/edit.svg'
+// import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
-
+import BedForm from 'components/HospitalDashboard/BedForm'
 
 const Title = styled.div`
     font-size: 28px;
@@ -71,7 +72,8 @@ const BedsInUse = styled.div`
     opacity: 0.8;
 `
 
-const index = () => {
+const Index = () => {
+    const [open, setOpen] = useState(false)
     return (
         <Card>
             <CardHeader>
@@ -79,12 +81,12 @@ const index = () => {
                     Beds Information
                 </Title>
                 <Icons>
-                    <IconButton onClick={(e) => console.log("Click")}>
+                    <IconButton onClick={(e) => setOpen(true)}>
                         <img src={AddButton} alt={"Add Button "} />
                     </IconButton>
-                    <IconButton onClick={(e) => console.log("Click")}>
+                    {/* <IconButton onClick={(e) => console.log("Click")}>
                         <img src={EditButton} alt={"Edit Button "} />
-                    </IconButton>
+                    </IconButton> */}
                 </Icons>
             </CardHeader>
             <Line />
@@ -105,11 +107,11 @@ const index = () => {
                         <AvailiableBeds><span>18</span> (Availiable)</AvailiableBeds>
                         <BedsInUse><span>43</span> (In Use)</BedsInUse>
                     </BedsCard>
-                    
+                    <BedForm open={open} setOpen={ setOpen }/>
                 </BedsContainer>
             </CardBody>
         </Card>
     )
 }
 
-export default index
+export default Index
