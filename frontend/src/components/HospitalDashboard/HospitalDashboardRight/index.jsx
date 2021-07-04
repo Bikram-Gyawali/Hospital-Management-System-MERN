@@ -10,11 +10,13 @@ import DashboardGeneralInformation from 'components/HospitalDashboard/DashboardG
 import DashboardEvents from 'components/HospitalDashboard/DashboardEvents'
 import DashboardDoctorsInformation from 'components/HospitalDashboard/DashboardDoctorsInformation'
 import BedsInformation from 'components/HospitalDashboard/BedsInformations'
+import VaccancyInformation from 'components/HospitalDashboard/VaccancyInformation'
+import ServicesInformation from 'components/HospitalDashboard/ServicesInformation'
 
 const Wrapper = styled.div`
     background: ${colors.secondary}1A;
     padding: 50px 30px;
-  `
+`
 const Container = styled.div`
   margin-bottom: 70px;
 `
@@ -62,6 +64,8 @@ function HospitalDetails() {
   // const [data, setData] = useState();
 
   // const [file, setFile] = useState(null);
+
+
   // const handleBio = async (e) => {
   //   e.preventDefault();
   //   const newBio = {
@@ -77,6 +81,9 @@ function HospitalDetails() {
   //     console.log("error updating  bio", error);
   //   }
   // };
+
+
+
   // const newService = async (e) => {
   //   e.preventDefault();
   //   const newService = {
@@ -93,6 +100,8 @@ function HospitalDetails() {
   //     console.log("error on adding service");
   //   }
   // };
+
+
   // const addEvents = async (e) => {
   //   e.preventDefault();
   //   const newEvents = {
@@ -208,6 +217,12 @@ function HospitalDetails() {
       </Container>
       <Container>
         <BedsInformation />
+      </Container>
+      <Container>
+        <VaccancyInformation />
+      </Container>
+      <Container>
+        <ServicesInformation />
       </Container>
 
     </Wrapper>

@@ -2,10 +2,11 @@ import styled from 'styled-components'
 import { colors } from "colors";
 import Card from 'components/HospitalDashboard/CardLayout'
 import AddButton from 'assets/images/add.svg'
-import EditButton from 'assets/images/edit.svg'
+// import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
 import ProfilePicture from 'assets/images/sampleProfilePic.jpg'
-
+import { useState } from 'react';
+import DoctorsForm from 'components/HospitalDashboard/DoctorsForm'
 
 const Title = styled.div`
     font-size: 28px;
@@ -80,7 +81,16 @@ const DoctorIntro = styled.div`
     flex-direction: column;
 `
 
-const index = () => {
+const DoctorPhoneNumber = styled.div`
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    gap: 10px;
+`
+
+const Index = () => {
+    const [addDoctorOpen, setAddDoctorOpen] = useState(false);
+    // const [editDoctorOpen, setEditDoctorOpen] = useState(false);
     return (
         <Card>
             <CardHeader>
@@ -88,7 +98,7 @@ const index = () => {
                     Doctors Information
                 </Title>
                 <Icons>
-                    <IconButton onClick={(e) => console.log("Click")}>
+                    <IconButton onClick={(e) => setAddDoctorOpen(true)}>
                         <img src={AddButton} alt={"Add Button "} />
                     </IconButton>
                 </Icons>
@@ -109,19 +119,25 @@ const index = () => {
 
                         </DoctorLeft>
                         <DoctorRight>
-                            <IconButton onClick={(e) => console.log("Click")}>
+                            {/* <IconButton onClick={(e) => setEditDoctorOpen(true)}>
                                 <img src={EditButton} alt={"Edit Button "} />
-                            </IconButton>
+                            </IconButton> */}
                         </DoctorRight>
                     </Doctor>
                     <EventBody>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.
                     </EventBody>
+                    <DoctorPhoneNumber>
+                        <span style={ {fontSize: "22px", color: "rgba(0, 0, 0, 0.8)"}}>Contact: </span>
+                        <span style={{ fontSize: "22px", fontWeight: fonts.medium, color: "rgba(0, 0, 0, 0.8)" }}>9811155565</span>
+                    </DoctorPhoneNumber>
                 </DoctorContainer>
                 <Line />
             </CardBody>
+            <DoctorsForm open={addDoctorOpen} setOpen={setAddDoctorOpen} type="add"/>
+            {/* <DoctorsForm open={editDoctorOpen} setOpen={setEditDoctorOpen} type="edit"/> */}
         </Card>
     )
 }
 
-export default index
+export default Index
