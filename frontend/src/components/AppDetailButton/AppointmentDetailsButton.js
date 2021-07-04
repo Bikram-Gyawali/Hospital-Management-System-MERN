@@ -18,7 +18,7 @@ function AppointmentDetailsButton({ res }) {
     setFullscreen(!fullscreen);
     setLgShow(true);
   }
-  console.log("button", res);
+  // console.log("button", res);
   return (
     <div>
       <Button

@@ -39,6 +39,22 @@ function HospitalAppointments() {
     }
   };
 
+  const handleRejectAppointments = async () => {
+    try {
+      await axios.put(`${local}/userAppointment/${id}/rejected`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+
+  const getApprovedList = async () => {
+    const list = await axios.get(`${local}/userAppointment/${id}/approvedList`);
+    console.log(list);
+  };
+  getApprovedList();
+
   return (
     <div>
       <div class="text-gray-900 bg-gray-200">
@@ -171,6 +187,7 @@ function HospitalAppointments() {
                       Approve
                     </button>
                     <button
+                      onClick={handleRejectAppointments}
                       type="button"
                       class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                     >
