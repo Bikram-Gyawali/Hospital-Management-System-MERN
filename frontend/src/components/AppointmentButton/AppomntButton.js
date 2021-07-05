@@ -38,11 +38,12 @@ function AppomntButton() {
     };
     try {
       await axios.post(
-        `http://localhost:5000/api/${hospitalInfo?._id}/appointment/setappointment`,
+        `http://localhost:5000/api/userAppointmen/${hospitalInfo?._id}/appointment/setappointment`,
         newAppointment
       );
     } catch (error) {
-      console.log("error applying appointments", error);
+      console.log(newAppointment);
+      console.log("error applying appointments", error.response);
     }
   };
   return (

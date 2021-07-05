@@ -19,7 +19,7 @@ const appointmentDetails = asyncHandler(async (req, res) => {
       desc,
     } = await req.body;
 
-    if (!name || !email || !contact || !location) {
+    if (!name || !contact || !location) {
       res.status(400);
       throw new Error("ALL FIELDS REQUIRED");
     }

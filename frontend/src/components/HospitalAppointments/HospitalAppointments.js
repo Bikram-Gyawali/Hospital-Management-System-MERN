@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import AppomntButton from "components/AppointmentButton/AppomntButton";
 
 function HospitalAppointments() {
   const asignDate = useRef();
@@ -66,10 +67,11 @@ function HospitalAppointments() {
     getApprovedList();
   }, [approvedList, id]);
 
-  console.log(assignedTime);
+  // console.log(assignedTime);
 
   return (
     <div>
+      <AppomntButton />
       <div class="text-gray-900 bg-gray-200">
         <div class="p-4 flex">
           <h1 class="text-xl">Appointments List</h1>
