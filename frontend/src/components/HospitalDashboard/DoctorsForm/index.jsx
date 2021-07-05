@@ -4,8 +4,8 @@ import Input from 'components/GlobalComponents/Input';
 import Label from 'components/GlobalComponents/Label';
 import Button from 'components/GlobalComponents/Button';
 import styled from 'styled-components'
-import { axiosRequest } from 'utils/axiosRequest';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const ModalTitle = styled.div`
     font-size: 57px;
@@ -26,7 +26,7 @@ const AddEvent = ({ open, setOpen, type }) => {
 
     const [name, setName] = useState("")
     const [spec, setSpec] = useState("")
-    const [contacts, setContacts] = useState("")
+    const [contacts, setContacts] = useState(0)
     const [email, setEmail] = useState("")
     const [exp, setExp] = useState(1)
     const [graduatedFrom, setGraduatedFrom] = useState("")
@@ -42,28 +42,46 @@ const AddEvent = ({ open, setOpen, type }) => {
         setSubmitting(true)
         e.preventDefault();
         let reqBody = {
-             name, spec, contacts, email, doctorId: Math.floor(Math.random() * 10000000), exp: exp.toString(), graduatedFrom
+             name, spec, contacts: Number(contacts), email, doctorId: Math.floor(Math.random() * 10000000).toString(), exp: Number(exp), graduatedFrom
         }
-        const [data, error] = await axiosRequest({
-            url: `${BASE_URL}/hospitals/${id}/addDoctors`,
-            method: "post",
-            body: {...reqBody},
-        })
-        setSubmitting(false)
-        if (data) {
+        // const [data, error] = await axiosRequest({
+        //     url: `${BASE_URL}/hospitals/${id}/addDoctors`,
+        //     method: "post",
+        //     body: {...reqBody},
+        // })
+
+        // setSubmitting(false)
+        // if (data) {
+        //     alert("Successfully submitted form");
+        //     setName("")
+        //     setSpec("")
+        //     setContacts(0)
+        //     setEmail("")
+        //     setExp(1)
+        //     setGraduatedFrom("")
+        // }
+        // if (error) {
+        //     alert("Error submitting form");
+        //     console.log(error.response)
+        // }
+        try {
+            const data = await axios.post(`${BASE_URL}/hospitals/${id}/addDoctors`, reqBody)
+            setSubmitting(false)
             alert("Successfully submitted form");
+            console.log(data);
             setName("")
             setSpec("")
-            setContacts("")
+            setContacts(0)
             setEmail("")
             setExp(1)
             setGraduatedFrom("")
         }
-        if (error) {
+        catch (error) {
             alert("Error submitting form");
+            console.log(error.response)
         }
+
         
-        console.log(error.response)
     }
 
     return (
