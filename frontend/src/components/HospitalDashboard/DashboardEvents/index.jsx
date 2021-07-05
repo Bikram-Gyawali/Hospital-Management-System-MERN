@@ -4,8 +4,9 @@ import Card from 'components/HospitalDashboard/CardLayout'
 import AddButton from 'assets/images/add.svg'
 import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
-import {useState} from 'react'
+import { useState } from 'react'
 import AddEventsForm from 'components/HospitalDashboard/AddEventsForm'
+import { useSelector } from 'react-redux';
 
 const Title = styled.div`
     font-size: 28px;
@@ -75,6 +76,10 @@ const Index = () => {
 
     const [openEditForm, setOpenEditForm] = useState(false)
     const [openAddForm, setOpenAddForm] = useState(false)
+    const { hospitalInfo } = useSelector((state) => {
+        return state.hospitalManipulation;
+    });
+
     return (
         <Card>
             <CardHeader>
@@ -89,25 +94,35 @@ const Index = () => {
             </CardHeader>
             <Line />
             <CardBody>
-                <EventContainer>
+                {
+                    hospitalInfo.events.map((event, index) => (
+                        <>
+                            <EventContainer key={event._id}>
+                                <EventHead>
+                                    <EventHeadLeft>
+                                        <EventName>{event.eventName}</EventName>
+                                        <EventDate>{event.date}</EventDate>
+                                    </EventHeadLeft>
+                                    <EventHeadRight>
+                                        <IconButton onClick={(e) => setOpenEditForm(true)}>
+                                            <img src={EditButton} alt={"Edit Button "} />
+                                        </IconButton>
+                                    </EventHeadRight>
+                                </EventHead>
+                                <EventBody>
+                                    {event.desc}
+                                </EventBody>
+                            </EventContainer>
+                            {
 
-                    <EventHead>
-                        <EventHeadLeft>
-                            <EventName>Event Number 1</EventName>
-                            <EventDate>May -8</EventDate>
-                        </EventHeadLeft>
-                        <EventHeadRight>
-                            <IconButton onClick={(e) => setOpenEditForm(true)}>
-                                <img src={EditButton} alt={"Edit Button "} />
-                            </IconButton>
-                        </EventHeadRight>
-                    </EventHead>
-                    <EventBody>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.
-                    </EventBody>
-                </EventContainer>
-                <Line />
-                <EventContainer>
+                               index < hospitalInfo.events.length - 1  && <Line />
+                            }
+                        </>
+                    ))
+                }
+
+
+                {/* <EventContainer>
 
                     <EventHead>
                         <EventHeadLeft>
@@ -123,10 +138,10 @@ const Index = () => {
                     <EventBody>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pharetra, id pretium aliquet ac orci enim dolor. Scelerisque parturient at leo ornare a massa varius eget velit.
                     </EventBody>
-                </EventContainer>
+                </EventContainer> */}
             </CardBody>
-            <AddEventsForm open={openAddForm} setOpen={setOpenAddForm} type="add"/>
-            <AddEventsForm open={openEditForm} setOpen={setOpenEditForm} type="edit"/>
+            <AddEventsForm open={openAddForm} setOpen={setOpenAddForm} type="add" />
+            <AddEventsForm open={openEditForm} setOpen={setOpenEditForm} type="edit" />
         </Card>
     )
 }

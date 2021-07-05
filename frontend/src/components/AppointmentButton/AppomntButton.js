@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import { axiosRequest } from "utils/axiosRequest";
 
 function AppomntButton() {
   const hospitalLogin = useSelector((state) => {
@@ -17,6 +18,7 @@ function AppomntButton() {
   const time = useRef();
   const contact = useRef();
   const desc = useRef();
+  const age = useRef();
   const [fullscreen, setFullscreen] = useState(true);
 
   const [lgShow, setLgShow] = useState(false);
@@ -32,18 +34,33 @@ function AppomntButton() {
       services: services.current.value,
       location: location.current.value,
       desc: desc.current.value,
-      date: date.current.value,
+      date: new Date(date.current.value),
       time: time.current.value,
-      contact: contact.current.value,
+      contact: Number(contact.current.value),
+      age: age.current.value
     };
     try {
       await axios.post(
-        `http://localhost:5000/api/${hospitalInfo?._id}/appointment/setappointment`,
-        newAppointment
+        `http://localhost:5000/api/userAppointment/60e0638708e8331f5cb3f9bd/appointment/setappointment/`,
+      newAppointment
       );
     } catch (error) {
-      console.log("error applying appointments", error);
+      console.log("error applying appointments", error.response);
+      console.log({ ...newAppointment });
     }
+    // const reqBody = {
+    //   url: `http://localhost:5000/api/userAppointment/60e0638708e8331f5cb3f9bd/appointment/setappointment/`,
+    //   method: "post",
+    //   body: newAppointment
+    // }
+    // const [data, error] = await axiosRequest(reqBody)
+    // if (data) {
+    //   console.log(data)
+    // }
+    // if (error) {
+    //   console.log(newAppointment.date)
+    //   console.log(error.response);
+    // }
   };
   return (
     <div>
@@ -80,6 +97,14 @@ function AppomntButton() {
                   style={{ resize: "none" }}
                   placeholder="name"
                   ref={name}
+                />
+                <span>Age:</span>
+                <input
+                  className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
+                  type="number"
+                  style={{ resize: "none" }}
+                  placeholder="Age"
+                  ref={age}
                 />
                 <span>Services:</span>
                 <input

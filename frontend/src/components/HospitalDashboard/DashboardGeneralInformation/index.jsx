@@ -5,6 +5,7 @@ import EditProfileForm from 'components/HospitalDashboard/EditProfileForm'
 import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 
@@ -68,9 +69,18 @@ const CardBodyLeft = styled.div``
 const Index = () => {
 
     const [open, setOpen] = useState(false);
+
+    const {hospitalInfo} = useSelector((state) => {
+        return state.hospitalManipulation;
+    });
+    console.log(hospitalInfo)
+
+
     useEffect(() => {
         console.log(open)
     }, [open])
+    
+    const { _id, name, email, hospitalDescription } = hospitalInfo;
     return (
         <Card>
             <CardHeader>
@@ -91,7 +101,7 @@ const Index = () => {
                             Hospital ID
                         </CardBodyTitle>
                         <CardBodyDescription>
-                            12xsd495
+                            {_id}
                         </CardBodyDescription>
                     </CardItem>
                     <CardItem>
@@ -99,7 +109,7 @@ const Index = () => {
                             Name
                         </CardBodyTitle>
                         <CardBodyDescription>
-                            Ayush Mainali
+                            {name}
                         </CardBodyDescription>
                     </CardItem>
                     <CardItem>
@@ -107,7 +117,7 @@ const Index = () => {
                             Email
                         </CardBodyTitle>
                         <CardBodyDescription>
-                            test@test.com
+                            {email}
                         </CardBodyDescription>
                     </CardItem>
                 </CardBodyLeft>
@@ -117,7 +127,7 @@ const Index = () => {
                             Description
                         </CardBodyTitle>
                         <CardBodyDescription>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa minima totam at ratione sint architecto eum dolor odio.
+                            {hospitalDescription}
                         </CardBodyDescription>
                     </CardItem>
                     {/* <CardItem>
