@@ -1,8 +1,11 @@
 import axios from "axios";
+import { axiosRequest } from "utils/axiosRequest";
 import {
     HOSPITAL_LOGIN_REQUEST, HOSPITAL_LOGIN_SUCCESS, HOSPITAL_LOGIN_FAIL,
-    HOSPITAL_REGISTER_REQUEST, HOSPITAL_REGISTER_SUCCESS, HOSPITAL_REGISTER_FAIL,
+    HOSPITAL_REGISTER_REQUEST, HOSPITAL_REGISTER_SUCCESS, HOSPITAL_REGISTER_FAIL, HOSPITAL_PROFILE_EDIT
 } from '../constants/hospitalConstants'
+
+const BASE_URL = `http://localhost:5000/api`
 
 export const hospitalLoginAction = (email, password) => async (
   dispatch,
@@ -23,6 +26,7 @@ export const hospitalLoginAction = (email, password) => async (
       type: HOSPITAL_LOGIN_SUCCESS,
       payload: data,
     });
+
     //save loginuser to localstorage
     localStorage.setItem("hospitalInfo", JSON.stringify(data));
   } catch (error) {
@@ -72,3 +76,49 @@ export const hospitalRegisterAction = (
     });
   }
 };
+
+
+export const updateHospitalDescription = (id, description) => async(dispatch) => {
+  let reqBody = {
+    url: `${BASE_URL}/hospitals/${id}/updateHospital`,
+    method: "put",
+    body: description
+  }
+
+  let [data, error] = await axiosRequest(reqBody)
+  if (data) {
+    console.log(data);
+    alert("Successfully submitted Form");
+    dispatch({
+      type: HOSPITAL_PROFILE_EDIT,
+      payload: {
+        hospitalDescription: description
+      }
+    })
+  }
+  if (error) {
+    alert("Falied to submit form");
+  }
+}
+
+export const addHospitalEvents = (id, eventName, date, desc) => async (dispatch) => {
+  let reqBody = {
+    url: `${BASE_URL}/hospitals/${id}/events/addEvents`,
+    method: "post",
+    body: { eventName, date, desc }
+  }
+  let [data, error] = await axiosRequest(reqBody)
+  if (data) {
+    dispatch({
+      type: HOSPITAL_PROFILE_EDIT,
+      payload: {
+        event: {eventName, date, desc}
+      }
+    })
+    alert("Succesfully added event");
+  }
+  if (error) {
+    console.log(error)
+    alert("Error adding event");
+  }
+} 

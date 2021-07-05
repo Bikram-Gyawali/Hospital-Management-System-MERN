@@ -3,6 +3,7 @@ import Navbar from 'components/DashboardShared/Navbar'
 import SideBar from 'components/DashboardShared/SideBar'
 import styled from 'styled-components'
 import useGetUserData from 'hooks/useGetUserSidebarData';
+import AppointmentButton from "components/AppointmentButton/AppomntButton";
 
 
 const FlexContainer = styled.div`
@@ -22,14 +23,15 @@ const FlexLeft = styled.div`
 
 function Userdashboard() {
 
-  const {userId, userMenuData} = useGetUserData()
+  const { userId, userMenuData } = useGetUserData()
   console.log(userMenuData, userId)
   return (
     <div>
-      <Navbar type={"user"} id={ userId}/>
+      <Navbar type={"user"} id={userId} />
+      <AppointmentButton />
       <FlexContainer>
         <FlexLeft>
-          <SideBar sidebarData = {userMenuData} />
+          <SideBar sidebarData={userMenuData} />
         </FlexLeft>
         <FlexRight>
           <section class="text-gray-600 body-font">

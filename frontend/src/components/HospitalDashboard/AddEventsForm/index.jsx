@@ -5,8 +5,8 @@ import Label from 'components/GlobalComponents/Label';
 import TextArea from 'components/GlobalComponents/Textarea';
 import Button from 'components/GlobalComponents/Button';
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-import { axiosRequest } from 'utils/axiosRequest';
+import { useDispatch, useSelector } from 'react-redux';
+import { addHospitalEvents } from 'actions/hospitalActions';
 
 const ModalTitle = styled.div`
     font-size: 57px;
@@ -56,28 +56,12 @@ const AddEvent = ({ open, setOpen, type }) => {
     
     let responseObject = { ...hospitalLogin.hospitalInfo }
     let id = responseObject._id
-
+    const dispatch = useDispatch()
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
-        let reqBody = {
-            url: `${BASE_URL}/hospitals/${id}/events/addEvents`,
-            method: "post",
-            body: {eventName, date, desc}
-        }
-        let [data, error] = await axiosRequest(reqBody)
-        setSubmitting(false)
-        if (data) {
-            console.log(data)
-            alert("Succesfully added event");
-            setEventName("")
-            setDate("")
-            setDesc("")
-        }
-        if(error) {
-            console.log(error)
-            alert("Error adding event");
-        }
+        dispatch(addHospitalEvents(id, eventName, date, desc))
+
     }
 
     return (

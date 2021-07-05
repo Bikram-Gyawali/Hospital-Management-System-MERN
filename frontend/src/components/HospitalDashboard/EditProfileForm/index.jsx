@@ -4,9 +4,9 @@ import Label from 'components/GlobalComponents/Label';
 import TextArea from 'components/GlobalComponents/Textarea';
 import Button from 'components/GlobalComponents/Button';
 import styled from 'styled-components'
-import { axiosRequest } from 'utils/axiosRequest';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { updateHospitalDescription } from 'actions/hospitalActions';
 const ModalTitle = styled.div`
     font-size: 57px;
     font-font-weight: medium;
@@ -22,11 +22,13 @@ const InputGroup = styled.div`
 `
 
 
-const BASE_URL = `http://localhost:5000/api`
+
 
 const EditProfile = ({ open, setOpen }) => {
     const [hospitalDescription, setHospitalDescription] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const dispatch = useDispatch()
+    console.log(dispatch)
     const hospitalLogin = useSelector((state) => {
         return state.hospitalLogin;
     });
@@ -35,24 +37,10 @@ const EditProfile = ({ open, setOpen }) => {
     let id = responseObject._id
 
     const handleSubmit = async (e) => {
-        setIsSubmitting(true)
         e.preventDefault()
-        let reqBody = {
-            url: `${BASE_URL}/hospitals/${id}/updateHospital`,
-            method: "put",
-            body: hospitalDescription
-        }
-        
-        let [data, error] = await axiosRequest(reqBody)
+        setIsSubmitting(true)
+        await dispatch(updateHospitalDescription(id, hospitalDescription))
         setIsSubmitting(false)
-        if(data) {
-            console.log(data);
-            alert("Successfully submitted Form");
-            setHospitalDescription("")
-        }
-        if (error) {
-            alert("Falied to submit form");
-        }
     }
 
     return (

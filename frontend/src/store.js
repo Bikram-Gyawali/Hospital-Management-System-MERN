@@ -6,6 +6,7 @@ import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 import {
   hospitalLoginReducer,
   hospitalRegisterReducer,
+  hospitalManipulationReducer
 } from "./reducers/hospitalReducers";
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   hospitalLogin: hospitalLoginReducer,
   hospitalRegister: hospitalRegisterReducer,
+  hospitalManipulation: hospitalManipulationReducer
 });
 
 const userFromStrogae = localStorage.getItem("userInfo")
