@@ -76,6 +76,7 @@ const approveAppointment = asyncHandler(async (req, res) => {
       appointDate: req.body.date,
       token: req.body.token,
       docArrival: req.body.doctime,
+      assignedDoctor: req.body.assignedDoc,
       status: { pending: false, done: true, rejected: false },
     });
     res.status(200).json(appointment);
