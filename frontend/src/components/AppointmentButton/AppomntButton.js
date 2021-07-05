@@ -41,7 +41,7 @@ function AppomntButton() {
     };
     try {
       await axios.post(
-        `http://localhost:5000/api/userAppointment/60e0638708e8331f5cb3f9bd/appointment/setappointment/`,
+       `http://localhost:5000/api/userAppointment/${hospitalInfo?._id} ? ${hospitalInfo?._id} : "60e0638708e8331f5cb3f9bd"/appointment/setappointment/`,
       newAppointment
       );
     } catch (error) {
