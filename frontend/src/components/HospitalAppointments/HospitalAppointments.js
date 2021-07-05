@@ -47,8 +47,6 @@ function HospitalAppointments() {
     }
   };
 
-  
-
   const getApprovedList = async () => {
     const list = await axios.get(`${local}/userAppointment/${id}/approvedList`);
     console.log(list);
