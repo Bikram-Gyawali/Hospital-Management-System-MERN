@@ -585,7 +585,7 @@ function Userdashboard() {
                               invitation to the people of age group 18-50 yrs old
                               public.
                             </p>
-                            <a class="text-indigo-500 inline-flex items-center mt-4">
+                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
@@ -624,7 +624,7 @@ function Userdashboard() {
                               invitation to the people of age group 18-50 yrs old
                               public.
                             </p>
-                            <a class="text-indigo-500 inline-flex items-center mt-4">
+                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
@@ -663,7 +663,7 @@ function Userdashboard() {
                               invitation to the people of age group 18-50 yrs old
                               public.
                             </p>
-                            <a class="text-indigo-500 inline-flex items-center mt-4">
+                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
