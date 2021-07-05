@@ -186,7 +186,7 @@ const allDoctors = asyncHandler(async (req, res) => {
   try {
     const hospital = await Hospitals.findById(req.params.id);
     let a = [];
-    for (let i = 0; i < hospital.appointments.length; i++) {
+    for (let i = 0; i < hospital.doctors.length; i++) {
       const b = await Doctors.findById(hospital.doctors[i]);
       a.push(b);
     }
