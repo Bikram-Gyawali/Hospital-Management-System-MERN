@@ -157,6 +157,48 @@ const addDoctors = asyncHandler(async (req, res) => {
   }
 });
 
+const doctor = asyncHandler(async (req, res) => {
+  try {
+    const doctors = await Doctors.findById("60e06b4489d7b5146858634d");
+    console.log(doctors);
+    res.status(200).json(doctors);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
+
+// doctor();
+
+// const allDoctors = asyncHandler(async (req, res) => {
+//   try {
+//     const hospitals = await Hospitals.findById("60e0638708e8331f5cb3f9bd");
+//     const docId = await Doctors.findById(hospitals.doctors);
+//     console.log(docId);
+//     res.status(200).json(docId);
+//   } catch (error) {
+//     res.status(400);
+//     throw new Error(error);
+//   }
+// });
+
+const allDoctors = asyncHandler(async (req, res) => {
+  try {
+    const hospital = await Hospitals.findById(req.params.id);
+    let a = [];
+    for (let i = 0; i < hospital.appointments.length; i++) {
+      const b = await Doctors.findById(hospital.doctors[i]);
+      a.push(b);
+    }
+    res.status(200).json(a);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
+
+// allDoctors();
+
 const addContacts = asyncHandler(async (req, res) => {
   try {
     const { name, number } = req.body;
@@ -245,4 +287,5 @@ module.exports = {
   addBeds,
   bedTypes,
   addVaccancy,
+  allDoctors,
 };
