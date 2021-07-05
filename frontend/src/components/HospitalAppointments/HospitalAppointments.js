@@ -1,57 +1,72 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function HospitalAppointments() {
-  const assignedDoc = useRef();
-  const assignedTime = useRef();
-  const assignedDate = useRef();
-  const assignedToken = useRef();
+  const asignDate = useRef();
+  const asignTime = useRef();
+  const asignToken = useRef();
+  const asignDoc = useRef();
+
+  const [docAssigned, setDocAssigned] = useState("");
+  const [assignedTime, setAssignedTime] = useState("");
+  const [assignedDate, setAssignedDate] = useState("");
+  const [assignedToken, setAssignedToken] = useState("");
+  const [approvedList, setApprovedList] = useState([]);
 
   const [datas, setDatas] = useState([]);
 
   const id = useParams().hospitalId;
   const local = "http://localhost:5000/api";
 
-  const getAppoiments = async () => {
-    const { data } = await axios.get(
-      `${local}/userAppointment/${id}/appointment/hospitalallappointments`
-    );
-    console.log(data);
-    setDatas(data);
-  };
-  console.log(datas);
-
-  getAppoiments();
-
-  const handleAppointments = async () => {
-    const setSchedule = {
-      appointDate: assignedDate.current.value,
-      docArrival: assignedTime.current.value,
-      token: assignedToken.current.value,
+  useEffect(() => {
+    const getAppoiments = async () => {
+      const { data } = await axios.get(
+        `${local}/userAppointment/${id}/appointment/hospitalallappointments`
+      );
+      setDatas(data);
     };
+    getAppoiments();
+  }, [datas, id]);
+
+  // console.log(datas);
+  const setSchedule = {
+    token: assignedToken,
+    date: assignedDate,
+    doctime: assignedTime,
+    assignedDoc: docAssigned,
+    status: { pending: false, done: true, rejected: false },
+  };
+  // const handleAppointments = async (res) => {
+  //   let id = res?._id;
+  //   try {
+  //     await axios.put(`${local}/userAppointment/${id}/approved`, setSchedule);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleRejectAppointments = async (res) => {
     try {
-      await axios.put(`${local}/userAppointment/${id}/approved`, setSchedule);
+      await axios.put(`${local}/userAppointment/${res?._id}/rejected`);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleRejectAppointments = async () => {
-    try {
-      await axios.put(`${local}/userAppointment/${id}/rejected`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const getApprovedList = async () => {
+      const list = await axios.get(
+        `${local}/userAppointment/${id}/approvedList`
+      );
+      setApprovedList(list);
+    };
+    getApprovedList();
+  }, [approvedList, id]);
 
-  const getApprovedList = async () => {
-    const list = await axios.get(`${local}/userAppointment/${id}/approvedList`);
-    console.log(list);
-  };
-  getApprovedList();
+  console.log(assignedTime);
 
   return (
     <div>
@@ -98,18 +113,18 @@ function HospitalAppointments() {
                   {/* <Button>View Details</Button> */}
                 </td>
                 <td class="p-2 px-2 border-2">
-                  <select class="bg-transparent" ref={assignedDoc}>
-                    <option selected>None</option>
+                  <select class="bg-transparent" ref={asignDoc}>
+                    <option>None</option>
                     <option>Dr.Sanduik Ruit</option>
                     <option>Dr.Pathak</option>
                     <option>Dr.Achaya</option>
                   </select>
                 </td>
                 <td class="p-2 px-2 border-2">
-                  <input type="date" ref={assignedDate} />
+                  <input type="date" ref={asignDate} />
                 </td>
                 <td class="p-2 px-2 border-2">
-                  <input type="time" ref={assignedTime} />
+                  <input type="time" ref={asignTime} />
                 </td>
                 <td class="p-2 border-2">
                   <input
@@ -133,67 +148,109 @@ function HospitalAppointments() {
                   </button>
                 </td>
               </tr>
-
-              {datas.map((res) => (
-                <tr
-                  class="border-b hover:bg-orange-100 bg-gray-100"
-                  style={{ fontSize: "13px" }}
-                >
-                  <td class="p-2 px-2 border-2">
-                    <span>01.</span>
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <span>{res.name}</span>
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <span>{res.contact}</span>
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <span>{res.services}</span>
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <AppointmentDetailsButton res={res} />
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <select class="bg-transparent" ref={assignedDoc}>
-                      <option selected>None</option>
-                      <option>Dr.Sanduik Ruit</option>
-                      <option>Dr.Pathak</option>
-                      <option>Dr.Achaya</option>
-                    </select>
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <input type="date" ref={assignedDate} />
-                  </td>
-                  <td class="p-2 px-2 border-2">
-                    <input type="time" ref={assignedTime} />
-                  </td>
-                  <td class="p-2 border-2">
-                    <input
-                      type="text"
-                      style={{ width: "100px" }}
-                      placeholder="token.no"
-                      ref={assignedToken}
-                    />
-                  </td>
-                  <td class="p-3 px-5 flex justify-end">
-                    <button
-                      onClick={handleAppointments}
-                      type="button"
-                      class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+              {datas.map(
+                (res) =>
+                  res.status.pending === true &&
+                  res.status.done === false && (
+                    <tr
+                      class="border-b hover:bg-orange-100 bg-gray-100"
+                      style={{ fontSize: "13px" }}
                     >
-                      Approve
-                    </button>
-                    <button
-                      onClick={handleRejectAppointments}
-                      type="button"
-                      class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Reject
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      <td class="p-2 px-2 border-2">
+                        <span>01.</span>
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <span>{res.name}</span>
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <span>{res.contact}</span>
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <span>{res.services}</span>
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <AppointmentDetailsButton res={res} />
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <select
+                          class="bg-transparent"
+                          onChange={(e) => {
+                            setDocAssigned(e.target.value);
+                          }}
+                          ref={asignDoc}
+                        >
+                          <option>None</option>
+                          <option>Dr.Sanduik Ruit</option>
+                          <option>Dr.Pathak</option>
+                          <option>Dr.Achaya</option>
+                        </select>
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <input
+                          type="date"
+                          onChange={(e) => {
+                            setAssignedDate(e.target.value);
+                          }}
+                          ref={asignDate}
+                        />
+                      </td>
+                      <td class="p-2 px-2 border-2">
+                        <input
+                          type="time"
+                          ref={asignTime}
+                          onChange={(e) => {
+                            setAssignedTime(e.target.value);
+                          }}
+                        />
+                      </td>
+                      <td class="p-2 border-2">
+                        <input
+                          type="text"
+                          style={{ width: "100px" }}
+                          placeholder="token.no"
+                          ref={asignToken}
+                          onChange={(e) => {
+                            setAssignedToken(e.target.value);
+                          }}
+                        />
+                      </td>
+                      <td class="p-3 px-5 flex justify-end">
+                        <button
+                          onClick={async () => {
+                            // handleAppointments(res);
+                            try {
+                              await axios.put(
+                                `${local}/userAppointment/${res._id}/approved`,
+                                setSchedule
+                              );
+                            } catch (error) {
+                              console.log(error);
+                            }
+                          }}
+                          type="button"
+                          class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={async () => {
+                            try {
+                              await axios.put(
+                                `${local}/userAppointment/${res?._id}/rejected`
+                              );
+                            } catch (error) {
+                              console.log(error);
+                            }
+                          }}
+                          type="button"
+                          class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                        >
+                          Reject
+                        </button>
+                      </td>
+                    </tr>
+                  )
+              )}
             </tbody>
           </table>
         </div>
