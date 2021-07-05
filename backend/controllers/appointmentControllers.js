@@ -72,7 +72,7 @@ const eachAppointmentDetails = asyncHandler(async (req, res) => {
 
 const approveAppointment = asyncHandler(async (req, res) => {
   try {
-    const appointment = await Appointments.findOneAndUpdate(req.params.id, {
+    const appointment = await Appointments.findByIdAndUpdate(req.params.id, {
       appointDate: req.body.date,
       token: req.body.token,
       docArrival: req.body.doctime,
@@ -100,7 +100,7 @@ const getApprovedAppointment = asyncHandler(async (req, res) => {
 
 const rejectAppointment = asyncHandler(async (req, res) => {
   try {
-    const appointment = await Appointments.findOneAndUpdate(req.params.id, {
+    const appointment = await Appointments.findByIdAndUpdate(req.params.id, {
       status: { pending: false, done: false, rejected: true },
     });
     res.status(200).json(appointment);
