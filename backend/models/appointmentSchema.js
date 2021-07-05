@@ -24,7 +24,6 @@ const appointmentSchema = mongoose.Schema(
     time: {
       type: Date,
     },
-
     appointDate: {
       type: String,
     },
