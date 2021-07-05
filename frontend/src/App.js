@@ -10,6 +10,7 @@ import DoctorsScreen from "screens/DoctorsScreen";
 import CovidScreen from "screens/CovidScreen";
 import HospitalLogin from "screens/HospitalScreen/HospitalLogin/HospialLogin";
 import HospitalRegister from "screens/HospitalScreen/HospitalRegister/HospitalRegister";
+import HospitalProfile from "screens/HospitalProfile/HospitalProfile"
 import "App.css";
 import styled from "styled-components";
 import Appointments from "screens/HospitalAppoinment/Appointments";
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/user_login" component={RegisterScreen} />
         <Route exact path="/hospital_login" component={HospitalLogin} />
         <Route exact path="/hospital_register" component={HospitalRegister} />
+        <Route exact path="/hospitalprofile" component={HospitalProfile} />
         <Route exact path="/covid19" component={CovidScreen} />
         <Route
           exact
