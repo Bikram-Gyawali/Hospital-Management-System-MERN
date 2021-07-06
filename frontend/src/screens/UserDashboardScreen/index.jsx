@@ -6,7 +6,12 @@ import useGetUserData from "hooks/useGetUserSidebarData";
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
 import axios from "axios";
 import UserAppointments from "components/UserAppointments/UserAppointments";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+
+import { Link } from 'react-router-dom'
+>>>>>>> 92ca0d6284885f8949fb53ca78d38a0300bd0872
 
 const FlexContainer = styled.div`
   display: flex;
@@ -104,8 +109,7 @@ function Userdashboard() {
                                       <path d="M12 5l7 7-7 7"></path>
                                     </svg>
                                   </Link>
-                                  >>>>>>>
-                                  f09ce209e775a67ee25af216e8a7012728e06f5f
+
                                   <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                                     <svg
                                       className="w-4 h-4 mr-1"
@@ -145,6 +149,7 @@ function Userdashboard() {
                     </div>
                   </div>
                 </section>
+
               </div>
             </div>
           </section>
