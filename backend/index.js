@@ -17,6 +17,8 @@ const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
 const userReports = require("./routes/reports");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const reports= require('./routes/reports')
+
 dotenv.config();
 
 //middlewares
@@ -49,7 +51,11 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
+<<<<<<< HEAD
+app.use("/api/reports", reports);
+=======
 app.use("/api/reports", userReports);
+>>>>>>> ffed7ec9b0336ea2873422f52079f6648773d0a3
 //database
 connectDb();
 

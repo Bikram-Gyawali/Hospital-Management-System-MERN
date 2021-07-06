@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from 'components/DashboardShared/Navbar'
 import SideBar from 'components/DashboardShared/SideBar'
 import styled from 'styled-components'
 import useGetUserData from 'hooks/useGetUserSidebarData';
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
+import axios from 'axios'
 
 
 const FlexContainer = styled.div`
@@ -22,13 +23,20 @@ const FlexLeft = styled.div`
 
 
 function Userdashboard() {
+  // fetch data
+  // const [hospitals, sethospitals] = useState([])
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/api/hospitals/allHospital').then((response)=>{
+  //     sethospitals(response.data)
+  //     console.log(response)
+  //   })
+  // }, [])
 
   const { userId, userMenuData } = useGetUserData()
   console.log(userMenuData, userId)
   return (
     <div>
       <Navbar type={"user"} id={userId} />
-      <AppointmentButton />
       <FlexContainer>
         <FlexLeft>
           <SideBar sidebarData={userMenuData} />
@@ -43,6 +51,8 @@ function Userdashboard() {
                 <section class="text-gray-600 body-font">
                   <div class="container px-5 py-5  mx-auto">
                     <div class="flex flex-wrap -m-4">
+
+                      {/* each cardstarts here */}
                       <div class="p-4 md:w-1/3  ">
                         <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                           <img
@@ -117,6 +127,8 @@ function Userdashboard() {
                           </div>
                         </div>
                       </div>
+                      {/* card ends here */}
+
                       <div class="p-4 md:w-1/3  ">
                         <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                           <img

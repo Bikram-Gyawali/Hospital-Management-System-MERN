@@ -6,6 +6,7 @@ const {
   approveAppointment,
   rejectAppointment,
   getApprovedAppointment,
+  userIndividualAppointment
 } = require("../controllers/appointmentControllers");
 
 // routes
@@ -18,5 +19,6 @@ route.get("/:id/appointment/oneappointment", eachAppointmentDetails);
 route.put("/:id/approved", approveAppointment);
 route.put("/:id/rejected", rejectAppointment);
 route.get("/:id/approvedList", getApprovedAppointment);
+// route.get("/:id/userappointments", userIndividualAppointment);
 
 module.exports = route;

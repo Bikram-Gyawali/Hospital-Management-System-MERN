@@ -1,23 +1,28 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "./userdashboard.css";
 
 import Navbar from "components/DashboardShared/Navbar";
 import UserSidebar from "../../components/UserDashboard/UserSidebar";
+import axios from 'axios'
+
 function Userdashboard() {
+
+
   return (
     <div>
       <Navbar />
-      <div className="flex flex-row   bigBody ">
+      <div className="flex flex-row bigBody ">
         <UserSidebar />
         <section class="text-gray-600 body-font">
           <div class="container px-2 py-2 mx-auto">
             <div class="flex flex-wrap -m-4">
               <div className="mx-auto text-lg mt-2 p-2 font-bold text-gray-600">
-                <h6>Hospitals and Clinics </h6>
+                <h6>Hospitals and Clinic</h6>
               </div>
               <section class="text-gray-600 body-font">
                 <div class="container px-5 py-5  mx-auto">
                   <div class="flex flex-wrap -m-4">
+                    {/* here */}
                     <div class="p-4 md:w-1/3  ">
                       <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img
@@ -92,6 +97,7 @@ function Userdashboard() {
                         </div>
                       </div>
                     </div>
+                    {/* ends */}
                     <div class="p-4 md:w-1/3  ">
                       <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img

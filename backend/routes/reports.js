@@ -1,5 +1,5 @@
 const route = require('express').Router()
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 const path= require('path');
 
 const {saveReports, downloadReport}=require('../controllers/reportControllers')
@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, './uploads/reports')
     },
     filename: function (req, file, cb) {
-        cb(null, `${file.fieldname}_${Date.now()}${uuidv4()}${path.extname(file.originalname)}`)
+        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
     }
 })
 

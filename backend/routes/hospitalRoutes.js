@@ -12,11 +12,13 @@ const {
   addVaccancy,
   bedTypes,
   allDoctors,
-  hospitalDetails
+  hospitalDetails,
+  allHospitals
 } = require("../controllers/hospitalControllers");
 
 route.post("/registerHospital", registerHospital);
 route.post("/loginHospital", loginHospital);
+route.get("/allHospital", allHospitals)
 route.get("/:id", individualHospital);
 route.put("/:id/hospitalProfile", upateHospital);
 route.put("/:id/updateHospital", upateHospital);
