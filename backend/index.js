@@ -25,26 +25,27 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
-app.use("/images", express.static(path.join(__dirname, "/public/images")));
 
-// multer implementation for uploading files/images
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, req.body.name);
-  },
-});
+// app.use("/images", express.static(path.join(__dirname, "/public/images")));
 
-const upload = multer({ storage });
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  try {
-    return res.status(200).json("File Uploaded Successfully");
-  } catch (err) {
-    console.log(err);
-  }
-});
+// // multer implementation for uploading files/images
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/images");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, req.body.name);
+//   },
+// });
+
+// const upload = multer({ storage });
+// app.post("/api/upload", upload.single("file"), (req, res) => {
+//   try {
+//     return res.status(200).json("File Uploaded Successfully");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
