@@ -17,13 +17,13 @@ function UserSidebar() {
         </div>
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2  ">
           <h1 className="mr-4">
-            <i class="far fa-calendar-alt text-lg "></i>
+            <i className="far fa-calendar-alt text-lg "></i>
           </h1>
           <h1>Appointments</h1>
         </div>
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
-            <i class="fas fa-ambulance"></i>
+            <i className="fas fa-ambulance"></i>
           </h1>
           <h1>Emergency</h1>
         </div>
@@ -43,13 +43,13 @@ function UserSidebar() {
 
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
-            <i class="fas fa-pills"></i>
+            <i className="fas fa-pills"></i>
           </h1>
           <h1>Medics</h1>
         </div>
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
-            <i class="fas fa-syringe"></i>
+            <i className="fas fa-syringe"></i>
           </h1>
           <h1>Blood Bank</h1>
         </div>
@@ -67,13 +67,13 @@ function UserSidebar() {
         </div>
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
-            <i class="fas fa-wheelchair"></i>
+            <i className="fas fa-wheelchair"></i>
           </h1>
           <h1>Handicapped</h1>
         </div>
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
-            <i class="fas fa-signal"></i>
+            <i className="fas fa-signal"></i>
           </h1>
           <h1>Plans</h1>
         </div>

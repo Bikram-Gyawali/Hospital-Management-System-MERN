@@ -97,79 +97,79 @@ function HospitalAppointments() {
 
   return (
     <div>
-      <div class="text-gray-900 bg-gray-200">
-        <div class="p-4 flex">
-          <h1 class="text-xl">New Appointments List</h1>
+      <div className="text-gray-900 bg-gray-200">
+        <div className="p-4 flex">
+          <h1 className="text-xl">New Appointments List</h1>
         </div>
-        <div class="px-3 py-1 flex justify-around">
+        <div className="px-3 py-1 flex justify-around">
           <table
-            class="text-md bg-white shadow-md rounded mb-4"
+            className="text-md bg-white shadow-md rounded mb-4"
             style={{ fontSize: "15px" }}
           >
             <tbody>
-              <tr class="border-b">
-                <th class="text-left py-3 px-1 border-2 ">S.N.</th>
-                <th class="text-left py-3 px-1 border-2 ">Name</th>
-                <th class="text-left py-3 px-1 border-2 ">Contact.No</th>
-                <th class="text-left py-3 px-1 border-2 ">Service</th>
-                <th class="text-left py-3 px-1 border-2 ">Details</th>
-                <th class="text-left py-3 px-1 border-2 ">Doctor Assigned</th>
-                <th class="text-left py-3 px-1 border-2 ">Date</th>
-                <th class="text-left py-3 px-1 border-2 ">Time</th>
-                <th class="text-left py-3 px-1 border-2 ">Token No</th>
+              <tr className="border-b">
+                <th className="text-left py-3 px-1 border-2 ">S.N.</th>
+                <th className="text-left py-3 px-1 border-2 ">Name</th>
+                <th className="text-left py-3 px-1 border-2 ">Contact.No</th>
+                <th className="text-left py-3 px-1 border-2 ">Service</th>
+                <th className="text-left py-3 px-1 border-2 ">Details</th>
+                <th className="text-left py-3 px-1 border-2 ">Doctor Assigned</th>
+                <th className="text-left py-3 px-1 border-2 ">Date</th>
+                <th className="text-left py-3 px-1 border-2 ">Time</th>
+                <th className="text-left py-3 px-1 border-2 ">Token No</th>
               </tr>
               {/* rows of data are below now */}
               <tr
-                class="border-b hover:bg-orange-100 bg-gray-100"
+                className="border-b hover:bg-orange-100 bg-gray-100"
                 style={{ fontSize: "13px" }}
               >
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <span>01.</span>
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <span>Madan Bahadur</span>
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <span>9867134457</span>
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <span>Blood Test</span>
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <AppointmentDetailsButton />
                   {/* <Button>View Details</Button> */}
                 </td>
-                <td class="p-2 px-2 border-2">
-                  <select class="bg-transparent" ref={asignDoc}>
+                <td className="p-2 px-2 border-2">
+                  <select className="bg-transparent" ref={asignDoc}>
                     <option>None</option>
                     <option>Dr.Sanduik Ruit</option>
                     <option>Dr.Pathak</option>
                     <option>Dr.Achaya</option>
                   </select>
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <input type="date" ref={asignDate} />
                 </td>
-                <td class="p-2 px-2 border-2">
+                <td className="p-2 px-2 border-2">
                   <input type="time" ref={asignTime} />
                 </td>
-                <td class="p-2 border-2">
+                <td className="p-2 border-2">
                   <input
                     type="text"
                     style={{ width: "100px" }}
                     placeholder="token.no"
                   />
                 </td>
-                <td class="p-3 px-5 flex justify-end">
+                <td className="p-3 px-5 flex justify-end">
                   <button
                     type="button"
-                    class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                    className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                   >
                     Approve
                   </button>
                   <button
                     type="button"
-                    class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                    className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                   >
                     Reject
                   </button>
@@ -181,27 +181,27 @@ function HospitalAppointments() {
                     res?.status.pending === true &&
                     res?.status.done === false && (
                       <tr
-                        class="border-b hover:bg-orange-100 bg-gray-100"
+                        className="border-b hover:bg-orange-100 bg-gray-100"
                         style={{ fontSize: "13px" }}
                       >
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{key}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.name}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.contact}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.services}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <AppointmentDetailsButton res={res} />
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <select
-                            class="bg-transparent"
+                            className="bg-transparent"
                             onChange={(e) => {
                               setDocAssigned(e.target.value);
                             }}
@@ -213,7 +213,7 @@ function HospitalAppointments() {
                             <option>Dr.Achaya</option>
                           </select>{" "}
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <input
                             type="date"
                             onChange={(e) => {
@@ -222,7 +222,7 @@ function HospitalAppointments() {
                             ref={asignDate}
                           />{" "}
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <input
                             type="time"
                             ref={asignTime}
@@ -231,7 +231,7 @@ function HospitalAppointments() {
                             }}
                           />
                         </td>{" "}
-                        <td class="p-2 border-2">
+                        <td className="p-2 border-2">
                           <input
                             type="text"
                             style={{ width: "100px" }}
@@ -242,7 +242,7 @@ function HospitalAppointments() {
                             }}
                           />
                         </td>{" "}
-                        <td class="p-3 px-5 flex justify-end">
+                        <td className="p-3 px-5 flex justify-end">
                           <button
                             onClick={async () => {
                               // handleAppointments(res);
@@ -256,7 +256,7 @@ function HospitalAppointments() {
                               }
                             }}
                             type="button"
-                            class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                            className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                           >
                             Approve
                           </button>
@@ -271,7 +271,7 @@ function HospitalAppointments() {
                               }
                             }}
                             type="button"
-                            class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                            className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                           >
                             Reject
                           </button>
@@ -285,26 +285,26 @@ function HospitalAppointments() {
       </div>
 
       {/* approved appoinment lists are right  belows */}
-      <div class="text-gray-900 bg-gray-200">
-        <div class="p-4 flex">
-          <h1 class="text-xl">Approved Appointment List</h1>
+      <div className="text-gray-900 bg-gray-200">
+        <div className="p-4 flex">
+          <h1 className="text-xl">Approved Appointment List</h1>
         </div>
-        <div class="px-3 py-1 flex justify-around">
+        <div className="px-3 py-1 flex justify-around">
           <table
-            class="text-md bg-white shadow-md rounded mb-4"
+            className="text-md bg-white shadow-md rounded mb-4"
             style={{ fontSize: "15px" }}
           >
             <tbody>
-              <tr class="border-b">
-                <th class="text-left py-3 px-1 border-2 ">S.N.</th>
-                <th class="text-left py-3 px-1 border-2 ">Name</th>
-                <th class="text-left py-3 px-1 border-2 ">Contact.No</th>
-                <th class="text-left py-3 px-1 border-2 ">Service</th>
-                <th class="text-left py-3 px-1 border-2 ">Details</th>
-                <th class="text-left py-3 px-1 border-2 ">Doctor Assigned</th>
-                <th class="text-left py-3 px-1 border-2 ">Date</th>
-                <th class="text-left py-3 px-1 border-2 ">Time</th>
-                <th class="text-left py-3 px-1 border-2 ">Token No</th>
+              <tr className="border-b">
+                <th className="text-left py-3 px-1 border-2 ">S.N.</th>
+                <th className="text-left py-3 px-1 border-2 ">Name</th>
+                <th className="text-left py-3 px-1 border-2 ">Contact.No</th>
+                <th className="text-left py-3 px-1 border-2 ">Service</th>
+                <th className="text-left py-3 px-1 border-2 ">Details</th>
+                <th className="text-left py-3 px-1 border-2 ">Doctor Assigned</th>
+                <th className="text-left py-3 px-1 border-2 ">Date</th>
+                <th className="text-left py-3 px-1 border-2 ">Time</th>
+                <th className="text-left py-3 px-1 border-2 ">Token No</th>
               </tr>
               {/* rows of data are below now */}
               {approvedList &&
@@ -313,35 +313,35 @@ function HospitalAppointments() {
                     res?.status.pending === false &&
                     res?.status.done === true && (
                       <tr
-                        class="border-b hover:bg-orange-100 bg-gray-100"
+                        className="border-b hover:bg-orange-100 bg-gray-100"
                         style={{ fontSize: "13px" }}
                       >
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{key}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res.name}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.contact}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.services}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <AppointmentDetailsButton res={res} />
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           <span>{res?.assignedDoctor}</span>
                         </td>
-                        <td class="p-2 px-2 border-2">
+                        <td className="p-2 px-2 border-2">
                           {res?.date.toString().substr(0, 10)}
                         </td>
-                        <td class="p-2 px-2 border-2">{res?.docArrival}</td>
-                        <td class="p-2 border-2">{res?.token}</td>
-                        <td class="p-3 px-5 flex justify-end">
+                        <td className="p-2 px-2 border-2">{res?.docArrival}</td>
+                        <td className="p-2 border-2">{res?.token}</td>
+                        <td className="p-3 px-5 flex justify-end">
                           <label htmlFor="file" className="shareOption">
-                            <i class="fas fa-upload mr-3 text-3xl"></i>
+                            <i className="fas fa-upload mr-3 text-3xl"></i>
                             <input
                               style={{ display: "none" }}
                               type="file"
@@ -356,7 +356,7 @@ function HospitalAppointments() {
                               uploadReports(res);
                             }}
                             type="button"
-                            class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                            className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                           >
                             Upload Reports
                           </button>
