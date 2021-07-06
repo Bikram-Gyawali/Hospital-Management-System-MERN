@@ -1,13 +1,12 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./userdashboard.css";
 
 import Navbar from "components/DashboardShared/Navbar";
 import UserSidebar from "../../components/UserDashboard/UserSidebar";
-import axios from 'axios'
+import axios from "axios";
+import Button from "components/GlobalComponents/Button";
 
 function Userdashboard() {
-
-
   return (
     <div>
       <Navbar />
@@ -568,7 +567,10 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                          <a
+                            href="/"
+                            class="text-indigo-500 inline-flex items-center mt-4"
+                          >
                             Learn More
                             <svg
                               class="w-4 h-4 ml-2"
@@ -607,7 +609,10 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                          <a
+                            href="/"
+                            class="text-indigo-500 inline-flex items-center mt-4"
+                          >
                             Learn More
                             <svg
                               class="w-4 h-4 ml-2"
@@ -646,10 +651,14 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
-                          <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                          <a
+                            href="/"
+                            class="text-indigo-500 inline-flex items-center mt-4"
+                          >
                             Learn More
                             <svg
-                              class="w-4 h-4 ml-2"e
+                              class="w-4 h-4 ml-2"
+                              e
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                               stroke-width="2"

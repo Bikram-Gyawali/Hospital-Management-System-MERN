@@ -13,12 +13,12 @@ const {
   bedTypes,
   allDoctors,
   hospitalDetails,
-  allHospitals
+  allHospitals,
 } = require("../controllers/hospitalControllers");
 
 route.post("/registerHospital", registerHospital);
 route.post("/loginHospital", loginHospital);
-route.get("/allHospital", allHospitals)
+route.get("/allHospital", allHospitals);
 route.get("/:id", individualHospital);
 route.put("/:id/hospitalProfile", upateHospital);
 route.put("/:id/updateHospital", upateHospital);
@@ -31,4 +31,5 @@ route.post("/:id/addDoctors", addDoctors);
 route.post("/:id/addVaccancy", addVaccancy);
 route.get("/:id/allDoctors", allDoctors);
 route.get("/:id/hospitalDetails", hospitalDetails);
+// route.get("/:id/")
 module.exports = route;

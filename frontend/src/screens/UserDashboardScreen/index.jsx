@@ -1,26 +1,24 @@
-import React, {useState, useEffect} from "react";
-import Navbar from 'components/DashboardShared/Navbar'
-import SideBar from 'components/DashboardShared/SideBar'
-import styled from 'styled-components'
-import useGetUserData from 'hooks/useGetUserSidebarData';
+import React, { useState, useEffect } from "react";
+import Navbar from "components/DashboardShared/Navbar";
+import SideBar from "components/DashboardShared/SideBar";
+import styled from "styled-components";
+import useGetUserData from "hooks/useGetUserSidebarData";
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
-import axios from 'axios'
-
+import axios from "axios";
+import UserAppointments from "components/UserAppointments/UserAppointments";
 
 const FlexContainer = styled.div`
   display: flex;
   padding: 0 20px 0 0px;
-
-`
+`;
 
 const FlexRight = styled.div`
- flex: 1;
-`
+  flex: 1;
+`;
 
 const FlexLeft = styled.div`
   width: 300px;
-`
-
+`;
 
 function Userdashboard() {
   // fetch data
@@ -32,8 +30,8 @@ function Userdashboard() {
   //   })
   // }, [])
 
-  const { userId, userMenuData } = useGetUserData()
-  console.log(userMenuData, userId)
+  const { userId, userMenuData } = useGetUserData();
+  console.log(userMenuData, userId);
   return (
     <div>
       <Navbar type={"user"} id={userId} />
@@ -51,7 +49,6 @@ function Userdashboard() {
                 <section class="text-gray-600 body-font">
                   <div class="container px-5 py-5  mx-auto">
                     <div class="flex flex-wrap -m-4">
-
                       {/* each cardstarts here */}
                       <div class="p-4 md:w-1/3  ">
                         <div class="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -71,8 +68,9 @@ function Userdashboard() {
                               Gautam Buddha Hospital
                             </h1>
                             <p class="leading-relaxed mb-3 text-sm">
-                              Lorem, ipsum dolor sit amet consectetur adipisicing
-                              elit. Nihil minus consequatur qui voluptatum
+                              Lorem, ipsum dolor sit amet consectetur
+                              adipisicing elit. Nihil minus consequatur qui
+                              voluptatum
                             </p>
                             <div class="flex items-start flex-wrap ">
                               <a
@@ -596,10 +594,13 @@ function Userdashboard() {
                             <p class="leading-relaxed">
                               Our Hospital Is Providing Covid Vaccine to the
                               normal citizens this is an information and
-                              invitation to the people of age group 18-50 yrs old
-                              public.
+                              invitation to the people of age group 18-50 yrs
+                              old public.
                             </p>
-                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                            <a
+                              href="/"
+                              class="text-indigo-500 inline-flex items-center mt-4"
+                            >
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
@@ -635,10 +636,13 @@ function Userdashboard() {
                             <p class="leading-relaxed">
                               Our Hospital Is Providing Covid Vaccine to the
                               normal citizens this is an information and
-                              invitation to the people of age group 18-50 yrs old
-                              public.
+                              invitation to the people of age group 18-50 yrs
+                              old public.
                             </p>
-                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                            <a
+                              href="/"
+                              class="text-indigo-500 inline-flex items-center mt-4"
+                            >
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
@@ -674,10 +678,13 @@ function Userdashboard() {
                             <p class="leading-relaxed">
                               Our Hospital Is Providing Covid Vaccine to the
                               normal citizens this is an information and
-                              invitation to the people of age group 18-50 yrs old
-                              public.
+                              invitation to the people of age group 18-50 yrs
+                              old public.
                             </p>
-                            <a href="/" class="text-indigo-500 inline-flex items-center mt-4">
+                            <a
+                              href="/"
+                              class="text-indigo-500 inline-flex items-center mt-4"
+                            >
                               Learn More
                               <svg
                                 class="w-4 h-4 ml-2"
@@ -701,6 +708,7 @@ function Userdashboard() {
               </div>
             </div>
           </section>
+          <UserAppointments />
         </FlexRight>
       </FlexContainer>
     </div>

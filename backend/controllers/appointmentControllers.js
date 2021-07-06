@@ -4,7 +4,6 @@ const Hospitals = require("../models/hospitalSchema");
 const Appointments = require("../models/appointmentSchema");
 const appointmentSchema = require("../models/appointmentSchema");
 
-
 const appointmentDetails = asyncHandler(async (req, res) => {
   try {
     const hospitals = await Hospitals.findById(req.params.id);
@@ -111,27 +110,27 @@ const rejectAppointment = asyncHandler(async (req, res) => {
   }
 });
 
-const userAppointments= asyncHandler(async(req, res)=>{
-  try {
-      const user= await User.findById(req.params.id)
-      const appointmentId= await user.appointmentsmade
-      const userAppointments= await Appoint
-  } catch (error) {
-      res.status(400)
-      throw new Error(error)
-  }
-})
-
-//route already exist
-// const userIndividualAppointment= asyncHandler(async(req, res)=>{
+// const userAppointments= asyncHandler(async(req, res)=>{
 //   try {
-//       const appointments= await Appointments.find({patient: req.params.id})
-//       res.status(200).json(appointments)
+//       const user= await User.findById(req.params.id)
+//       const appointmentId= await user.appointmentsmade
+//       const userAppointments= await Appoint
 //   } catch (error) {
 //       res.status(400)
 //       throw new Error(error)
 //   }
 // })
+
+// route already exist
+const userIndividualAppointment = asyncHandler(async (req, res) => {
+  try {
+    const appointments = await Appointments.find({ patient: req.params.id });
+    res.status(200).json(appointments);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
 
 module.exports = {
   appointmentDetails,
@@ -140,5 +139,5 @@ module.exports = {
   approveAppointment,
   rejectAppointment,
   getApprovedAppointment,
-  // userIndividualAppointment
+  userIndividualAppointment,
 };
