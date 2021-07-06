@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Navbar from 'components/DashboardShared/Navbar'
-import SideBar from 'components/DashboardShared/SideBar'
-import styled from 'styled-components'
-import useGetUserData from 'hooks/useGetUserSidebarData';
+import Navbar from "components/DashboardShared/Navbar";
+import SideBar from "components/DashboardShared/SideBar";
+import styled from "styled-components";
+import useGetUserData from "hooks/useGetUserSidebarData";
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
-import axios from 'axios'
+import axios from "axios";
+import UserAppointments from "components/UserAppointments/UserAppointments";
+
 import { Link } from 'react-router-dom'
 
 const FlexContainer = styled.div`
   display: flex;
   padding: 0 20px 0 0px;
-
-`
+`;
 
 const FlexRight = styled.div`
- flex: 1;
-`
+  flex: 1;
+`;
 
 const FlexLeft = styled.div`
   width: 300px;
-`
-
+`;
 
 function Userdashboard() {
   // fetch data
@@ -40,8 +40,8 @@ function Userdashboard() {
     return string;
   }
 
-  const { userId, userMenuData } = useGetUserData()
-  console.log(userMenuData, userId)
+  const { userId, userMenuData } = useGetUserData();
+  console.log(userMenuData, userId);
   return (
     <div>
       <Navbar type={"user"} id={userId} />
@@ -56,6 +56,7 @@ function Userdashboard() {
                 <div className="mx-auto text-lg mt-2 p-2 font-bold text-gray-600">
                   <h6>Hospitals and Clinics </h6>
                 </div>
+
                 <section className="text-gray-600 body-font">
                   <div className="container px-5 py-5  mx-auto">
                     <div className="flex flex-wrap -m-4">
@@ -143,9 +144,11 @@ function Userdashboard() {
                     </div>
                   </div>
                 </section>
+
               </div>
             </div>
           </section>
+          <UserAppointments />
         </FlexRight>
       </FlexContainer>
     </div>

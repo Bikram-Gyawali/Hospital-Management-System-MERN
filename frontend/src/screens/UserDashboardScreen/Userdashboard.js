@@ -3,11 +3,10 @@ import "./userdashboard.css";
 
 import Navbar from "components/DashboardShared/Navbar";
 import UserSidebar from "../../components/UserDashboard/UserSidebar";
-import axios from 'axios'
+import axios from "axios";
+import Button from "components/GlobalComponents/Button";
 
 function Userdashboard() {
-
-
   return (
     <div>
       <Navbar />
@@ -568,6 +567,7 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
+
                           <a href="/" className="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
@@ -607,6 +607,7 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
+
                           <a href="/" className="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
@@ -646,6 +647,7 @@ function Userdashboard() {
                             invitation to the people of age group 18-50 yrs old
                             public.
                           </p>
+
                           <a href="/" className="text-indigo-500 inline-flex items-center mt-4">
                             Learn More
                             <svg
