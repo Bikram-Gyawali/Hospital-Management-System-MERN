@@ -1,10 +1,33 @@
+import { useEffect, useState } from 'react'
 import { styles } from './HospitalProfileCss'
 import Button from '../../components/GlobalComponents/Button/index'
 import { KeyboardBackspace, LocationOn, MailOutline, Facebook, Instagram, Twitter, LinkedIn, Link } from '@material-ui/icons'
 import { Typography, Box, Divider } from '@material-ui/core'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const HospitalProfile = () => {
+    const [doctors, setdoctors] = useState([])
+
     const classes = styles()
+    const hospitalLogin = useSelector(state => state.hospitalLogin)
+    const { hospitalInfo } = hospitalLogin
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/hospitals/${hospitalInfo._id}/allDoctors`).then((response) => {
+            setdoctors(response.data)
+        }).catch((e) => console.log(e))
+    }, [])
+
+    //hospital details api call 
+    // useEffect(()=>{
+    //     axios.get(`http://localhost:5000/api/hospitals/${hospitalInfo._id}/hospitalDetails`).then((response) => {
+    //         sethospital(response.data)
+    //         console.log(response.data.services)
+    //     }).catch((e) => console.log(e))
+    // }, [])
+
     return (
         <>
             <div className={classes.main_container}>
@@ -37,61 +60,31 @@ const HospitalProfile = () => {
                         <div className={classes.doctor_section}>
                             <Box py={4}><Typography align="center" variant="h4">Our Consultants</Typography></Box>
                             <div className={classes.card}>
-                                <div className={classes.eachcard}>
-                                    <img className={classes.cardImage} src="https://images.pexels.com/photos/3323163/pexels-photo-3323163.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="img" />
-                                    <Typography className={classes.cardTypography} align="center">Dr.Rikesh</Typography>
-                                    <Divider />
-                                    <div className={classes.content}>
-                                        <button className={classes.cardButton}>Psychologist</button>
-                                        <div className={classes.connect}>
-                                            <Facebook style={{ color: '#4267B2' }} />
-                                            <Twitter style={{ color: '#1DA1F2' }} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={classes.eachcard}>
-                                    <img className={classes.cardImage} src="https://images.pexels.com/photos/3323163/pexels-photo-3323163.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="img" />
-                                    <Typography className={classes.cardTypography} align="center">Dr.Rikesh</Typography>
-                                    <Divider />
-                                    <div className={classes.content}>
-                                        <button className={classes.cardButton}>Psychologist</button>
-                                        <div className={classes.connect}>
-                                            <Facebook style={{ color: '#4267B2' }} />
-                                            <Twitter style={{ color: '#1DA1F2' }} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={classes.eachcard}>
-                                    <img className={classes.cardImage} src="https://images.pexels.com/photos/3323163/pexels-photo-3323163.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="img" />
-                                    <Typography className={classes.cardTypography} align="center">Dr.Rikesh</Typography>
-                                    <Divider />
-                                    <div className={classes.content}>
-                                        <button className={classes.cardButton}>Psychologist</button>
-                                        <div className={classes.connect}>
-                                            <Facebook style={{ color: '#4267B2' }} />
-                                            <Twitter style={{ color: '#1DA1F2' }} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={classes.eachcard}>
-                                    <img className={classes.cardImage} src="https://images.pexels.com/photos/3323163/pexels-photo-3323163.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="img" />
-                                    <Typography className={classes.cardTypography} align="center">Dr.Rikesh</Typography>
-                                    <Divider />
-                                    <div className={classes.content}>
-                                        <button className={classes.cardButton}>Psychologist</button>
-                                        <div className={classes.connect}>
-                                            <Facebook style={{ color: '#4267B2' }} />
-                                            <Twitter style={{ color: '#1DA1F2' }} />
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                                {doctors.map((doctor, index) => {
+                                    return (
+                                        <>
+                                            <div className={classes.eachcard}>
+                                                <img className={classes.cardImage} src={doctor.pic} alt="img" />
+                                                <Typography className={classes.cardTypography} align="center">{doctor.name}</Typography>
+                                                <Divider />
+                                                <div className={classes.content}>
+                                                    <button className={classes.cardButton}>{doctor.spec}</button>
+                                                    <div className={classes.connect}>
+                                                        <Facebook style={{ color: '#4267B2' }} />
+                                                        <Twitter style={{ color: '#1DA1F2' }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className={classes.service_section}>
                             <Box py={4}><Typography align="center" variant="h4">Our Facilities</Typography></Box>
                             <div className={classes.service}>
+                            
+                            {/* each services */}
                                 <div className={classes.each_service}>
                                     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
                                     <div className={classes.service_content}>
@@ -340,7 +333,7 @@ const HospitalProfile = () => {
                                 </section>
                             </div>
                         </div>
-                    
+
                         <div className={classes.footer_section}>
                             <div className={classes.footer}>
                                 <Typography>Emergency Contacts: 101, 103</Typography>

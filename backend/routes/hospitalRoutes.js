@@ -12,6 +12,7 @@ const {
   addVaccancy,
   bedTypes,
   allDoctors,
+  hospitalDetails
 } = require("../controllers/hospitalControllers");
 
 route.post("/registerHospital", registerHospital);
@@ -27,4 +28,5 @@ route.post("/:id/addContacts", addContacts);
 route.post("/:id/addDoctors", addDoctors);
 route.post("/:id/addVaccancy", addVaccancy);
 route.get("/:id/allDoctors", allDoctors);
+route.get("/:id/hospitalDetails", hospitalDetails);
 module.exports = route;
