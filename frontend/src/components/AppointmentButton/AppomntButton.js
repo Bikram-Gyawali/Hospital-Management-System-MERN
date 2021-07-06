@@ -1,19 +1,25 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Button } from "@material-ui/core";
-import { Modal } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.css";
-import { axiosRequest } from "utils/axiosRequest";
 import { useParams } from "react-router-dom";
+import Input from 'components/GlobalComponents/Input'
+import Label from 'components/GlobalComponents/Label'
+import Modal from 'components/GlobalComponents/Modal'
+import Button from 'components/GlobalComponents/Button'
+import styled from "styled-components";
+import Textarea from "components/GlobalComponents/Textarea";
+
+const InputGroup = styled.div`
+    margin-bottom: 30px;
+`
 
 function AppomntButton() {
   const hospitalLogin = useSelector((state) => {
     return state.hospitalLogin;
   });
-  const { hospitalInfo } = hospitalLogin;
-  const id = useParams().hospitalId;
-  console.log(id);
+  const params = useParams();
   const name = useRef();
   const services = useRef();
   const location = useRef();
@@ -23,15 +29,16 @@ function AppomntButton() {
   const desc = useRef();
   const age = useRef();
   const [fullscreen, setFullscreen] = useState(true);
-
-  const [lgShow, setLgShow] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   function handleShow() {
     setFullscreen(!fullscreen);
-    setLgShow(true);
+    setOpen(true);
   }
 
   const submitAppointment = async (e) => {
     e.preventDefault();
+    console.log("Submitted")
     const newAppointment = {
       name: name.current.value,
       services: services.current.value,
@@ -43,14 +50,20 @@ function AppomntButton() {
       age: age.current.value,
     };
     try {
+      setIsSubmitting(true);
       await axios.post(
-        `http://localhost:5000/api/userAppointment/${id}/appointment/setappointment/`,
+        `http://localhost:5000/api/userAppointment/${params.id}/appointment/setappointment/`,
         newAppointment
       );
+      alert("Successfuly submitted appointment form! Please wait for hospital response");
+      setOpen(false)
     } catch (error) {
       console.log("error applying appointments", error.response);
       console.log({ ...newAppointment });
+      alert("Error applying for appointments");
     }
+    setIsSubmitting(false)
+
     // const reqBody = {
     //   url: `http://localhost:5000/api/userAppointment/60e0638708e8331f5cb3f9bd/appointment/setappointment/`,
     //   method: "post",
@@ -65,6 +78,7 @@ function AppomntButton() {
     //   console.log(error.response);
     // }
   };
+  console.log(params)
   return (
     <div>
       <Button
@@ -75,110 +89,90 @@ function AppomntButton() {
       </Button>
       <Modal
         size="lg t"
-        show={lgShow}
         fullscreen={fullscreen}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
+        open={open}
+        setOpen={setOpen}
+
       >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <Button>Apply Appointments</Button>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            <form
-              action="submit"
-              className="mx-auto"
-              onSubmit={submitAppointment}
-            >
-              <div>
-                <span>Name:</span>
-                <input
-                  className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                  type="text"
-                  style={{ resize: "none" }}
-                  placeholder="name"
-                  ref={name}
-                />
-                <span>Age:</span>
-                <input
-                  className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                  type="number"
-                  style={{ resize: "none" }}
-                  placeholder="Age"
-                  ref={age}
-                />
-                <span>Services:</span>
-                <input
-                  className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                  style={{ resize: "none" }}
-                  type="text"
-                  ref={services}
-                  placeholder="services"
-                />
-                <div>
-                  Address:
-                  <input
-                    className="mt-2 mx-3 py-1 border border-blue-900 border-3  rounded-lg"
-                    type="text"
-                    style={{ resize: "none" }}
-                    placeholder="address"
-                    ref={location}
-                  />
-                </div>
-                <div>
-                  <span>Date:</span>
-                  <input
-                    className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                    style={{ resize: "none" }}
-                    type="date"
-                    ref={date}
-                  />{" "}
-                  <span>Time:</span>
-                  <input
-                    className="mt-2 mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                    style={{ resize: "none" }}
-                    type="time"
-                    ref={time}
-                  />
-                  <span>Contact:</span>
-                  <input
-                    className=" mx-8 py-1 border border-blue-900 border-3  rounded-lg"
-                    style={{ resize: "none" }}
-                    type="number"
-                    ref={contact}
-                    placeholder="9967313931"
-                  />
-                </div>
-                <div className="flex flex-row">
-                  <span className="mt-4 mr-3 ">Description:</span>
-                  <br />
-                  <textarea
-                    className="border border-blue-900 border-3  rounded-lg mt-3"
-                    name="description"
-                    id="desc"
-                    cols="20"
-                    style={{ resize: "none" }}
-                    ref={desc}
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-              <Button
-                className="bg-primary"
-                type="submit"
-                style={{
-                  marginTop: "50px",
-                  border: "1px solid black",
-                  marginLeft: "45vw",
-                }}
-              >
-                Apply Apointments
-              </Button>
-            </form>
-          </div>
-        </Modal.Body>
+        <form onSubmit={submitAppointment}>
+          <InputGroup>
+            <Label>Name</Label>
+            <Input
+              type="text"
+              fluid
+              placeholder="name"
+              ref={name}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label>Age</Label>
+            <Input
+              type="number"
+              placeholder="Age"
+              ref={age}
+              fluid
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label>Services</Label>
+            <Input
+              fluid
+              type="text"
+              ref={services}
+              placeholder="services"
+            />
+          </InputGroup>
+
+
+          <InputGroup>
+            <Label>Address</Label>
+            <Input
+              type="text"
+              fluid
+              placeholder="address"
+              ref={location}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label>Date</Label>
+            <Input
+              type="date"
+              fluid
+              ref={date}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label>Time</Label>
+            <Input
+              type="time"
+              fluid
+              ref={time}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label>Contact</Label>
+            <Input
+              type="number"
+              ref={contact}
+              fluid
+              placeholder="9967313931"
+            />
+          </InputGroup>
+
+          <InputGroup>
+            <Label>Description</Label>
+            <br />
+            <Textarea
+              name="description"
+              id="desc"
+              ref={desc}
+              fluid
+            />
+          </InputGroup>
+          <Button disabled = {isSubmitting}>
+            Apply Apointments
+          </Button>
+        </form>
       </Modal>
     </div>
   );
