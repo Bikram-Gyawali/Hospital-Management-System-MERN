@@ -6,8 +6,12 @@ import useGetUserData from "hooks/useGetUserSidebarData";
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
 import axios from "axios";
 import UserAppointments from "components/UserAppointments/UserAppointments";
+<<<<<<< HEAD
+import { Link } from "react-router-dom";
+=======
 
 import { Link } from 'react-router-dom'
+>>>>>>> 92ca0d6284885f8949fb53ca78d38a0300bd0872
 
 const FlexContainer = styled.div`
   display: flex;
@@ -24,21 +28,23 @@ const FlexLeft = styled.div`
 
 function Userdashboard() {
   // fetch data
-  const [hospitals, sethospitals] = useState([])
+  const [hospitals, sethospitals] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/api/hospitals/allHospital').then((response) => {
-      sethospitals([...response.data])
-      console.log(response)
-    })
-  }, [])
+    axios
+      .get("http://localhost:5000/api/hospitals/allHospital")
+      .then((response) => {
+        sethospitals([...response.data]);
+        console.log(response);
+      });
+  }, []);
 
   const stringifyImage = (image) => {
     let string = "";
     for (let char in image[0]) {
-      string += image[0][char]
+      string += image[0][char];
     }
     return string;
-  }
+  };
 
   const { userId, userMenuData } = useGetUserData();
   console.log(userMenuData, userId);
@@ -60,10 +66,9 @@ function Userdashboard() {
                 <section className="text-gray-600 body-font">
                   <div className="container px-5 py-5  mx-auto">
                     <div className="flex flex-wrap -m-4">
-
                       {/* each cardstarts here */}
-                      {
-                        hospitals.length && hospitals.map(hospital => (
+                      {hospitals.length &&
+                        hospitals.map((hospital) => (
                           <div className="p-4 md:w-1/3" key={hospital._id}>
                             <div className="h-full border-4 shadow border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                               <img
@@ -75,7 +80,8 @@ function Userdashboard() {
                                 <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                   Mutu Hospital
                                   <p>
-                                    Location <i className="fas fa-map-marker-alt"></i>
+                                    Location{" "}
+                                    <i className="fas fa-map-marker-alt"></i>
                                   </p>
                                 </h2>
                                 <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
@@ -137,8 +143,7 @@ function Userdashboard() {
                               </div>
                             </div>
                           </div>
-                        ))
-                      }
+                        ))}
 
                       {/* card ends here */}
                     </div>
