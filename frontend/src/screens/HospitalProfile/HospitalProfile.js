@@ -7,7 +7,6 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const HospitalProfile = () => {
-    const [hospital, sethospital] = useState([])
     const [doctors, setdoctors] = useState([])
 
     const classes = styles()
@@ -21,12 +20,13 @@ const HospitalProfile = () => {
         }).catch((e) => console.log(e))
     }, [])
 
-    useEffect(()=>{
-        axios.get(`http://localhost:5000/api/hospitals/${hospitalInfo._id}/hospitalDetails`).then((response) => {
-            sethospital(response.data)
-            console.log(response.data.services)
-        }).catch((e) => console.log(e))
-    }, [])
+    //hospital details api call 
+    // useEffect(()=>{
+    //     axios.get(`http://localhost:5000/api/hospitals/${hospitalInfo._id}/hospitalDetails`).then((response) => {
+    //         sethospital(response.data)
+    //         console.log(response.data.services)
+    //     }).catch((e) => console.log(e))
+    // }, [])
 
     return (
         <>
@@ -83,95 +83,96 @@ const HospitalProfile = () => {
                         <div className={classes.service_section}>
                             <Box py={4}><Typography align="center" variant="h4">Our Facilities</Typography></Box>
                             <div className={classes.service}>
-                               
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
-                                // <div className={classes.each_service}>
-                                //     <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
-                                //     <div className={classes.service_content}>
-                                //         <Typography className={classes.service_name} align="center">
-                                //             Skin Care
-                                //         </Typography>
-                                //         <button className={classes.service_learnMore}>
-                                //             Learn More
-                                //         </button>
-                                //     </div>
-                                // </div>
+                            
+                            {/* each services */}
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={classes.each_service}>
+                                    <img className={classes.service_img} alt="img" src="https://cmh.com.np/wp-content/uploads/2019/08/chrak.jpg" />
+                                    <div className={classes.service_content}>
+                                        <Typography className={classes.service_name} align="center">
+                                            Skin Care
+                                        </Typography>
+                                        <button className={classes.service_learnMore}>
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
