@@ -7,6 +7,7 @@ import { fonts } from 'fonts';
 import { useState } from 'react'
 import AddEventsForm from 'components/HospitalDashboard/AddEventsForm'
 import { useSelector } from 'react-redux';
+import returnMonthString from 'utils/returnMonth';
 
 const Title = styled.div`
     font-size: 28px;
@@ -101,7 +102,7 @@ const Index = () => {
                                 <EventHead>
                                     <EventHeadLeft>
                                         <EventName>{event.eventName}</EventName>
-                                        <EventDate>{event.date}</EventDate>
+                                        <EventDate>({returnMonthString(new Date(event.date).getMonth())} - {new Date(event.date).getDay()})</EventDate>
                                     </EventHeadLeft>
                                     <EventHeadRight>
                                         <IconButton onClick={(e) => setOpenEditForm(true)}>

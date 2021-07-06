@@ -10,7 +10,7 @@ import DoctorsScreen from "screens/DoctorsScreen";
 import CovidScreen from "screens/CovidScreen";
 import HospitalLogin from "screens/HospitalScreen/HospitalLogin/HospialLogin";
 import HospitalRegister from "screens/HospitalScreen/HospitalRegister/HospitalRegister";
-import HospitalProfile from "screens/HospitalProfile/HospitalProfile"
+import HospitalProfile from "screens/HospitalProfile/HospitalProfile";
 import "App.css";
 import styled from "styled-components";
 import Appointments from "screens/HospitalAppoinment/Appointments";
