@@ -112,6 +112,7 @@ const addEvents = asyncHandler(async (req, res) => {
         },
       },
     });
+
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);

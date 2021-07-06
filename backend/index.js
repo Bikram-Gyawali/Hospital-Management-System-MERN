@@ -10,11 +10,12 @@ const morgan = require("morgan");
 
 const app = express();
 
-const {notFound, errorHandler}= require('./middleware/errorHandlers')
+const { notFound, errorHandler } = require("./middleware/errorHandlers");
 
 // routes
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
+const userReports = require("./routes/reports");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 dotenv.config();
 
@@ -48,12 +49,12 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
+app.use("/api/reports", userReports);
 //database
 connectDb();
 
 app.use(notFound);
 app.use(errorHandler);
-
 
 app.listen(process.env.PORT, () => {
   console.log("SERVER UP AND RUNNING".bold.cyan);

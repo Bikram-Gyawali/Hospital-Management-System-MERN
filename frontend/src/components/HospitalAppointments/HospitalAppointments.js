@@ -3,14 +3,12 @@ import { Button } from "@material-ui/core";
 import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import AppomntButton from "components/AppointmentButton/AppomntButton";
-
 function HospitalAppointments() {
   const asignDate = useRef();
   const asignTime = useRef();
   const asignToken = useRef();
   const asignDoc = useRef();
-
+  const [file, setFile] = useState("");
   const [docAssigned, setDocAssigned] = useState("");
   const [assignedTime, setAssignedTime] = useState("");
   const [assignedDate, setAssignedDate] = useState("");
@@ -28,9 +26,27 @@ function HospitalAppointments() {
         `${local}/userAppointment/${id}/appointment/hospitalallappointments`
       );
       setDatas(data);
+      const getApprovedList = async () => {
+        const { data } = await axios.get(
+          `${local}/userAppointment/${id}/approvedList`
+        );
+        // console.log(data);
+        setApprovedList(data);
+      };
+      getApprovedList();
     };
     getAppoiments();
-  }, [datas, id]);
+  }, [datas, id, approvedList]);
+
+  // useEffect(() => {
+  //   const getApprovedList = async () => {
+  //     const list = await axios.get(
+  //       `${local}/userAppointment/${id}/approvedList`
+  //     );
+  //     setApprovedList(list);
+  //   };
+  //   getApprovedList();
+  // }, [approvedList, id]);
 
   // console.log(datas);
   const setSchedule = {
@@ -49,32 +65,41 @@ function HospitalAppointments() {
   //   }
   // };
 
-  const handleRejectAppointments = async (res) => {
-    try {
-      await axios.put(`${local}/userAppointment/${res?._id}/rejected`);
-    } catch (error) {
-      console.log(error);
+  // const handleRejectAppointments = async (res) => {
+  //   try {
+  //     await axios.put(`${local}/userAppointment/${res?._id}/rejected`);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // console.log(approvedList);
+
+  const uploadReports = async (res) => {
+    const id = res?._id;
+    const formData = new FormData();
+    formData.append("report", file);
+    await axios.post(
+      `http://localhost:5000/api/reports/${id}/uploadreport`,
+      formData
+    );
+    console.log("reports");
+  };
+
+  const uploadReport = async () => {
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
     }
   };
 
-  useEffect(() => {
-    const getApprovedList = async () => {
-      const list = await axios.get(
-        `${local}/userAppointment/${id}/approvedList`
-      );
-      setApprovedList(list);
-    };
-    getApprovedList();
-  }, [approvedList, id]);
-
-  // console.log(assignedTime);
-
   return (
     <div>
-      <AppomntButton />
       <div class="text-gray-900 bg-gray-200">
         <div class="p-4 flex">
-          <h1 class="text-xl">Appointments List</h1>
+          <h1 class="text-xl">New Appointments List</h1>
         </div>
         <div class="px-3 py-1 flex justify-around">
           <table
@@ -152,7 +177,7 @@ function HospitalAppointments() {
               </tr>
               {datas &&
                 datas.map(
-                  (res) =>
+                  (res, key) =>
                     res?.status.pending === true &&
                     res?.status.done === false && (
                       <tr
@@ -160,7 +185,7 @@ function HospitalAppointments() {
                         style={{ fontSize: "13px" }}
                       >
                         <td class="p-2 px-2 border-2">
-                          <span>01.</span>
+                          <span>{key}</span>
                         </td>
                         <td class="p-2 px-2 border-2">
                           <span>{res?.name}</span>
@@ -186,7 +211,7 @@ function HospitalAppointments() {
                             <option>Dr.Sanduik Ruit</option>
                             <option>Dr.Pathak</option>
                             <option>Dr.Achaya</option>
-                          </select>
+                          </select>{" "}
                         </td>
                         <td class="p-2 px-2 border-2">
                           <input
@@ -195,7 +220,7 @@ function HospitalAppointments() {
                               setAssignedDate(e.target.value);
                             }}
                             ref={asignDate}
-                          />
+                          />{" "}
                         </td>
                         <td class="p-2 px-2 border-2">
                           <input
@@ -205,7 +230,7 @@ function HospitalAppointments() {
                               setAssignedTime(e.target.value);
                             }}
                           />
-                        </td>
+                        </td>{" "}
                         <td class="p-2 border-2">
                           <input
                             type="text"
@@ -216,7 +241,7 @@ function HospitalAppointments() {
                               setAssignedToken(e.target.value);
                             }}
                           />
-                        </td>
+                        </td>{" "}
                         <td class="p-3 px-5 flex justify-end">
                           <button
                             onClick={async () => {
@@ -249,6 +274,91 @@ function HospitalAppointments() {
                             class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                           >
                             Reject
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* approved appoinment lists are right  belows */}
+      <div class="text-gray-900 bg-gray-200">
+        <div class="p-4 flex">
+          <h1 class="text-xl">Approved Appointment List</h1>
+        </div>
+        <div class="px-3 py-1 flex justify-around">
+          <table
+            class="text-md bg-white shadow-md rounded mb-4"
+            style={{ fontSize: "15px" }}
+          >
+            <tbody>
+              <tr class="border-b">
+                <th class="text-left py-3 px-1 border-2 ">S.N.</th>
+                <th class="text-left py-3 px-1 border-2 ">Name</th>
+                <th class="text-left py-3 px-1 border-2 ">Contact.No</th>
+                <th class="text-left py-3 px-1 border-2 ">Service</th>
+                <th class="text-left py-3 px-1 border-2 ">Details</th>
+                <th class="text-left py-3 px-1 border-2 ">Doctor Assigned</th>
+                <th class="text-left py-3 px-1 border-2 ">Date</th>
+                <th class="text-left py-3 px-1 border-2 ">Time</th>
+                <th class="text-left py-3 px-1 border-2 ">Token No</th>
+              </tr>
+              {/* rows of data are below now */}
+              {approvedList &&
+                approvedList.map(
+                  (res, key) =>
+                    res?.status.pending === false &&
+                    res?.status.done === true && (
+                      <tr
+                        class="border-b hover:bg-orange-100 bg-gray-100"
+                        style={{ fontSize: "13px" }}
+                      >
+                        <td class="p-2 px-2 border-2">
+                          <span>{key}</span>
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          <span>{res.name}</span>
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          <span>{res?.contact}</span>
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          <span>{res?.services}</span>
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          <AppointmentDetailsButton res={res} />
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          <span>{res?.assignedDoctor}</span>
+                        </td>
+                        <td class="p-2 px-2 border-2">
+                          {res?.date.toString().substr(0, 10)}
+                        </td>
+                        <td class="p-2 px-2 border-2">{res?.docArrival}</td>
+                        <td class="p-2 border-2">{res?.token}</td>
+                        <td class="p-3 px-5 flex justify-end">
+                          <label htmlFor="file" className="shareOption">
+                            <i class="fas fa-upload mr-3 text-3xl"></i>
+                            <input
+                              style={{ display: "none" }}
+                              type="file"
+                              id="file"
+                              accept=".png,.jpeg,.jpg,.pdf"
+                              onChange={(e) => setFile(e.target.files[0])}
+                            />
+                          </label>
+
+                          <button
+                            onClick={() => {
+                              uploadReports(res);
+                            }}
+                            type="button"
+                            class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                          >
+                            Upload Reports
                           </button>
                         </td>
                       </tr>

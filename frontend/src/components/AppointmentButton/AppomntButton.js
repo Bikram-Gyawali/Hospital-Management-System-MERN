@@ -5,12 +5,15 @@ import { Button } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { axiosRequest } from "utils/axiosRequest";
+import { useParams } from "react-router-dom";
 
 function AppomntButton() {
   const hospitalLogin = useSelector((state) => {
     return state.hospitalLogin;
   });
   const { hospitalInfo } = hospitalLogin;
+  const id = useParams().hospitalId;
+  console.log(id);
   const name = useRef();
   const services = useRef();
   const location = useRef();
@@ -37,12 +40,12 @@ function AppomntButton() {
       date: new Date(date.current.value),
       time: time.current.value,
       contact: Number(contact.current.value),
-      age: age.current.value
+      age: age.current.value,
     };
     try {
       await axios.post(
-       `http://localhost:5000/api/userAppointment/${hospitalInfo?._id} ? ${hospitalInfo?._id} : "60e0638708e8331f5cb3f9bd"/appointment/setappointment/`,
-      newAppointment
+        `http://localhost:5000/api/userAppointment/${id}/appointment/setappointment/`,
+        newAppointment
       );
     } catch (error) {
       console.log("error applying appointments", error.response);
