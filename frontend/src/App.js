@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/user_login" component={RegisterScreen} />
         <Route exact path="/hospital_login" component={HospitalLogin} />
         <Route exact path="/hospital_register" component={HospitalRegister} />
-        <Route exact path="/hospitalprofile" component={HospitalProfile} />
+        <Route exact path="/:id/hospitalprofile" component={HospitalProfile} />
         <Route exact path="/covid19" component={CovidScreen} />
         <Route
           exact

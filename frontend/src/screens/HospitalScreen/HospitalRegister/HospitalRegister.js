@@ -20,7 +20,7 @@ const HospitalRegisterScreen = ({ history }) => {
 
     useEffect(() => {
         if (hospitalInfo) {
-            history.push('/')
+            history.push('/hospital_login')
         }
     }, [hospitalInfo, history])
 
