@@ -16,6 +16,8 @@ const {notFound, errorHandler}= require('./middleware/errorHandlers')
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const reports= require('./routes/reports')
+
 dotenv.config();
 
 //middlewares
@@ -48,6 +50,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
+app.use("/api/reports", reports);
 //database
 connectDb();
 

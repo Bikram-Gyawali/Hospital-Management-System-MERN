@@ -122,15 +122,16 @@ const userAppointments= asyncHandler(async(req, res)=>{
   }
 })
 
-const userIndividualAppointment= asyncHandler(async(req, res)=>{
-  try {
-      const appointments= await Appointments.find({patient: req.params.id})
-      res.status(200).json(appointments)
-  } catch (error) {
-      res.status(400)
-      throw new Error(error)
-  }
-})
+//route already exist
+// const userIndividualAppointment= asyncHandler(async(req, res)=>{
+//   try {
+//       const appointments= await Appointments.find({patient: req.params.id})
+//       res.status(200).json(appointments)
+//   } catch (error) {
+//       res.status(400)
+//       throw new Error(error)
+//   }
+// })
 
 module.exports = {
   appointmentDetails,
@@ -139,5 +140,5 @@ module.exports = {
   approveAppointment,
   rejectAppointment,
   getApprovedAppointment,
-  userIndividualAppointment
+  // userIndividualAppointment
 };

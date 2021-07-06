@@ -58,6 +58,18 @@ const loginHospital = asyncHandler(async (req, res) => {
   }
 });
 
+const allHospitals= asyncHandler(async(req, res)=>{
+  console.log('hi')
+  try {
+
+    const allHospital= await Hospitals.find()
+    res.status(200).json(allHospital)
+  } catch (error) {
+    res.status(400);
+    throw new Error("Invalid Credientals");
+  }
+})
+
 const individualHospital = asyncHandler(async (req, res) => {
   try {
     const hospital = await Hospitals.findById(req.param.id).select("-password");
@@ -286,5 +298,6 @@ module.exports = {
   bedTypes,
   addVaccancy,
   allDoctors,
-  hospitalDetails
+  hospitalDetails,
+  allHospitals
 };
