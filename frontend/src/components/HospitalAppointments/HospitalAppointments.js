@@ -87,11 +87,19 @@ function HospitalAppointments() {
   };
 
   const uploadReport = async () => {
+    const reports = {};
     if (file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
       data.append("file", file);
+      reports.img = fileName;
+      // console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
