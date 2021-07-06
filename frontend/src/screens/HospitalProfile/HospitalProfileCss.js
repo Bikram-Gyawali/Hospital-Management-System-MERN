@@ -89,7 +89,7 @@ export const styles = createUseStyles({
     },
     cardImage: {
         width: '100%',
-        height: '80%',
+        height: '70%',
         objectFit: 'cover'
     },
     cardTypography: {
