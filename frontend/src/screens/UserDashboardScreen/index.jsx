@@ -6,12 +6,7 @@ import useGetUserData from "hooks/useGetUserSidebarData";
 import AppointmentButton from "components/AppointmentButton/AppomntButton";
 import axios from "axios";
 import UserAppointments from "components/UserAppointments/UserAppointments";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-=======
-
-import { Link } from 'react-router-dom'
->>>>>>> 92ca0d6284885f8949fb53ca78d38a0300bd0872
 
 const FlexContainer = styled.div`
   display: flex;
@@ -149,7 +144,6 @@ function Userdashboard() {
                     </div>
                   </div>
                 </section>
-
               </div>
             </div>
           </section>

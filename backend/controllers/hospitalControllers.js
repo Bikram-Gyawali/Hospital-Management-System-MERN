@@ -58,17 +58,16 @@ const loginHospital = asyncHandler(async (req, res) => {
   }
 });
 
-const allHospitals= asyncHandler(async(req, res)=>{
-  console.log('hi')
+const allHospitals = asyncHandler(async (req, res) => {
+  console.log("hi");
   try {
-
-    const allHospital= await Hospitals.find()
-    res.status(200).json(allHospital)
+    const allHospital = await Hospitals.find();
+    res.status(200).json(allHospital);
   } catch (error) {
     res.status(400);
     throw new Error("Invalid Credientals");
   }
-})
+});
 
 const individualHospital = asyncHandler(async (req, res) => {
   try {
@@ -182,10 +181,10 @@ const doctor = asyncHandler(async (req, res) => {
 });
 
 const allDoctors = asyncHandler(async (req, res) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   try {
     const hospital = await Hospitals.findById(req.params.id);
-    console.log(hospital)
+    console.log(hospital);
     let a = [];
     for (let i = 0; i < hospital.doctors.length; i++) {
       const b = await Doctors.findById(hospital.doctors[i]);
@@ -276,15 +275,34 @@ const bedTypes = asyncHandler(async (req, res) => {
   }
 });
 
-const hospitalDetails= asyncHandler(async(req, res)=>{
-  try{
-    const hospital = await Hospitals.findById(req.params.id).select('-doctors')
-    res.status(200).json(hospital)
-    }catch(e){
-    res.status(400)
+const hospitalDetails = asyncHandler(async (req, res) => {
+  try {
+    const hospital = await Hospitals.findById(req.params.id).select("-doctors");
+    res.status(200).json(hospital);
+  } catch (e) {
+    res.status(400);
     throw new Error(error);
   }
-})
+});
+
+const hospitalReview = asyncHandler(async (req, res) => {
+  const { comment, userId, ratings } = req.body;
+  try {
+    const reviews = await Hospitals.findByIdAndUpdate(req.params.id, {
+      $push: {
+        reviews: {
+          comment,
+          userId,
+          ratings,
+        },
+      },
+    });
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
 
 module.exports = {
   registerHospital,
@@ -300,5 +318,6 @@ module.exports = {
   addVaccancy,
   allDoctors,
   hospitalDetails,
-  allHospitals
+  allHospitals,
+  hospitalReview,
 };

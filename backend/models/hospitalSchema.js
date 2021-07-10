@@ -97,6 +97,10 @@ const hospitalSchema = new mongoose.Schema(
       {
         comment: String,
         userId: String,
+        date: {
+          type: Date,
+          default: Date.now,
+        },
         ratings: {
           type: Number,
           max: 5,
