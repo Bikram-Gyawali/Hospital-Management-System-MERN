@@ -4,7 +4,6 @@ const Doctors = require("../models/doctorSchema");
 
 const doctorReview = asyncHandler(async (req, res) => {
   const { comment, userId, ratings } = req.body;
-  console.log(req.params);
   try {
     const reviews = await Doctors.findOneAndUpdate(
       { _id: req.params.id },

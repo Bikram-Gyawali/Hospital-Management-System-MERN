@@ -17,7 +17,7 @@ const doctorSchema = mongoose.Schema(
     email: {
       type: String,
     },
-    hosPassword: {
+    docPassword: {
       type: String,
     },
     pic: {

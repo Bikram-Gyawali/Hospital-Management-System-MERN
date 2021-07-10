@@ -32,10 +32,6 @@ const userSchema = mongoose.Schema(
       type: Boolean,
     },
 
-    billStatus: {
-      type: Boolean,
-      default: false,
-    },
     medicines: [
       {
         desc: String,

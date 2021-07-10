@@ -1,4 +1,3 @@
-const route = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const Hospitals = require("../models/hospitalSchema");
 const Doctors = require("../models/doctorSchema");
@@ -143,9 +142,10 @@ const addDoctors = asyncHandler(async (req, res) => {
       date,
       doctorId,
       pic,
+      docPassword,
     } = await req.body;
 
-    if (!name || !doctorId || !contacts) {
+    if (!name || !doctorId || !contacts || !docPassword) {
       res.status(400);
       throw new Error("ALL FIELDS REQUIRED");
     }
@@ -158,6 +158,7 @@ const addDoctors = asyncHandler(async (req, res) => {
       workingOn: req.params.id,
       date,
       pic,
+      docPassword,
     });
     await newDoctors.save();
     hospitals.doctors.push(newDoctors._id);
@@ -187,7 +188,9 @@ const allDoctors = asyncHandler(async (req, res) => {
     console.log(hospital);
     let a = [];
     for (let i = 0; i < hospital.doctors.length; i++) {
-      const b = await Doctors.findById(hospital.doctors[i]);
+      const b = await Doctors.findById(hospital.doctors[i]).select(
+        "-docPassword"
+      );
       a.push(b);
     }
     res.status(200).json(a);
@@ -198,7 +201,6 @@ const allDoctors = asyncHandler(async (req, res) => {
 });
 
 // allDoctors();
-
 const addContacts = asyncHandler(async (req, res) => {
   try {
     const { name, number } = req.body;
@@ -288,15 +290,21 @@ const hospitalDetails = asyncHandler(async (req, res) => {
 const hospitalReview = asyncHandler(async (req, res) => {
   const { comment, userId, ratings } = req.body;
   try {
-    const reviews = await Hospitals.findByIdAndUpdate(req.params.id, {
-      $push: {
-        reviews: {
-          comment,
-          userId,
-          ratings,
+    const reviews = await Hospitals.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: {
+          reviews: {
+            comment,
+            userId,
+            ratings,
+          },
         },
       },
-    });
+      {
+        new: true,
+      }
+    );
     res.status(200).json(reviews);
   } catch (error) {
     res.status(400);

@@ -86,6 +86,25 @@ const approveAppointment = asyncHandler(async (req, res) => {
   }
 });
 
+const followUpAppointment = asyncHandler(async (req, res) => {
+  try {
+    const doctor = req.body.doctorId;
+    if (doctor) {
+      const newDate = await Appointments.findByIdAndUpdate(req.params.id, {
+        followUp: req.body.followUp,
+        token: req.body.token,
+        docArrival: req.body.doctime,
+        assignedDoctor: req.body.assignedDoc,
+        status: { pending: false, done: true, rejected: false },
+      });
+      res.status(200).json(newDate);
+    }
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
+
 const getApprovedAppointment = asyncHandler(async (req, res) => {
   try {
     const approvedAppointment = await Appointments.find({
@@ -110,18 +129,6 @@ const rejectAppointment = asyncHandler(async (req, res) => {
   }
 });
 
-// const userAppointments= asyncHandler(async(req, res)=>{
-//   try {
-//       const user= await User.findById(req.params.id)
-//       const appointmentId= await user.appointmentsmade
-//       const userAppointments= await Appoint
-//   } catch (error) {
-//       res.status(400)
-//       throw new Error(error)
-//   }
-// })
-
-// route already exist
 const userIndividualAppointment = asyncHandler(async (req, res) => {
   try {
     const appointments = await Appointments.find({ patient: req.params.id });
@@ -140,4 +147,5 @@ module.exports = {
   rejectAppointment,
   getApprovedAppointment,
   userIndividualAppointment,
+  followUpAppointment,
 };
