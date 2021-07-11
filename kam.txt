@@ -1,8 +1,10 @@
 ------Appointment---------
     ->reports upload and download
-    ->medicine prescription by doctor
+    
     ->event and medicine notifications
+    
     ->funding system ---heram k hunxa
 
+    ->medicine prescription by doctor---done----->completed
     ->follow up----done --->completed
     ->ratings to doctors and hospitals ---done---->completed

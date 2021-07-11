@@ -8,6 +8,7 @@ const {
   getApprovedAppointment,
   userIndividualAppointment,
   followUpAppointment,
+  medicineDetails,
 } = require("../controllers/appointmentControllers");
 
 // routes
@@ -21,6 +22,6 @@ route.put("/:id/approved", approveAppointment);
 route.put("/:id/rejected", rejectAppointment);
 route.get("/:id/approvedList", getApprovedAppointment);
 route.get("/:id/myAppointments", userIndividualAppointment);
-route.post("/id/followUp", followUpAppointment);
-
+route.post("/:id/followUp", followUpAppointment);
+route.post("/:id/medicineDetails", medicineDetails);
 module.exports = route;

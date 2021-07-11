@@ -170,17 +170,6 @@ const addDoctors = asyncHandler(async (req, res) => {
   }
 });
 
-const doctor = asyncHandler(async (req, res) => {
-  try {
-    const doctors = await Doctors.findById("60e06b4489d7b5146858634d");
-    console.log(doctors);
-    res.status(200).json(doctors);
-  } catch (error) {
-    res.status(400);
-    throw new Error(error);
-  }
-});
-
 const allDoctors = asyncHandler(async (req, res) => {
   console.log(req.params.id);
   try {
@@ -298,6 +287,8 @@ const hospitalReview = asyncHandler(async (req, res) => {
             comment,
             userId,
             ratings,
+            username,
+            profilePic,
           },
         },
       },

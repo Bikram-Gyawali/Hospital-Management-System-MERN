@@ -87,7 +87,10 @@ const appointmentSchema = mongoose.Schema(
       {
         desc: String,
         disease: String,
-        date1: [Date],
+        timeInterval: Number,
+        time: {
+          type: Date,
+        },
       },
     ],
   },

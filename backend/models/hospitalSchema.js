@@ -97,6 +97,8 @@ const hospitalSchema = new mongoose.Schema(
       {
         comment: String,
         userId: String,
+        username: String,
+        profilePic: String,
         date: {
           type: Date,
           default: Date.now,

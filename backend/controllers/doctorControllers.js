@@ -3,7 +3,7 @@ const Hospitals = require("../models/hospitalSchema");
 const Doctors = require("../models/doctorSchema");
 
 const doctorReview = asyncHandler(async (req, res) => {
-  const { comment, userId, ratings } = req.body;
+  const { comment, userId, ratings, username, profilePic } = req.body;
   try {
     const reviews = await Doctors.findOneAndUpdate(
       { _id: req.params.id },
@@ -13,6 +13,8 @@ const doctorReview = asyncHandler(async (req, res) => {
             comment,
             userId,
             ratings,
+            username,
+            profilePic,
           },
         },
       },
