@@ -6,10 +6,15 @@ import {
 } from '../constants/hospitalConstants'
 
 
+const initialState = {
+    hospitalInfo: {},
+    loading: false,
+    error: ''
+}
 
 
 
-export const hospitalLoginReducer = (state = {}, action) => {
+export const hospitalLoginReducer = (state = { ...initialState }, action) => {
     switch (action.type) {
         case HOSPITAL_LOGIN_REQUEST:
             return { loading: true }
@@ -18,14 +23,15 @@ export const hospitalLoginReducer = (state = {}, action) => {
         case HOSPITAL_LOGIN_FAIL:
             return { loading: false, error: action.payload }
         case HOSPITAL_LOGOUT:
-            return {}
+            return {...initialState}
         default:
             return state
     }
 }
 
 
-export const hospitalRegisterReducer = (state = {}, action) => {
+
+export const hospitalRegisterReducer = (state = { ...initialState }, action) => {
     switch (action.type) {
         case HOSPITAL_REGISTER_REQUEST:
             return { loading: true }
@@ -38,26 +44,16 @@ export const hospitalRegisterReducer = (state = {}, action) => {
     }
 }
 
-const hospitalFromStorage = localStorage.getItem("hospitalInfo")
-    ? JSON.parse(localStorage.getItem("hospitalInfo"))
-    : null;
-
-let initialHospitalState = hospitalFromStorage ?
-    { hospitalInfo: { ...hospitalFromStorage }, error: "", loading: false } :
-    { hospitalInfo: {}, loading: false, error: "" }
-
-console.log({ initialHospitalState })
-
-
+let initialHospitalState = { hospitalInfo: {}, loading: false, error: "" }
 
 export const hospitalManipulationReducer = (state = { ...initialHospitalState }, action) => {
     switch (action.type) {
         case HOSPITAL_LOGIN_SUCCESS:
             return { ...state, hospitalInfo: action.payload }
         case HOSPITAL_PROFILE_EDIT:
-            return { ...state, hospitalInfo: { ...state.hospitalInfo, hospitalDescription: action.payload.hospitalDescription}}
+            return { ...state, hospitalInfo: { ...state.hospitalInfo, hospitalDescription: action.payload.hospitalDescription } }
         case HOSPITAL_EVENTS_ADD:
-            return {...state, events: {...state.hospitalInfo, events: [...state.hospitalInfo.events, action.payload.event]}}
+            return { ...state, events: { ...state.hospitalInfo, events: [...state.hospitalInfo.events, action.payload.event] } }
         default:
             return { ...state }
     }

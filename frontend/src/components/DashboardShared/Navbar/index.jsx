@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from 'assets/images/Logo.svg';
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import { colors } from "colors";
 
@@ -77,7 +77,7 @@ const StyledLink = styled(Link)`
 `
 
 
-function Navbar({ type, id }) {
+function Navbar({ type }) {
   const hospitalLogin = useSelector((state) => {
     return state.hospitalLogin;
   });
@@ -85,14 +85,26 @@ function Navbar({ type, id }) {
     return state.userLogin;
   })
 
-  let responseObject = id === userLogin._id ? {...userLogin.userInfo} : {...hospitalLogin.hospitalInfo}
-  console.log({responseObject})
+  const params = useParams();
+  console.log({params})
+  
+  const returnValidObject = (id) => {
+    if (id === userLogin.userInfo._id) {
+      return { ...userLogin.userInfo }
+    }
+    if (id === hospitalLogin.hospitalInfo._id) {
+      return { ...hospitalLogin.hospitalInfo }
+    }
+  }
+  
+  let responseObject = returnValidObject(params.id);
+  
   return (
     <Nav>
       <NavInner>
         <FlexContainer>
           <FlexLeft>
-            <StyledLink to={type === "hospital" ? `/${id}/hospitalDashboard` : `/${id}/userDashboard`}>
+            <StyledLink to={type === "hospital" ? `/${responseObject._id}/hospitalDashboard/` : `/${responseObject._id}/userDashboard/`}>
               <img src={Logo} alt={"Logo "} />
             </StyledLink>
           </FlexLeft>

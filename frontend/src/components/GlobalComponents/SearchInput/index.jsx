@@ -1,7 +1,7 @@
 import { colors } from "colors"
 import styled from "styled-components"
 import SearchIcon from 'assets/images/search-icon.svg'
-import { Button } from "@material-ui/core"
+import Button from "components/GlobalComponents/Button"
 
 const InputContainer = styled.div`
   border-radius: 20px;
@@ -46,23 +46,23 @@ const CloseButtonContainer = styled.div`
 
 
 const Index = () => {
-    return (
-        <InputContainer>
-            <Left>
-                <SearchIconContainer>
-                    <img src={SearchIcon} alt={"Search Icon"} />
-                </SearchIconContainer>
-                <Line />
-            </Left>
-            <Right>
-                <Input type="text" placeholder="Search hospitals" />
-            </Right>
-            <CloseButtonContainer>
-                <Line />
-                <Button>CLOSE</Button>
-            </CloseButtonContainer>
-        </InputContainer>   
-    )
+  return (
+    <InputContainer>
+      <Left>
+        <SearchIconContainer>
+          <img src={SearchIcon} alt={"Search Icon"} />
+        </SearchIconContainer>
+        <Line />
+      </Left>
+      <Right>
+        <Input type="text" placeholder="Search hospitals" />
+      </Right>
+      <CloseButtonContainer>
+        <Line />
+        <button>CLOSE</button>
+      </CloseButtonContainer>
+    </InputContainer>
+  )
 }
 
 export default Index

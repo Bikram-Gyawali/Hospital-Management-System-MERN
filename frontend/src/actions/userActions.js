@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
   USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL,
-  USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL,
+  USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT,
 } from '../constants/userConstants'
 
 export const userLoginAction = (email, password) => async (dispatch, getState) => {
@@ -14,15 +14,20 @@ export const userLoginAction = (email, password) => async (dispatch, getState) =
       type: USER_LOGIN_SUCCESS,
       payload: data
     })
-    //save loginuser to localstorage
-    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload: error.response && error.response.data.message ? error.response.data.message
         : error.message
     })
+    throw new Error(error);
   }
+}
+
+export const userLogOutAction = () => async (dispatch) => {
+  dispatch({
+    type: USER_LOGOUT
+  })
 }
 
 export const userRegisterAction = (name, email, dob, contacts, password) => async (dispatch) => {
@@ -38,7 +43,7 @@ export const userRegisterAction = (name, email, dob, contacts, password) => asyn
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    // localStorage.setItem("userInfo", JSON.stringify(data));
 
   } catch (err) {
     dispatch({
@@ -48,5 +53,6 @@ export const userRegisterAction = (name, email, dob, contacts, password) => asyn
           ? err.response.data.message
           : err.message,
     });
+    throw new Error(err);
   }
 }

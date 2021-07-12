@@ -17,26 +17,26 @@ const reducer = combineReducers({
   hospitalManipulation: hospitalManipulationReducer
 });
 
-const userFromStrogae = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
-const hospitalFromStrogae = localStorage.getItem("hospitalInfo")
-  ? JSON.parse(localStorage.getItem("hospitalInfo"))
-  : null;
+// const userFromStrogae = localStorage.getItem("userInfo")
+//   ? JSON.parse(localStorage.getItem("userInfo"))
+//   : null;
+// const hospitalFromStrogae = localStorage.getItem("hospitalInfo")
+//   ? JSON.parse(localStorage.getItem("hospitalInfo"))
+//   : null;
 
-const initialState = {
-  userLogin: {
-    userInfo: userFromStrogae,
-  },
-  hospitalLogin: {
-    hospitalInfo: hospitalFromStrogae,
-  },
-};
+// const initialState = {
+//   userLogin: {
+//     userInfo: userFromStrogae,
+//   },
+//   hospitalLogin: {
+//     hospitalInfo: hospitalFromStrogae,
+//   },
+// };
 const middleware = [thunk];
 
 const store = createStore(
   reducer,
-  initialState,
+  {},
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

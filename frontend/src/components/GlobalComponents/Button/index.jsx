@@ -7,9 +7,10 @@ const Button = styled.button`
     outline: none;
     border: none;
     padding: 12px 20px;
-    color: ${colors.white};
+    color: ${props => props.outlined === true ? colors.primary : colors.white};
+    border: 2px solid${props => props.outlined === true ? colors.primary : "transparent"};
     cursor: pointer;
-    background: ${colors.primary};
+    background: ${props => props.outlined === true ? "transparent" : colors.primary};
     &:disabled {
         background: #858585;
     }
