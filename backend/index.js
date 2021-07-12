@@ -18,6 +18,7 @@ const userRoutes = require("./routes/userRoutes");
 const userReports = require("./routes/reports");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const reports = require("./routes/reports");
+const medicRoutes= require("./routes/medicRoutes")
 
 dotenv.config();
 
@@ -53,6 +54,7 @@ app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
 app.use("/api/reports", userReports);
+app.use("/api/medic", medicRoutes)
 //database
 connectDb();
 
