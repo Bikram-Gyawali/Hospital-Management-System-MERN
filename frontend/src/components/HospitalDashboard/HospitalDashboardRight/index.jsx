@@ -43,7 +43,6 @@ function HospitalDetails() {
       <Container>
         <ServicesInformation />
       </Container>
-
     </Wrapper>
   );
 }

@@ -2,8 +2,11 @@ import React from "react";
 import { NavLink } from 'react-router-dom'
 import styled from "styled-components";
 import { colors } from "colors";
-
-
+import LogoutIcon from 'assets/images/logout.svg'
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { hospitalLogOutAction } from "actions/hospitalActions";
+import { userLogOutAction } from "actions/userActions";
 
 
 const StyledNavLink = styled(NavLink)`
@@ -34,7 +37,25 @@ const SidebarContainer = styled.div`
 `
 
 function Sidebar({ sidebarData }) {
-  console.log({ sidebarData })
+  const params = useParams();
+  const dispatch = useDispatch();
+  const hospitalLogin = useSelector(state => state.hospitalLogin);
+  const userLogin = useSelector(state => state.userLogin);
+
+  const handleLogOut = async () => {
+    if (params.id === hospitalLogin.hospitalInfo?._id) {
+      dispatch(hospitalLogOutAction())
+      return;
+    }
+
+    if (params.id === userLogin.userInfo?._id) {
+      dispatch(userLogOutAction())
+      return;
+    }
+
+  }
+
+  console.log({ sidebarData, params })
   return (
     <SidebarContainer>
       {
@@ -48,9 +69,14 @@ function Sidebar({ sidebarData }) {
         ))
           : null
       }
+      <StyledNavLink  to="/login_options" onClick = {handleLogOut}>
+        <ImageContainer>
+          <img src={LogoutIcon} alt={"Logout"} />
+        </ImageContainer>
+        <SPAN>Logout</SPAN>
+      </StyledNavLink>
 
-
-    </ SidebarContainer >
+    </SidebarContainer >
   );
 }
 
