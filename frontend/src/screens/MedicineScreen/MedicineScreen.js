@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Logo from 'assets/images/Logo.svg'
 import Button from 'components/GlobalComponents/Button/index'
 import { colors } from 'colors'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 const MedicineScreen = () => {
@@ -58,11 +59,11 @@ const MedicineScreen = () => {
         <>
             <Container>
                 <Nav>
-                    <img src={Logo} alt="logo" />
-                    <Button>Cart</Button>
+                    <Link to="/"><img src={Logo} alt="logo" /></Link>
+                    <Link to="/cart"><Button>Cart</Button></Link>
                 </Nav>
                 <Body>
-                    {medicines.map(medicine => {
+                    {medicines && medicines.map(medicine => {
                         return (
                                 <Card key={medicine._id}>
                                     <img style={{ width: '95%', borderRadius: '12px', margin: 'auto', objectFit: 'cover' }} src={medicine.image} alt="image" />
