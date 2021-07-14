@@ -6,7 +6,7 @@ import { colors } from 'colors'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-const MedicineScreen = () => {
+const MedicineScreen = ({history}) => {
     const [medicines, setmedicines] = useState([])
 
     const Container = styled.div`
@@ -55,6 +55,9 @@ const MedicineScreen = () => {
         }
         fetchData()
     }, [])
+    const addToCart=(id)=>{
+        history.push(`/cart/${id}?`)
+    }
     return (
         <>
             <Container>
@@ -66,10 +69,10 @@ const MedicineScreen = () => {
                     {medicines && medicines.map(medicine => {
                         return (
                                 <Card key={medicine._id}>
-                                    <img style={{ width: '95%', borderRadius: '12px', margin: 'auto', objectFit: 'cover' }} src={medicine.image} alt="image" />
+                                    <img style={{ width: '95%', borderRadius: '12px', margin: 'auto', objectFit: 'cover' }} src={medicine.image} alt="img" />
                                     <Text size="1rem">{medicine.name}</Text>
+                                    <Button onClick={()=> addToCart(medicine._id)}>Add to Cart</Button>
                                     <Text size="1.5rem">Rs: {medicine.cost}</Text>
-                                    <Button>Add to Cart</Button>
                                 </Card>
                         )
                     })}
