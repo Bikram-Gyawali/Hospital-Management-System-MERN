@@ -14,6 +14,7 @@ import HospitalRegister from "screens/HospitalScreen/HospitalRegister";
 import LoginOptions from 'screens/LoginOptions'
 import ProtectedRoute from 'components/GlobalComponents/ProtectedRoutes'
 import MedicineScreen from 'screens/MedicineScreen/MedicineScreen'
+import CartScreen from 'screens/MedicineScreen/CartScreen'
 import "App.css";
 import { useSelector } from "react-redux";
 
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/login_options" component={LoginOptions} />
         <Route exact path="/covid19" component={CovidScreen} />
         <Route exact path="/doctorsahab/medicines" component={MedicineScreen} />
+        <Route exact path="/cart/:id?" component={CartScreen} />
         <ProtectedRoute exact path="/:id/userDashboard/" component={UserDashboard} isAuth={ userId ? true : false }/>
         <ProtectedRoute exact path="/:id/userDashboard/appointments/" component={UserDashboard} isAuth={ userId ? true : false }/>
         <ProtectedRoute exact path="/:id/userDashboard/hospitals/" component={UserDashboard} isAuth={ userId ? true : false }/>
