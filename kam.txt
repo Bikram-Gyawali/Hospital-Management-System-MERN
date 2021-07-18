@@ -1,0 +1,22 @@
+------Appointment---------
+    ->reports upload and download
+    
+    ->event and medicine notifications
+    
+    ->funding system ---heram k hunxa
+
+    ->medicine prescription by doctor---done----->completed
+    ->follow up----done --->completed
+    ->ratings to doctors and hospitals ---done---->completed
+
+
+  
+Public Key:
+BNMkYgI5rG1OR8cZNo9yZEXfdlcIlY7egBEwpUyoDXWhT0hraIwQbuzCHlo7rqwaAHgJtXvaVs8tjhw8_8wpQ_w
+
+Private Key:
+_GiZvcjF-FSmPULiqCxaPZcdalmVnClT69aX2lX0Vko
+
+
+
+## terminate  fuser -n tcp -k 5000

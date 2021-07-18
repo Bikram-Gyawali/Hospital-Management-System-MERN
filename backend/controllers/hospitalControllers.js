@@ -1,7 +1,11 @@
-const route = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const Hospitals = require("../models/hospitalSchema");
 const Doctors = require("../models/doctorSchema");
+const {
+  sendNotification,
+  playersId,
+  externalUserId,
+} = require("./notificationControllers.js");
 
 const registerHospital = asyncHandler(async (req, res) => {
   try {
@@ -58,22 +62,23 @@ const loginHospital = asyncHandler(async (req, res) => {
   }
 });
 
-const allHospitals= asyncHandler(async(req, res)=>{
-  console.log('hi')
+const allHospitals = asyncHandler(async (req, res) => {
+  console.log("hi");
   try {
-
-    const allHospital= await Hospitals.find()
-    res.status(200).json(allHospital)
+    const allHospital = await Hospitals.find();
+    res.status(200).json(allHospital);
   } catch (error) {
     res.status(400);
     throw new Error("Invalid Credientals");
   }
-})
+});
 
 const individualHospital = asyncHandler(async (req, res) => {
   try {
-    const hospital = await Hospitals.findById(req.params.id);
-    console.log(req.params.id)
+    const hospital = await Hospitals.findById(req.params.id).select(
+      "-password"
+    );
+
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);
@@ -114,14 +119,14 @@ const addService = asyncHandler(async (req, res) => {
 
 const addEvents = asyncHandler(async (req, res) => {
   try {
-    const { eventName, date, desc, eventImg } = req.body;
+    // const { eventName, date, desc, eventImg } = req.body;
     const hospital = await Hospitals.findByIdAndUpdate(req.params.id, {
       $push: {
         events: {
-          eventName,
-          date,
-          desc,
-          eventImg,
+          eventName: req.body.eventName,
+          date: req.body.date,
+          desc: req.body.desc,
+          eventImg: req.body.eventImg,
         },
       },
     });
@@ -131,6 +136,20 @@ const addEvents = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error(error);
   }
+  let message = {
+    app_id: "561aeb8f-a644-4d7c-9c8b-0a2de9878340",
+    contents: {
+      en: `${req.body.desc} is being organized on date ${req.body.date} on ${hospital.name}`,
+    },
+    headings: {
+      en: `${req.body.eventName}`,
+    },
+    // include_external_user_ids: externalUserId,
+    // include_player_ids: playersId, //to all subscribed devices
+    included_segments: ["Subscribed Users"], //to all subscribers
+  };
+  console.log(req.body);
+  await sendNotification(message);
 });
 
 const addDoctors = asyncHandler(async (req, res) => {
@@ -145,9 +164,10 @@ const addDoctors = asyncHandler(async (req, res) => {
       date,
       doctorId,
       pic,
+      docPassword,
     } = await req.body;
 
-    if (!name || !doctorId || !contacts) {
+    if (!name || !doctorId || !contacts || !docPassword) {
       res.status(400);
       throw new Error("ALL FIELDS REQUIRED");
     }
@@ -160,6 +180,7 @@ const addDoctors = asyncHandler(async (req, res) => {
       workingOn: req.params.id,
       date,
       pic,
+      docPassword,
     });
     await newDoctors.save();
     hospitals.doctors.push(newDoctors._id);
@@ -171,25 +192,16 @@ const addDoctors = asyncHandler(async (req, res) => {
   }
 });
 
-const doctor = asyncHandler(async (req, res) => {
-  try {
-    const doctors = await Doctors.findById("60e06b4489d7b5146858634d");
-    console.log(doctors);
-    res.status(200).json(doctors);
-  } catch (error) {
-    res.status(400);
-    throw new Error(error);
-  }
-});
-
 const allDoctors = asyncHandler(async (req, res) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   try {
     const hospital = await Hospitals.findById(req.params.id);
-    console.log(hospital)
+    console.log(hospital);
     let a = [];
     for (let i = 0; i < hospital.doctors.length; i++) {
-      const b = await Doctors.findById(hospital.doctors[i]);
+      const b = await Doctors.findById(hospital.doctors[i]).select(
+        "-docPassword"
+      );
       a.push(b);
     }
     res.status(200).json(a);
@@ -200,7 +212,6 @@ const allDoctors = asyncHandler(async (req, res) => {
 });
 
 // allDoctors();
-
 const addContacts = asyncHandler(async (req, res) => {
   try {
     const { name, number } = req.body;
@@ -277,15 +288,42 @@ const bedTypes = asyncHandler(async (req, res) => {
   }
 });
 
-const hospitalDetails= asyncHandler(async(req, res)=>{
-  try{
-    const hospital = await Hospitals.findById(req.params.id).select('-doctors')
-    res.status(200).json(hospital)
-    }catch(e){
-    res.status(400)
+const hospitalDetails = asyncHandler(async (req, res) => {
+  try {
+    const hospital = await Hospitals.findById(req.params.id).select("-doctors");
+    res.status(200).json(hospital);
+  } catch (e) {
+    res.status(400);
     throw new Error(error);
   }
-})
+});
+
+const hospitalReview = asyncHandler(async (req, res) => {
+  const { comment, userId, ratings } = req.body;
+  try {
+    const reviews = await Hospitals.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: {
+          reviews: {
+            comment,
+            userId,
+            ratings,
+            username,
+            profilePic,
+          },
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
+});
 
 module.exports = {
   registerHospital,
@@ -301,5 +339,6 @@ module.exports = {
   addVaccancy,
   allDoctors,
   hospitalDetails,
-  allHospitals
+  allHospitals,
+  hospitalReview,
 };

@@ -27,12 +27,11 @@ const userSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Appointments",
     },
-    reports: {
-      type: String,
-    },
+
     isDisabled: {
       type: Boolean,
     },
+
     medicines: [
       {
         desc: String,
@@ -40,6 +39,19 @@ const userSchema = mongoose.Schema(
         date1: [Date],
       },
     ],
+    report: [
+      {
+        type: String,
+        img: String,
+        desc: String,
+        title: String,
+        date: Date.now,
+      },
+    ],
+    reports: {
+      type: String,
+    },
+
     // funds: {
     //   status: Boolean,
     //   default: false

@@ -7,7 +7,8 @@ const path = require("path");
 const multer = require("multer");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
+const webpush = require("web-push");
+const bodyParser = require("body-parser");
 const app = express();
 
 const { notFound, errorHandler } = require("./middleware/errorHandlers");
@@ -17,12 +18,14 @@ const hospitalRoutes = require("./routes/hospitalRoutes");
 const userRoutes = require("./routes/userRoutes");
 const userReports = require("./routes/reports");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const doctorRoutes = require("./routes/doctorRoutes");
 const reports = require("./routes/reports");
-const medicRoutes= require("./routes/medicRoutes")
+const medicRoutes = require("./routes/medicRoutes");
 
 dotenv.config();
 
 //middlewares
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
@@ -50,11 +53,16 @@ app.use(express.urlencoded({ extended: false }));
 //   }
 // });
 
+const publicVapidKey =
+  "BNMkYgI5rG1OR8cZNo9yZEXfdlcIlY7egBEwpUyoDXWhT0hraIwQbuzCHlo7rqwaAHgJtXvaVs8tjhw8_8wpQ_w";
+const privateVapidKey = "_GiZvcjF-FSmPULiqCxaPZcdalmVnClT69aX2lX0Vko";
+
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
 app.use("/api/reports", userReports);
-app.use("/api/medic", medicRoutes)
+app.use("/api/doctorDetails", doctorRoutes);
+app.use("/api/medic", medicRoutes);
 //database
 connectDb();
 

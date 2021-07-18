@@ -17,6 +17,9 @@ const doctorSchema = mongoose.Schema(
     email: {
       type: String,
     },
+    docPassword: {
+      type: String,
+    },
     pic: {
       type: String,
     },
@@ -31,6 +34,12 @@ const doctorSchema = mongoose.Schema(
       {
         comment: String,
         userId: String,
+        username: String,
+        profilePic: String,
+        date: {
+          type: Date,
+          default: Date.now,
+        },
         ratings: {
           type: Number,
           max: 5,

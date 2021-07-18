@@ -60,6 +60,9 @@ const appointmentSchema = mongoose.Schema(
       spec: String,
       date: Date,
     },
+    followUp: {
+      type: Date,
+    },
     withHospital: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Hospitals", //pRms id
@@ -76,6 +79,20 @@ const appointmentSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    bill: {
+      type: Boolean,
+      default: false,
+    },
+    medicines: [
+      {
+        desc: String,
+        disease: String,
+        timeInterval: Number,
+        time: {
+          type: Date,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
