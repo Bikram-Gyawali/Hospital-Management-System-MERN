@@ -40,7 +40,6 @@ function UserSidebar() {
           </h1>
           <h1>Contacts</h1>
         </div>
-
         <div className="flex flex-row  pt-3  ml-3 pointer hover:bg-gray-100 mt-2 p-2 ">
           <h1 className="mr-4">
             <i className="fas fa-pills"></i>

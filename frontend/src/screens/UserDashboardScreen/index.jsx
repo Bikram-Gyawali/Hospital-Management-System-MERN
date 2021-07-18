@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import Navbar from "components/DashboardShared/Navbar";
 import SideBar from "components/DashboardShared/SideBar";
 import styled from "styled-components";
 import useGetUserData from "hooks/useGetUserSidebarData";
-import AppointmentButton from "components/AppointmentButton/AppomntButton";
 import axios from "axios";
 import UserAppointments from "components/UserAppointments/UserAppointments";
 import { Link } from "react-router-dom";
@@ -20,8 +19,10 @@ const FlexRight = styled.div`
 const FlexLeft = styled.div`
   width: 300px;
 `;
-
 function Userdashboard() {
+  window.OneSignal = window.OneSignal || [];
+  const OneSignal = window.OneSignal;
+  console.log(OneSignal);
   // fetch data
   const [hospitals, sethospitals] = useState([]);
   useEffect(() => {
@@ -42,7 +43,20 @@ function Userdashboard() {
   };
 
   const { userId, userMenuData } = useGetUserData();
-  console.log(userMenuData, userId);
+
+  // let externalId = userId;
+
+  OneSignal.push(function () {
+    OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+      if (isEnabled) {
+        console.log("Push notifications are enabled!");
+        OneSignal.setExternalUserId(userId);
+        console.log(OneSignal.getUserId());
+      } else {
+        console.log("Push notifications are not enabled yet.");
+      }
+    });
+  });
   return (
     <div>
       <Navbar type={"user"} id={userId} />

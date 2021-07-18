@@ -7,7 +7,8 @@ const path = require("path");
 const multer = require("multer");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
+const webpush = require("web-push");
+const bodyParser = require("body-parser");
 const app = express();
 
 const { notFound, errorHandler } = require("./middleware/errorHandlers");
@@ -21,6 +22,7 @@ const doctorRoutes = require("./routes/doctorRoutes");
 dotenv.config();
 
 //middlewares
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
@@ -47,6 +49,10 @@ app.use(express.urlencoded({ extended: false }));
 //     console.log(err);
 //   }
 // });
+
+const publicVapidKey =
+  "BNMkYgI5rG1OR8cZNo9yZEXfdlcIlY7egBEwpUyoDXWhT0hraIwQbuzCHlo7rqwaAHgJtXvaVs8tjhw8_8wpQ_w";
+const privateVapidKey = "_GiZvcjF-FSmPULiqCxaPZcdalmVnClT69aX2lX0Vko";
 
 app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);

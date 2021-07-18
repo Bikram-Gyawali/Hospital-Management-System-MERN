@@ -16,7 +16,7 @@ function Userdashboard() {
           <div className="container px-2 py-2 mx-auto">
             <div className="flex flex-wrap -m-4">
               <div className="mx-auto text-lg mt-2 p-2 font-bold text-gray-600">
-                <h6>Hospitals and Clinic</h6>
+                <h6>Hospitals and Clinic </h6>
               </div>
               <section className="text-gray-600 body-font">
                 <div className="container px-5 py-5  mx-auto">

@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 function UserAppointments() {
+  const userLogin = useSelector((state) => state.userLogin);
+  console.log(userLogin);
   const local = "http://localhost:5000/api";
   const [appointmentList, setAppointmentList] = useState([]);
   const [setHosId, setSetHosId] = useState();
   const id = useParams().id;
-  console.log(id);
   useEffect(() => {
     axios.get(`${local}/userAppointment/${id}/myAppointments`).then((data) => {
       setAppointmentList(data.data);
+      console.log(data);
+      console.log("hello datas");
       //   setSetHosId(data.withHospital);
     });
   }, [id]);
-  console.log(appointmentList);
 
   return (
     <div>
@@ -47,22 +50,22 @@ function UserAppointments() {
                 <span>{res?.name}</span>
               </td>
               <td class="p-2 px-2 border-2">
-                <span>9867134457</span>
+                <span>{res?.contact}</span>
               </td>
               <td class="p-2 px-2 border-2">
-                <span>Blood Test</span>
+                <span>{res?.services}</span>
               </td>
               <td class="p-2 px-2 border-2">
                 <AppointmentDetailsButton res={res} />
               </td>
               <td class="p-2 px-2 border-2">
-                <p>Sanduik Ruit</p>
+                <p>{res?.assignedDoctor}</p>
               </td>
               <td class="p-2 px-2 border-2">
                 <p>{res?.date}</p>
               </td>
               <td class="p-2 px-2 border-2">
-                <p>{res?.time}</p>
+                <p>{res?.docArrival}</p>
               </td>
               <td class="p-2 border-2">
                 <p>{res?.token}</p>

@@ -24,10 +24,38 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>DoctorSahab</title>
+
+    <!-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "565f762f-a729-44e0-9d04-39ffa4564580",
+                safari_web_id: "web.onesignal.auto.337e82fd-eeda-48f8-8fe5-d2f6dec774c2",
+                notifyButton: {
+                    enable: true,
+                },
+                subdomainName: "doctorsahabkxa",
+            });
+        });
+    </script> -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "561aeb8f-a644-4d7c-9c8b-0a2de9878340",
+                safari_web_id: "web.onesignal.auto.0908e376-c893-48cd-92f7-007572df5c49",
+                notifyButton: {
+                    enable: true,
+                },
+                subdomainName: "doctorsahab",
+            });
+        });
+    </script>
 </head>
 
 <body>
- 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="modal"></div>
@@ -42,5 +70,14 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.7.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.7.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 
 </html>

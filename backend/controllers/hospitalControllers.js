@@ -1,6 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const Hospitals = require("../models/hospitalSchema");
 const Doctors = require("../models/doctorSchema");
+const {
+  sendNotification,
+  playersId,
+  externalUserId,
+} = require("./notificationControllers.js");
 
 const registerHospital = asyncHandler(async (req, res) => {
   try {
@@ -70,7 +75,9 @@ const allHospitals = asyncHandler(async (req, res) => {
 
 const individualHospital = asyncHandler(async (req, res) => {
   try {
-    const hospital = await Hospitals.findById(req.param.id).select("-password");
+    const hospital = await Hospitals.findById(req.params.id).select(
+      "-password"
+    );
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);
@@ -111,14 +118,14 @@ const addService = asyncHandler(async (req, res) => {
 
 const addEvents = asyncHandler(async (req, res) => {
   try {
-    const { eventName, date, desc, eventImg } = req.body;
+    // const { eventName, date, desc, eventImg } = req.body;
     const hospital = await Hospitals.findByIdAndUpdate(req.params.id, {
       $push: {
         events: {
-          eventName,
-          date,
-          desc,
-          eventImg,
+          eventName: req.body.eventName,
+          date: req.body.date,
+          desc: req.body.desc,
+          eventImg: req.body.eventImg,
         },
       },
     });
@@ -128,6 +135,20 @@ const addEvents = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error(error);
   }
+  let message = {
+    app_id: "561aeb8f-a644-4d7c-9c8b-0a2de9878340",
+    contents: {
+      en: `${req.body.desc} is being organized on date ${req.body.date} on ${hospital.name}`,
+    },
+    headings: {
+      en: `${req.body.eventName}`,
+    },
+    // include_external_user_ids: externalUserId,
+    // include_player_ids: playersId, //to all subscribed devices
+    included_segments: ["Subscribed Users"], //to all subscribers
+  };
+  console.log(req.body);
+  await sendNotification(message);
 });
 
 const addDoctors = asyncHandler(async (req, res) => {

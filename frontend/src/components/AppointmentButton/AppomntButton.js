@@ -1,24 +1,28 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { userLoginAction } from "../../actions/userActions";
 import "bootstrap/dist/css/bootstrap.css";
 import { useParams } from "react-router-dom";
-import Input from 'components/GlobalComponents/Input'
-import Label from 'components/GlobalComponents/Label'
-import Modal from 'components/GlobalComponents/Modal'
-import Button from 'components/GlobalComponents/Button'
+import Input from "components/GlobalComponents/Input";
+import Label from "components/GlobalComponents/Label";
+import Modal from "components/GlobalComponents/Modal";
+import Button from "components/GlobalComponents/Button";
 import styled from "styled-components";
 import Textarea from "components/GlobalComponents/Textarea";
 
 const InputGroup = styled.div`
-    margin-bottom: 30px;
-`
+  margin-bottom: 30px;
+`;
 
 function AppomntButton() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, error } = userLogin;
+
   const hospitalLogin = useSelector((state) => {
     return state.hospitalLogin;
   });
+
   const params = useParams();
   const name = useRef();
   const services = useRef();
@@ -29,7 +33,7 @@ function AppomntButton() {
   const desc = useRef();
   const age = useRef();
   const [fullscreen, setFullscreen] = useState(true);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   function handleShow() {
     setFullscreen(!fullscreen);
@@ -38,7 +42,7 @@ function AppomntButton() {
 
   const submitAppointment = async (e) => {
     e.preventDefault();
-    console.log("Submitted")
+    console.log("Submitted");
     const newAppointment = {
       name: name.current.value,
       services: services.current.value,
@@ -48,6 +52,7 @@ function AppomntButton() {
       time: time.current.value,
       contact: Number(contact.current.value),
       age: age.current.value,
+      patient: userInfo._id,
     };
     try {
       setIsSubmitting(true);
@@ -55,14 +60,16 @@ function AppomntButton() {
         `http://localhost:5000/api/userAppointment/${params.id}/appointment/setappointment/`,
         newAppointment
       );
-      alert("Successfuly submitted appointment form! Please wait for hospital response");
-      setOpen(false)
+      alert(
+        "Successfuly submitted appointment form! Please wait for hospital response"
+      );
+      setOpen(false);
     } catch (error) {
       console.log("error applying appointments", error.response);
       console.log({ ...newAppointment });
       alert("Error applying for appointments");
     }
-    setIsSubmitting(false)
+    setIsSubmitting(false);
 
     // const reqBody = {
     //   url: `http://localhost:5000/api/userAppointment/60e0638708e8331f5cb3f9bd/appointment/setappointment/`,
@@ -78,7 +85,7 @@ function AppomntButton() {
     //   console.log(error.response);
     // }
   };
-  console.log(params)
+  console.log(params);
   return (
     <div>
       <Button
@@ -87,91 +94,44 @@ function AppomntButton() {
       >
         Apply Appointments
       </Button>
-      <Modal
-        size="lg t"
-        fullscreen={fullscreen}
-        open={open}
-        setOpen={setOpen}
-
-      >
+      <Modal size="lg t" fullscreen={fullscreen} open={open} setOpen={setOpen}>
         <form onSubmit={submitAppointment}>
           <InputGroup>
             <Label>Name</Label>
-            <Input
-              type="text"
-              fluid
-              placeholder="name"
-              ref={name}
-            />
+            <Input type="text" fluid placeholder="name" ref={name} />
           </InputGroup>
           <InputGroup>
             <Label>Age</Label>
-            <Input
-              type="number"
-              placeholder="Age"
-              ref={age}
-              fluid
-            />
+            <Input type="number" placeholder="Age" ref={age} fluid />
           </InputGroup>
           <InputGroup>
             <Label>Services</Label>
-            <Input
-              fluid
-              type="text"
-              ref={services}
-              placeholder="services"
-            />
+            <Input fluid type="text" ref={services} placeholder="services" />
           </InputGroup>
-
 
           <InputGroup>
             <Label>Address</Label>
-            <Input
-              type="text"
-              fluid
-              placeholder="address"
-              ref={location}
-            />
+            <Input type="text" fluid placeholder="address" ref={location} />
           </InputGroup>
           <InputGroup>
             <Label>Date</Label>
-            <Input
-              type="date"
-              fluid
-              ref={date}
-            />
+            <Input type="date" fluid ref={date} />
           </InputGroup>
           <InputGroup>
             <Label>Time</Label>
-            <Input
-              type="time"
-              fluid
-              ref={time}
-            />
+            <Input type="time" fluid ref={time} />
           </InputGroup>
           <InputGroup>
             <Label>Contact</Label>
-            <Input
-              type="number"
-              ref={contact}
-              fluid
-              placeholder="9967313931"
-            />
+            <Input type="number" ref={contact} fluid placeholder="9967313931" />
           </InputGroup>
 
           <InputGroup>
             <Label>Description</Label>
             <br />
-            <Textarea
-              name="description"
-              id="desc"
-              ref={desc}
-              fluid
-            />
+            <Textarea name="description" id="desc" ref={desc} fluid />
           </InputGroup>
-          <Button disabled = {isSubmitting}>
-            Apply Apointments
-          </Button>
+          <Button disabled={isSubmitting}>Apply Apointments</Button>
         </form>
       </Modal>
     </div>

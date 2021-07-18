@@ -1,6 +1,6 @@
 import Userdahboard from "screens/UserDashboardScreen";
 import Dashboard from "screens/HospitaldashboardScreen/Dashboard";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
 import LoginScreen from "screens/UserScreen/RegisterScreen/UserRegister";
 import RegisterScreen from "screens/UserScreen/UserLogin/UserLogin";
 import HomeScreen from "screens/HomeScreen";
@@ -12,6 +12,7 @@ import HospitalLogin from "screens/HospitalScreen/HospitalLogin/HospialLogin";
 import HospitalRegister from "screens/HospitalScreen/HospitalRegister/HospitalRegister";
 import HospitalProfile from "screens/HospitalProfile/HospitalProfile";
 import "App.css";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Appointments from "screens/HospitalAppoinment/Appointments";
 
@@ -21,6 +22,8 @@ const AppContainer = styled.div`
 `;
 
 function App() {
+  
+
   return (
     <AppContainer>
       <Router>
