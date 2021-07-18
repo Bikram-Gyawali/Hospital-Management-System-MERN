@@ -4,6 +4,7 @@ import Messages from 'assets/images/dashboarsIcons/messages.svg'
 import Funds from 'assets/images/dashboarsIcons/funds.svg'
 import Emergency from 'assets/images/dashboarsIcons/emergency.svg'
 import BloodBank from 'assets/images/dashboarsIcons/blood-bank.svg'
+import Hospital from "assets/images/dashboarsIcons/hospital.svg";
 import { useSelector } from 'react-redux'
 
 
@@ -12,7 +13,6 @@ const useGetUserData = () => {
     const { userInfo, error } = userLogin
     let userId = userInfo._id
     return ({
-        userId,
         userMenuData: [
             {
                 id: 1,
@@ -28,24 +28,30 @@ const useGetUserData = () => {
             },
             {
                 id: 3,
+                route: `/${userId}/userDashboard/hospitals/`,
+                title: "Hospital",
+                icon: Hospital
+            },
+            {
+                id: 4,
                 route: `/${userId}/userDashboard/messages/`,
                 title: "Messages",
                 icon: Messages
             },
             {
-                id: 4,
+                id: 5,
                 route: `/${userId}/userDashboard/funds/`,
                 title: "Funds",
                 icon: Funds
             },
             {
-                id: 5,
+                id: 6,
                 route: `/${userId}/userDashboard/emergency/`,
                 title: "Emergency",
                 icon: Emergency
             },
             {
-                id: 6,
+                id: 7,
                 route: `/${userId}/userDashboard/blood-bank/`,
                 title: "Blood Bank",
                 icon: BloodBank

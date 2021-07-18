@@ -78,6 +78,7 @@ const individualHospital = asyncHandler(async (req, res) => {
     const hospital = await Hospitals.findById(req.params.id).select(
       "-password"
     );
+
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);

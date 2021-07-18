@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
+import {cartReducer} from './reducers/cartReducers'
 import {
   hospitalLoginReducer,
   hospitalRegisterReducer,
@@ -14,23 +15,29 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   hospitalLogin: hospitalLoginReducer,
   hospitalRegister: hospitalRegisterReducer,
-  hospitalManipulation: hospitalManipulationReducer
+  hospitalManipulation: hospitalManipulationReducer,
+  cart: cartReducer
 });
 
-const userFromStrogae = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
-const hospitalFromStrogae = localStorage.getItem("hospitalInfo")
-  ? JSON.parse(localStorage.getItem("hospitalInfo"))
-  : null;
+const cartFromStorage= localStorage.getItem('cartItems')? JSON.parse(localStorage.getItem('cartItems')): []
+
+// const userFromStrogae = localStorage.getItem("userInfo")
+//   ? JSON.parse(localStorage.getItem("userInfo"))
+//   : null;
+// const hospitalFromStrogae = localStorage.getItem("hospitalInfo")
+//   ? JSON.parse(localStorage.getItem("hospitalInfo"))
+//   : null;
 
 const initialState = {
-  userLogin: {
-    userInfo: userFromStrogae,
-  },
-  hospitalLogin: {
-    hospitalInfo: hospitalFromStrogae,
-  },
+  // userLogin: {
+  //   userInfo: userFromStrogae,
+  // },
+  // hospitalLogin: {
+  //   hospitalInfo: hospitalFromStrogae,
+  // },
+  cart: {
+    cartItems: cartFromStorage
+  }
 };
 const middleware = [thunk];
 

@@ -39,19 +39,20 @@ const CTAButton = styled(Button)`
     font-weight: bold;
     width: 300px;
     height: 75px;
+    font-size: 25px;
 `
 
-const CTALink = styled(Link)`
-    color: ${colors.white};
-    font-weight: ${fonts.bold};
-    font-size: 25px;
-    letter-spacing: 0.095em;
-    display: block;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-content: center;
-`
+// const CTALink = styled(Link)`
+//     color: ${colors.white};
+//     font-weight: ${fonts.bold};
+
+//     letter-spacing: 0.095em;
+//     display: block;
+//     width: 100%;
+//     height: 100%;
+//     display: grid;
+//     place-content: center;
+// `
 
 const CovidTitle = styled.div`
     font-size: 24px;
@@ -60,6 +61,7 @@ const CovidTitle = styled.div`
     color: ${colors.primary};
     display: flex;
     justify-content: center;
+
 `
 
 const HeroSection = () => {
@@ -82,9 +84,11 @@ const HeroSection = () => {
                             <br />
                             <span>patients</span>
                         </Description>
-                        <CTAButton>
-                            <CTALink to="/register">Get Started</CTALink>
-                        </CTAButton>
+                        <Link to="/login_options">
+                            <CTAButton>
+                                Get Started
+                            </CTAButton>
+                        </Link>
                     </GridLeft>
                     <GridRight>
                         <img src={RightHero} alt={"A man having xray"} />

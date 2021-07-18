@@ -8,6 +8,7 @@ import {
   HOSPITAL_REGISTER_SUCCESS,
   HOSPITAL_REGISTER_FAIL,
   HOSPITAL_PROFILE_EDIT,
+  HOSPITAL_LOGOUT,
 } from "../constants/hospitalConstants";
 
 const BASE_URL = `http://localhost:5000/api`;
@@ -33,7 +34,7 @@ export const hospitalLoginAction = (email, password) => async (
     });
 
     //save loginuser to localstorage
-    localStorage.setItem("hospitalInfo", JSON.stringify(data));
+    // localStorage.setItem("hospitalInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: HOSPITAL_LOGIN_FAIL,
@@ -42,8 +43,15 @@ export const hospitalLoginAction = (email, password) => async (
           ? error.response.data.message
           : error.message,
     });
+
+    throw new Error(error);
   }
 };
+export const hospitalLogOutAction = () => (dispatch) =>{
+  dispatch({
+    type: HOSPITAL_LOGOUT
+  })
+}
 
 export const hospitalRegisterAction = (
   name,
@@ -70,7 +78,7 @@ export const hospitalRegisterAction = (
     });
     // const data = { ...others, password };
 
-    localStorage.setItem("hospitalInfo", JSON.stringify(data));
+    // localStorage.setItem("hospitalInfo", JSON.stringify(data));
   } catch (err) {
     dispatch({
       type: HOSPITAL_REGISTER_FAIL,
@@ -79,6 +87,7 @@ export const hospitalRegisterAction = (
           ? err.response.data.message
           : err.message,
     });
+    throw new Error(err)
   }
 };
 
@@ -94,7 +103,6 @@ export const updateHospitalDescription = (id, description) => async (
   let [data, error] = await axiosRequest(reqBody);
   if (data) {
     console.log(data);
-    alert("Successfully submitted Form");
     dispatch({
       type: HOSPITAL_PROFILE_EDIT,
       payload: {
@@ -103,7 +111,8 @@ export const updateHospitalDescription = (id, description) => async (
     });
   }
   if (error) {
-    alert("Falied to submit form");
+    console.log(error);
+    throw new Error(error)
   }
 };
 
@@ -124,10 +133,9 @@ export const addHospitalEvents = (id, eventName, date, desc) => async (
         event: { eventName, date, desc },
       },
     });
-    alert("Succesfully added event");
   }
   if (error) {
     console.log(error);
-    alert("Error adding event");
+    throw new Error(error)
   }
 };
