@@ -15,11 +15,13 @@ const {
   hospitalDetails,
   allHospitals,
   hospitalReview,
+  allHospitalsEvents
 } = require("../controllers/hospitalControllers");
 
 route.post("/registerHospital", registerHospital);
 route.post("/loginHospital", loginHospital);
 route.get("/allHospital", allHospitals);
+route.get("/hospitals_allevents", allHospitalsEvents);
 route.get("/:id", individualHospital);
 route.put("/:id/hospitalProfile", upateHospital);
 route.put("/:id/updateHospital", upateHospital);
