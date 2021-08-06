@@ -61,7 +61,7 @@ app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/userAppointment", appointmentRoutes);
 app.use("/api/reports", userReports);
-app.use("/api/doctorDetails", doctorRoutes);
+app.use("/api/doctor", doctorRoutes);
 app.use("/api/medic", medicRoutes);
 //database
 connectDb();
