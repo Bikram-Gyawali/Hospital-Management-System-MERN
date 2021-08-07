@@ -15,13 +15,12 @@ const {
   hospitalDetails,
   allHospitals,
   hospitalReview,
-  allHospitalsEvents
+  allHospitalsEvents,
 } = require("../controllers/hospitalControllers");
 
 route.post("/registerHospital", registerHospital);
 route.post("/loginHospital", loginHospital);
 route.get("/allHospital", allHospitals);
-route.get("/hospitals_allevents", allHospitalsEvents);
 route.get("/:id", individualHospital);
 route.put("/:id/hospitalProfile", upateHospital);
 route.put("/:id/updateHospital", upateHospital);
@@ -35,5 +34,6 @@ route.post("/:id/addVaccancy", addVaccancy);
 route.get("/:id/allDoctors", allDoctors);
 route.get("/:id/hospitalDetails", hospitalDetails);
 route.put("/:id/hospitalReviews", hospitalReview);
+route.get("/allEvents", allHospitalsEvents);
 
 module.exports = route;

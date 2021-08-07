@@ -4,7 +4,7 @@ import Card from "components/DashboardShared/CardLayout";
 import AddButton from "assets/images/add.svg";
 import EditButton from "assets/images/edit.svg";
 import { fonts } from "fonts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddEventsForm from "components/HospitalDashboard/AddEventsForm";
 import { useSelector } from "react-redux";
 import returnMonthString from "utils/returnMonth";
@@ -78,7 +78,14 @@ const Index = () => {
   const { hospitalInfo } = useSelector((state) => {
     return state.hospitalManipulation;
   });
+// <<<<<<< ayush
 
+// =======
+//   const [hosInf, setHosInf] = useState([]);
+//   useEffect(() => {
+//     setHosInf(hospitalInfo.events);
+//   }, [hosInf, hospitalInfo.events]);
+// >>>>>>> master
   //   console.log(hospitalInfo);
   return (
     <Card>
@@ -92,7 +99,7 @@ const Index = () => {
       </CardHeader>
       <Line />
       <CardBody>
-        {hospitalInfo.events.map((event, index) => (
+        {hosInf.map((event, index) => (
           <>
             <EventContainer key={event._id}>
               <EventHead>

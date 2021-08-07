@@ -48,11 +48,11 @@ export const hospitalLoginAction = (email, password) => async (
     throw new Error(error);
   }
 };
-export const hospitalLogOutAction = () => (dispatch) =>{
+export const hospitalLogOutAction = () => (dispatch) => {
   dispatch({
-    type: HOSPITAL_LOGOUT
-  })
-}
+    type: HOSPITAL_LOGOUT,
+  });
+};
 
 
 
@@ -90,7 +90,7 @@ export const hospitalRegisterAction = (
           ? err.response.data.message
           : err.message,
     });
-    throw new Error(err)
+    throw new Error(err);
   }
 };
 
@@ -119,7 +119,7 @@ export const updateHospitalDescription = (id, description) => async (
   }
   if (error) {
     console.log(error);
-    throw new Error(error)
+    throw new Error(error);
   }
 };
 
@@ -149,15 +149,8 @@ export const addHospitalEvents = (id, eventName, date, desc) => async (
       },
     });
 
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
   }
-  catch (error) {
-        console.log(error);
-    throw new Error(error)
-  }
-
-
-
-
-
-  
 };
