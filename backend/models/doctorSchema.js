@@ -6,18 +6,18 @@ const doctorSchema = mongoose.Schema(
       type: String,
     },
     exp: {
-      type: Number,
+      type: String,
     },
     spec: {
       type: String,
     },
-    contacts: {
+    contact: {
       type: Number,
     },
     email: {
       type: String,
     },
-    docPassword: {
+    password: {
       type: String,
     },
     pic: {
@@ -47,8 +47,7 @@ const doctorSchema = mongoose.Schema(
       },
     ],
     workingOn: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Hospitals",
+      type: String
     },
   },
   { timestamps: true }
