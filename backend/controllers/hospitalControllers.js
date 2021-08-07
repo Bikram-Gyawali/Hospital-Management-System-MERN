@@ -129,7 +129,8 @@ const addEvents = asyncHandler(async (req, res) => {
         },
       },
     });
-
+    await hospital.save();
+    console.log(hospital);
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);
@@ -147,7 +148,6 @@ const addEvents = asyncHandler(async (req, res) => {
     // include_player_ids: playersId, //to all subscribed devices
     included_segments: ["Subscribed Users"], //to all subscribers
   };
-  console.log(req.body);
   await sendNotification(message);
 });
 
