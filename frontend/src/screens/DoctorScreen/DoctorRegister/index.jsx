@@ -55,7 +55,8 @@ const Index = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const onSubmit = async (data) => {
-        const { doctorname, doctoremail, doctorspeciality, doctorprimarycontact, currentorganization, graduatedFrom,doctorpassword } = data;
+        const { doctorname, doctoremail, doctorspeciality, doctorprimarycontact, currentorganization, graduatedFrom, doctorpassword } = data;
+        console.log(doctorname, doctoremail, doctorspeciality, doctorprimarycontact, currentorganization, graduatedFrom, doctorpassword);
         try {
             await dispatch(doctorRegisterAction(doctorname, doctoremail, doctorspeciality, doctorprimarycontact, currentorganization, graduatedFrom, doctorpassword));
             reset({ doctorname: "", doctoremail: "", doctorspeciality: "", doctorprimarycontact: "", currentorganization: "", graduatedFrom: "", doctorpassword: "" });

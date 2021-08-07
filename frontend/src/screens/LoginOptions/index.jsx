@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import LoginOptionImage from 'assets/images/login-options-left.svg'
 import { fonts } from 'fonts'
 import Button from 'components/GlobalComponents/Button'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const OptionsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -14,12 +14,14 @@ const Left = styled.div`
     background: ${colors.secondary}1A;
     display: grid;
     place-content: center;
+
 `
 const Right = styled.div`
     padding-left: 60px;
     display: grid;
     place-content: center;
     text-align: center;
+    padding-top: 60px;
 `
 
 const SuperTitle = styled.h2`
@@ -55,7 +57,7 @@ const Index = () => {
     return (
         <OptionsContainer>
             <Left>
-                <img src={LoginOptionImage} alt={"Left"}/>
+                <img src={LoginOptionImage} alt={"Left"} />
             </Left>
             <Right>
                 <SuperTitle>Choose suitable Account option</SuperTitle>
@@ -74,8 +76,15 @@ const Index = () => {
                         <NoRadiusButton outlined>Register as Hospital </NoRadiusButton>
                     </Link>
                     <Link to="/hospital_login">
-                        <NoRadiusButton outlined>Employee / Hospital Login </NoRadiusButton>
+                        <NoRadiusButton outlined>Hospital Login </NoRadiusButton>
                     </Link>
+                    <Link to="/doctor_register">
+                        <NoRadiusButton outlined>Register As Doctor</NoRadiusButton>
+                    </Link>
+                    <Link to="/doctor_login">
+                        <NoRadiusButton outlined>Login As Doctor</NoRadiusButton>
+                    </Link>
+
                 </LoginOrRegisterContainer>
             </Right>
         </OptionsContainer>

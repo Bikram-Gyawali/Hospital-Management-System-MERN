@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { colors } from 'colors'
-import Card from 'components/HospitalDashboard/CardLayout'
+import Card from 'components/DashboardShared/CardLayout'
 import { fonts } from 'fonts'
 import styled from 'styled-components'
 import axios from 'axios'
@@ -114,7 +114,7 @@ const Index = () => {
                     {hospitals.length ? (
                         hospitals.map(hospital => (
                             <ChildCard >
-                                <StyledLink to={`/${params.id}/userDashboard/hospitals?id=${hospital._id}`} key={hospital._id}>
+                                <StyledLink to={`/${params.id}/userDashboard/hospitals/${hospital._id}`} key={hospital._id}>
                                     <ChildCardHeader>
                                         <ChildCardImage src={returnURLFromObjectOfStrings(hospital.hospitalImages)} alt={"Hospital"} />
                                     </ChildCardHeader>

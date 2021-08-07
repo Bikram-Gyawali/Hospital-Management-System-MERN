@@ -57,8 +57,10 @@ const AddEvent = ({ open, setOpen, type }) => {
   const dispatch = useDispatch();
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log({ eventName, date, desc })
     setSubmitting(true);
-    dispatch(addHospitalEvents(id, eventName, date, desc));
+    await dispatch(addHospitalEvents(id, eventName, date, desc));
+    setSubmitting(false)
   };
 
   return (

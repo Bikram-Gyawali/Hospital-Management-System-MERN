@@ -17,7 +17,7 @@ const Nav = styled.nav`
 `
 const NavInner = styled.div`
   margin: auto;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
 `
 const FlexContainer = styled.div`
   display: flex;

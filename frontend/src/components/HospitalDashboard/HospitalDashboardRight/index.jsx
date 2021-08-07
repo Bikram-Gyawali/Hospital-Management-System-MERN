@@ -12,11 +12,8 @@ import DashboardDoctorsInformation from 'components/HospitalDashboard/DashboardD
 import BedsInformation from 'components/HospitalDashboard/BedsInformations'
 import VaccancyInformation from 'components/HospitalDashboard/VaccancyInformation'
 import ServicesInformation from 'components/HospitalDashboard/ServicesInformation'
+import DashboardContentWrapper from 'components/DashboardShared/DashboardContentWrapper';
 
-const Wrapper = styled.div`
-    background: ${colors.secondary}1A;
-    padding: 50px 30px;
-`
 const Container = styled.div`
   margin-bottom: 70px;
 `
@@ -24,7 +21,7 @@ const Container = styled.div`
 
 function HospitalDetails() {
   return (
-    <Wrapper>
+    <DashboardContentWrapper>
       <Container>
         <DashboardGeneralInformation />
       </Container>
@@ -43,7 +40,7 @@ function HospitalDetails() {
       <Container>
         <ServicesInformation />
       </Container>
-    </Wrapper>
+    </DashboardContentWrapper>
   );
 }
 
