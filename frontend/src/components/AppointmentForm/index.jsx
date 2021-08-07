@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { userLoginAction } from "../../actions/userActions";
-import "bootstrap/dist/css/bootstrap.css";
 import { useParams } from "react-router-dom";
 import Input from "components/GlobalComponents/Input";
 import Label from "components/GlobalComponents/Label";
@@ -15,7 +14,17 @@ const InputGroup = styled.div`
   margin-bottom: 30px;
 `;
 
-function AppomntButton() {
+const ModalTitle = styled.div`
+    font-size: 57px;
+    font-font-weight: medium;
+`
+const ModalForm = styled.form``
+
+const ModalBody = styled.div`
+    margin-top: 30px;
+`
+
+function AppointmentButton({ open, setOpen}) {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, error } = userLogin;
 
@@ -33,7 +42,6 @@ function AppomntButton() {
   const desc = useRef();
   const age = useRef();
   const [fullscreen, setFullscreen] = useState(true);
-  const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   function handleShow() {
     setFullscreen(!fullscreen);
@@ -87,55 +95,52 @@ function AppomntButton() {
   };
   console.log(params);
   return (
-    <div>
-      <Button
-        className=" bg-primary mx-auto my-auto p-3 rounded-lg"
-        onClick={() => handleShow()}
-      >
-        Apply Appointments
-      </Button>
-      <Modal size="lg t" fullscreen={fullscreen} open={open} setOpen={setOpen}>
-        <form onSubmit={submitAppointment}>
-          <InputGroup>
-            <Label>Name</Label>
-            <Input type="text" fluid placeholder="name" ref={name} />
-          </InputGroup>
-          <InputGroup>
-            <Label>Age</Label>
-            <Input type="number" placeholder="Age" ref={age} fluid />
-          </InputGroup>
-          <InputGroup>
-            <Label>Services</Label>
-            <Input fluid type="text" ref={services} placeholder="services" />
-          </InputGroup>
+    <Modal size="lg t" fullscreen={fullscreen} open={open} setOpen={setOpen}>
+      <ModalTitle>Appointment Form</ModalTitle>
+      <ModalForm onSubmit={submitAppointment}>
+        <ModalBody>
 
-          <InputGroup>
-            <Label>Address</Label>
-            <Input type="text" fluid placeholder="address" ref={location} />
-          </InputGroup>
-          <InputGroup>
-            <Label>Date</Label>
-            <Input type="date" fluid ref={date} />
-          </InputGroup>
-          <InputGroup>
-            <Label>Time</Label>
-            <Input type="time" fluid ref={time} />
-          </InputGroup>
-          <InputGroup>
-            <Label>Contact</Label>
-            <Input type="number" ref={contact} fluid placeholder="9967313931" />
-          </InputGroup>
+        <InputGroup>
+          <Label>Name</Label>
+          <Input type="text" fluid placeholder="name" ref={name} />
+        </InputGroup>
+        <InputGroup>
+          <Label>Age</Label>
+          <Input type="number" placeholder="Age" ref={age} fluid />
+        </InputGroup>
+        <InputGroup>
+          <Label>Services</Label>
+          <Input fluid type="text" ref={services} placeholder="services" />
+        </InputGroup>
 
-          <InputGroup>
-            <Label>Description</Label>
-            <br />
-            <Textarea name="description" id="desc" ref={desc} fluid />
-          </InputGroup>
-          <Button disabled={isSubmitting}>Apply Apointments</Button>
-        </form>
-      </Modal>
-    </div>
+        <InputGroup>
+          <Label>Address</Label>
+          <Input type="text" fluid placeholder="address" ref={location} />
+        </InputGroup>
+        <InputGroup>
+          <Label>Date</Label>
+          <Input type="date" fluid ref={date} />
+        </InputGroup>
+        <InputGroup>
+          <Label>Time</Label>
+          <Input type="time" fluid ref={time} />
+        </InputGroup>
+        <InputGroup>
+          <Label>Contact</Label>
+          <Input type="number" ref={contact} fluid placeholder="9967313931" />
+        </InputGroup>
+
+        <InputGroup>
+          <Label>Description</Label>
+          <br />
+          <Textarea name="description" id="desc" ref={desc} fluid />
+        </InputGroup>
+        <Button disabled={isSubmitting}>Apply Apointments</Button>
+        </ModalBody>
+      </ModalForm>
+    </Modal>
+
   );
 }
 
-export default AppomntButton;
+export default AppointmentButton;
