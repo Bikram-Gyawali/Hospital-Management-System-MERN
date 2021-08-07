@@ -17,7 +17,7 @@ const Right = styled.div``
 const Line = styled.div`
     height: 1px;
     background: ${colors.secondary};
-    height: 500px;
+    height: 80%;
     align-self: center;
 `
 

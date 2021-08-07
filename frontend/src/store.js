@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
+import {doctorLoginReducer, doctorRegisterReducer } from 'reducers/doctorReducres'
 import {cartReducer} from './reducers/cartReducers'
 import {
   hospitalLoginReducer,
@@ -16,6 +17,8 @@ const reducer = combineReducers({
   hospitalLogin: hospitalLoginReducer,
   hospitalRegister: hospitalRegisterReducer,
   hospitalManipulation: hospitalManipulationReducer,
+  doctorLogin: doctorLoginReducer,
+  doctorRegister: doctorRegisterReducer,
   cart: cartReducer
 });
 

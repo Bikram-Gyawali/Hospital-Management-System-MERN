@@ -12,23 +12,27 @@ import CovidScreen from "screens/CovidScreen";
 import HospitalLogin from "screens/HospitalScreen/HospitalLogin";
 import HospitalRegister from "screens/HospitalScreen/HospitalRegister";
 import LoginOptions from "screens/LoginOptions";
+import HospitalProfile from "screens/HospitalProfile";
 import ProtectedRoute from "components/GlobalComponents/ProtectedRoutes";
 import MedicineScreen from "screens/MedicineScreen/MedicineScreen";
 import CartScreen from "screens/MedicineScreen/CartScreen";
+import DoctorLogin from 'screens/DoctorScreen/DoctorLogin';
+import DoctorRegister from 'screens/DoctorScreen/DoctorRegister';
 import "App.css";
-import { useEffect } from "react";
-import Appointments from "screens/HospitalAppoinment/Appointments";
+
 import { useSelector } from "react-redux";
 
 const AppContainer = styled.div`
   max-width: 1800px;
-  margin: auto;
+  margin-right: auto;
 `;
 
 function App() {
   const userId = useSelector((state) => state.userLogin)?.userInfo?._id;
   const hospitalId = useSelector((state) => state.hospitalLogin)?.hospitalInfo
     ?._id;
+  // const doctorId = useSelector((state) => state.doctorLogin)?.doctorInfo
+  
   console.log(userId);
   return (
     <AppContainer>
@@ -41,6 +45,8 @@ function App() {
         <Route exact path="/user_login" component={RegisterScreen} />
         <Route exact path="/hospital_login" component={HospitalLogin} />
         <Route exact path="/hospital_register" component={HospitalRegister} />
+        <Route exact path="/doctor_login" component={DoctorLogin} />
+        <Route exact path="/doctor_register" component={DoctorRegister} />
         <Route exact path="/login_options" component={LoginOptions} />
         <Route exact path="/covid19" component={CovidScreen} />
         <Route exact path="/doctorsahab/medicines" component={MedicineScreen} />
@@ -65,6 +71,12 @@ function App() {
         />
         <ProtectedRoute
           exact
+          path="/:id/userDashboard/hospitals/:hospitalID"
+          component={HospitalProfile}
+          isAuth={userId ? true : false}
+        />
+        <ProtectedRoute
+          exact
           path="/:id/hospitalDashboard/"
           component={HospitalDashboard}
           isAuth={hospitalId ? true : false}
@@ -81,6 +93,13 @@ function App() {
           component={HospitalDashboard}
           isAuth={hospitalId ? true : false}
         />
+        <ProtectedRoute
+          exact
+          path="/:id/hospitalDashboard/hospitals/:hospitalId/"
+          component={HospitalProfile}
+          isAuth={hospitalId ? true : false}
+        />
+
       </Router>
     </AppContainer>
   );

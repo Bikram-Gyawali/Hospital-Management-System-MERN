@@ -8,7 +8,7 @@ function Dashboard() {
   const { hospitalMenuData } = useGetHospitalData()
   return (
     <DashboardLayout type={"hospital"} menuData = {hospitalMenuData}>
-          <HospitalDetails />>
+          <HospitalDetails />
     </DashboardLayout>
   );
 }

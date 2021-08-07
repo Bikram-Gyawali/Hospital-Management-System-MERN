@@ -4,12 +4,8 @@ import { colors } from "colors";
 import DashboardGeneralInformation from 'components/UserDashboard/DashboardGeneralInformaton'
 import HospitalsNearYou from 'components/UserDashboard/HospitalsNearYou'
 import EventsNearYou from 'components/UserDashboard/EventsNearYou'
+import DashboardContentWrapper from 'components/DashboardShared/DashboardContentWrapper';
 
-
-const Wrapper = styled.div`
-    background: ${colors.secondary}1A;
-    padding: 50px 30px;
-`
 const Container = styled.div`
   margin-bottom: 70px;
 `
@@ -17,7 +13,7 @@ const Container = styled.div`
 
 function HospitalDetails() {
     return (
-        <Wrapper>
+        <DashboardContentWrapper>
             <Container>
                 <DashboardGeneralInformation />
             </Container>
@@ -27,7 +23,7 @@ function HospitalDetails() {
             <Container>
                 <EventsNearYou />
             </Container>
-        </Wrapper>
+        </DashboardContentWrapper>
     );
 }
 

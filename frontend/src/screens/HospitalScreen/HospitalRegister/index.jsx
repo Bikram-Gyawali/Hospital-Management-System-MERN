@@ -1,4 +1,4 @@
-import { hospitalLoginAction, hospitalRegisterAction } from 'actions/hospitalActions'
+import { hospitalRegisterAction } from 'actions/hospitalActions'
 import { colors } from 'colors'
 import Button from 'components/GlobalComponents/Button'
 import Input from 'components/GlobalComponents/Input'

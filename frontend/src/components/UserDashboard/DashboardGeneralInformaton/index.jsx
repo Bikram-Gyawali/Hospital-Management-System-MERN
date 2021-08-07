@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { colors } from "colors";
-import Card from 'components/HospitalDashboard/CardLayout'
+import Card from 'components/DashboardShared/CardLayout'
 import EditProfileForm from 'components/UserDashboard/EditProfileForm'
 import EditButton from 'assets/images/edit.svg'
 import { fonts } from 'fonts';

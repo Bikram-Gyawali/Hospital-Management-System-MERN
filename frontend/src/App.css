@@ -13,3 +13,51 @@ body{
 a{
   text-decoration: none !important;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #4DADBD1A;
+  border-radius: 4px;
+  position: relative;
+  left: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #327885;
+  border-radius: 4px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #396F78;
+}
+
+/* Buttons */
+::-webkit-scrollbar-button:single-button {
+  background-color: #4DADBD1A;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #4DADBD1A transparent;
+  visibility: hidden;
+}
+ 
+
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #4DADBD1A transparent;
+    visibility: hidden;
+}
+
