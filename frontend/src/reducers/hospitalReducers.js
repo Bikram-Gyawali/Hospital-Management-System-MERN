@@ -53,7 +53,8 @@ export const hospitalManipulationReducer = (state = { ...initialHospitalState },
         case HOSPITAL_PROFILE_EDIT:
             return { ...state, hospitalInfo: { ...state.hospitalInfo, hospitalDescription: action.payload.hospitalDescription } }
         case HOSPITAL_EVENTS_ADD:
-            return { ...state, events: { ...state.hospitalInfo, events: [...state.hospitalInfo.events, action.payload.event] } }
+            console.log({newEvent: action.payload.event})
+            return { ...state, events: { ...state.hospitalInfo, events: [...state.hospitalInfo.events, {...action.payload.event}] } }
         default:
             return { ...state }
     }

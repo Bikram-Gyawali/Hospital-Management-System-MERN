@@ -8,6 +8,7 @@ import { useState } from "react";
 import AddEventsForm from "components/HospitalDashboard/AddEventsForm";
 import { useSelector } from "react-redux";
 import returnMonthString from "utils/returnMonth";
+import { useEffect } from "react";
 
 const Title = styled.div`
   font-size: 28px;
@@ -77,6 +78,7 @@ const Index = () => {
   const { hospitalInfo } = useSelector((state) => {
     return state.hospitalManipulation;
   });
+
   //   console.log(hospitalInfo);
   return (
     <Card>
@@ -132,11 +134,6 @@ const Index = () => {
                 </EventContainer> */}
       </CardBody>
       <AddEventsForm open={openAddForm} setOpen={setOpenAddForm} type="add" />
-      <AddEventsForm
-        open={openEditForm}
-        setOpen={setOpenEditForm}
-        type="edit"
-      />
     </Card>
   );
 };

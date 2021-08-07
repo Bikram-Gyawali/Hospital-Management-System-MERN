@@ -43,6 +43,7 @@ function AppointmentButton({ open, setOpen}) {
   const age = useRef();
   const [fullscreen, setFullscreen] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  console.log(params)
   function handleShow() {
     setFullscreen(!fullscreen);
     setOpen(true);
@@ -65,7 +66,7 @@ function AppointmentButton({ open, setOpen}) {
     try {
       setIsSubmitting(true);
       await axios.post(
-        `http://localhost:5000/api/userAppointment/${params.id}/appointment/setappointment/`,
+        `http://localhost:5000/api/userAppointment/${params.hospitalID}/appointment/setappointment/`,
         newAppointment
       );
       alert(
@@ -139,7 +140,6 @@ function AppointmentButton({ open, setOpen}) {
         </ModalBody>
       </ModalForm>
     </Modal>
-
   );
 }
 

@@ -21,6 +21,8 @@ import DoctorRegister from 'screens/DoctorScreen/DoctorRegister';
 import "App.css";
 
 import { useSelector } from "react-redux";
+import HospitalAppointment from "screens/HospitalAppointmentScreen";
+import UserAppointment from "screens/UserAppointmentScreen";
 
 const AppContainer = styled.div`
   max-width: 1800px;
@@ -32,7 +34,7 @@ function App() {
   const hospitalId = useSelector((state) => state.hospitalLogin)?.hospitalInfo
     ?._id;
   // const doctorId = useSelector((state) => state.doctorLogin)?.doctorInfo
-  
+
   console.log(userId);
   return (
     <AppContainer>
@@ -60,7 +62,7 @@ function App() {
         <ProtectedRoute
           exact
           path="/:id/userDashboard/appointments/"
-          component={UserDashboard}
+          component={UserAppointment}
           isAuth={userId ? true : false}
         />
         <ProtectedRoute
@@ -84,7 +86,7 @@ function App() {
         <ProtectedRoute
           exact
           path="/:id/hospitalDashboard/appointments/"
-          component={HospitalDashboard}
+          component={HospitalAppointment}
           isAuth={hospitalId ? true : false}
         />
         <ProtectedRoute

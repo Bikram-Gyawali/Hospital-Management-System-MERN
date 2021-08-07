@@ -9,6 +9,7 @@ import {
   HOSPITAL_REGISTER_FAIL,
   HOSPITAL_PROFILE_EDIT,
   HOSPITAL_LOGOUT,
+  HOSPITAL_EVENTS_ADD,
 } from "../constants/hospitalConstants";
 
 const BASE_URL = `http://localhost:5000/api`;
@@ -53,6 +54,8 @@ export const hospitalLogOutAction = () => (dispatch) =>{
   })
 }
 
+
+
 export const hospitalRegisterAction = (
   name,
   email,
@@ -91,6 +94,10 @@ export const hospitalRegisterAction = (
   }
 };
 
+
+
+
+
 export const updateHospitalDescription = (id, description) => async (
   dispatch
 ) => {
@@ -116,6 +123,12 @@ export const updateHospitalDescription = (id, description) => async (
   }
 };
 
+
+// date: "2022-01-01T00:00:00.000Z"
+// desc: "lkj"
+// eventName: "Vaccine"
+// _id: "610ea4c184f799302438e298"
+
 export const addHospitalEvents = (id, eventName, date, desc) => async (
   dispatch
 ) => {
@@ -128,12 +141,14 @@ export const addHospitalEvents = (id, eventName, date, desc) => async (
   // let [data, error] = await axiosRequest(reqBody);
   try {
     const data = await axios.post(reqBody.url, reqBody.body);
+    console.log("Success")
     dispatch({
-      type: HOSPITAL_PROFILE_EDIT,
-      payload: {
-        event: { eventName, date, desc },
+      type: HOSPITAL_EVENTS_ADD,
+        payload: {
+        event: { eventName, date, desc, _id: Math.floor(Math.random()*100_000).toString() },
       },
     });
+
   }
   catch (error) {
         console.log(error);
