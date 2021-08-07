@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "components/GlobalComponents/Modal";
 import Input from "components/GlobalComponents/Input";
 import Label from "components/GlobalComponents/Label";
@@ -7,7 +7,7 @@ import Button from "components/GlobalComponents/Button";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addHospitalEvents } from "actions/hospitalActions";
-
+import axios from "axios";
 const ModalTitle = styled.div`
   font-size: 57px;
   font-font-weight: medium;
@@ -55,12 +55,30 @@ const AddEvent = ({ open, setOpen, type }) => {
   let responseObject = { ...hospitalLogin.hospitalInfo };
   let id = responseObject._id;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handleFormSubmit = async (e) => {
+      e.preventDefault();
+      console.log({ eventName, date, desc });
+      setSubmitting(true);
+      await dispatch(addHospitalEvents(id, eventName, date, desc));
+      setSubmitting(false);
+    };
+  }, [dispatch, date, desc, eventName, id]);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log({ eventName, date, desc })
+    let reqBody = {
+      url: `${BASE_URL}/hospitals/${id}/events/addEvents`,
+      method: "post",
+      body: { eventName, date, desc },
+    };
+
+    console.log({ eventName, date, desc });
     setSubmitting(true);
-    await dispatch(addHospitalEvents(id, eventName, date, desc));
-    setSubmitting(false)
+    await axios.post(reqBody.url, reqBody.body);
+    // await dispatch(addHospitalEvents(id, eventName, date, desc));
+    setSubmitting(false);
   };
 
   return (
