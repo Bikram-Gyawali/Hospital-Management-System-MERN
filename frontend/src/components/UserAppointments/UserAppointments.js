@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
+// import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -56,7 +56,7 @@ function UserAppointments() {
                 <span>{res?.services}</span>
               </td>
               <td class="p-2 px-2 border-2">
-                <AppointmentDetailsButton res={res} />
+                {/* <AppointmentDetailsButton res={res} /> */}
               </td>
               <td class="p-2 px-2 border-2">
                 <p>{res?.assignedDoctor}</p>

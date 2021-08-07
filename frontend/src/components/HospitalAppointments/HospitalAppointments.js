@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
+// import AppointmentDetailsButton from "components/AppDetailButton/AppointmentDetailsButton";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 function HospitalAppointments() {
@@ -144,7 +144,7 @@ function HospitalAppointments() {
                   <span>Blood Test</span>
                 </td>
                 <td className="p-2 px-2 border-2">
-                  <AppointmentDetailsButton />
+                  {/* <AppointmentDetailsButton /> */}
                   {/* <Button>View Details</Button> */}
                 </td>
                 <td className="p-2 px-2 border-2">
@@ -205,7 +205,7 @@ function HospitalAppointments() {
                           <span>{res?.services}</span>
                         </td>
                         <td className="p-2 px-2 border-2">
-                          <AppointmentDetailsButton res={res} />
+                          {/* <AppointmentDetailsButton res={res} /> */}
                         </td>
                         <td className="p-2 px-2 border-2">
                           <select
@@ -337,7 +337,7 @@ function HospitalAppointments() {
                           <span>{res?.services}</span>
                         </td>
                         <td className="p-2 px-2 border-2">
-                          <AppointmentDetailsButton res={res} />
+                          {/* <AppointmentDetailsButton res={res} /> */}
                         </td>
                         <td className="p-2 px-2 border-2">
                           <span>{res?.assignedDoctor}</span>
