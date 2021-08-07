@@ -125,8 +125,9 @@ export const addHospitalEvents = (id, eventName, date, desc) => async (
     method: "post",
     body: { eventName, date, desc },
   };
-  let [data, error] = await axiosRequest(reqBody);
-  if (data) {
+  // let [data, error] = await axiosRequest(reqBody);
+  try {
+    const data = await axios.post(reqBody.url, reqBody.body);
     dispatch({
       type: HOSPITAL_PROFILE_EDIT,
       payload: {
@@ -134,8 +135,14 @@ export const addHospitalEvents = (id, eventName, date, desc) => async (
       },
     });
   }
-  if (error) {
-    console.log(error);
+  catch (error) {
+        console.log(error);
     throw new Error(error)
   }
+
+
+
+
+
+  
 };
