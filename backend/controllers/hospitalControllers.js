@@ -10,7 +10,7 @@ const {
 const registerHospital = asyncHandler(async (req, res) => {
   try {
     const { name, email, password, contact1, contact2 } = await req.body;
-    const events=[]  //need atleast empty events at beginning
+    const events = []; //need atleast empty events at beginning
     if (!name || !email || !password || !contact1 || !contact2) {
       res.status(400);
       throw new Error("ALL FIELDS REQUIRED");
@@ -23,7 +23,7 @@ const registerHospital = asyncHandler(async (req, res) => {
         password,
         contact1,
         contact2,
-        events
+        events,
       }).save((err, hospital) => {
         if (err) {
           res.status(400);
@@ -132,7 +132,8 @@ const addEvents = asyncHandler(async (req, res) => {
         },
       },
     });
-
+    await hospital.save();
+    console.log(hospital);
     res.status(200).json(hospital);
   } catch (error) {
     res.status(400);
@@ -150,7 +151,6 @@ const addEvents = asyncHandler(async (req, res) => {
     // include_player_ids: playersId, //to all subscribed devices
     included_segments: ["Subscribed Users"], //to all subscribers
   };
-  console.log(req.body);
   await sendNotification(message);
 });
 
@@ -329,19 +329,19 @@ const hospitalReview = asyncHandler(async (req, res) => {
 
 //all hospitals events
 
-const allHospitalsEvents= asyncHandler(async(req, res)=>{
-  const hospitals= await Hospitals.find()
-  let allEventsId= []
-  let allEvents=[]
-  for(const hospital of hospitals){
-    if(hospital.events.length>0){
-      for(const event of hospital.events){
-        allEventsId.push(event)
-      } 
+const allHospitalsEvents = asyncHandler(async (req, res) => {
+  const hospitals = await Hospitals.find();
+  let allEventsId = [];
+  let allEvents = [];
+  for (const hospital of hospitals) {
+    if (hospital.events.length > 0) {
+      for (const event of hospital.events) {
+        allEventsId.push(event);
+      }
     }
   }
-  res.json(allEventsId)
-})
+  res.json(allEventsId);
+});
 
 module.exports = {
   registerHospital,
@@ -359,5 +359,5 @@ module.exports = {
   hospitalDetails,
   allHospitals,
   hospitalReview,
-  allHospitalsEvents
+  allHospitalsEvents,
 };
