@@ -49,6 +49,7 @@ export const hospitalRegisterReducer = (
 
 let initialHospitalState = { hospitalInfo: {}, loading: false, error: "" };
 
+
 export const hospitalManipulationReducer = (
   state = { ...initialHospitalState },
   action
