@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 import AddEventsForm from "components/HospitalDashboard/AddEventsForm";
 import { useSelector } from "react-redux";
 import returnMonthString from "utils/returnMonth";
-import { useEffect } from "react";
 
 const Title = styled.div`
   font-size: 28px;
@@ -99,7 +98,7 @@ const Index = () => {
       </CardHeader>
       <Line />
       <CardBody>
-        {hosInf.map((event, index) => (
+        {hospitalInfo.events.map((event, index) => (
           <>
             <EventContainer key={event._id}>
               <EventHead>
