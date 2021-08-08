@@ -5,8 +5,15 @@ import DashboardContentWrapper from 'components/DashboardShared/DashboardContent
 import AppointmentDetailsButton from "components/AppointmentDetailsButton";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import styled from 'styled-components'
+import { fonts } from 'fonts';
 
 
+const H2 = styled.h2`
+    font-weight: ${fonts.medium};
+    font-size: 30px;
+    margin-bottom: 30px;
+`
 
 const UserAppointment = () => {
 
@@ -27,6 +34,7 @@ const UserAppointment = () => {
         <DashboardLayout menuData={userMenuData}>
             <DashboardContentWrapper>
                 <div>
+                    <H2>My Appointments</H2>
                     <table
                         class="text-md bg-white shadow-md rounded mb-4"
                         style={{ fontSize: "15px" }}
@@ -71,7 +79,7 @@ const UserAppointment = () => {
                                         <p>{res?.appointDate}</p>
                                     </td>
                                     <td class="p-2 px-2 border-2">
-                                        <p>{res?.time}</p>
+                                        <p>{res?.docArrival}</p>
                                     </td>
                                     <td class="p-2 border-2">
                                         <p>{res?.token}</p>

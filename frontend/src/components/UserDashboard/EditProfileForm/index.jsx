@@ -10,7 +10,7 @@ import { colors } from 'colors';
 
 const ModalTitle = styled.div`
     font-size: 57px;
-    font-font-weight: medium;
+    font-weight: medium;
 `
 
 const ModalForm = styled.form``

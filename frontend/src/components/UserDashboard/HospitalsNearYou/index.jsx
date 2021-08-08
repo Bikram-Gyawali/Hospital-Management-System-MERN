@@ -6,6 +6,7 @@ import { fonts } from 'fonts'
 import styled from 'styled-components'
 import axios from 'axios'
 import returnURLFromObjectOfStrings from 'utils/returnURLFromObjectOfStrings'
+import truncate from 'truncate'
 
 const Title = styled.div`
     font-size: 28px;
@@ -63,6 +64,7 @@ const ChildCardTitle = styled.h4`
 const ChildCardImage = styled.img`
     width: 100%;
     object-fit: cover;
+    height: 200px;
 `
 
 const ChildCardParagraph = styled.p`
@@ -71,6 +73,9 @@ const ChildCardParagraph = styled.p`
 `
 const StyledLink = styled(Link)`
     display: block;
+    &:hover {
+        color: #000;
+    }
 `
 
 const Index = () => {
@@ -123,7 +128,7 @@ const Index = () => {
                                             {hospital.name}
                                         </ChildCardTitle>
                                         <ChildCardParagraph>
-                                            {hospital.hospitalDescription}
+                                            {truncate( hospital.hospitalDescription, 150)}
                                         </ChildCardParagraph>
                                     </ChildCardBody>
                                 </StyledLink>
