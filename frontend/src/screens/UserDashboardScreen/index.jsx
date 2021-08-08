@@ -9,6 +9,7 @@ import DashboardGeneralInformation from "components/UserDashboard/DashboardGener
 import EventsNearYou from "components/UserDashboard/EventsNearYou";
 import HospitalsNearYou from "components/UserDashboard/HospitalsNearYou";
 import DashboardLayout from 'components/DashboardShared/DashboardLayout';
+
 import { colors } from "colors";
 
 const FlexContainer = styled.div`
@@ -79,9 +80,9 @@ function Userdashboard() {
         <Container>
           <HospitalsNearYou />
         </Container>
-        <Container>
+        {/* <Container>
           <EventsNearYou />
-        </Container>
+        </Container> */}
       </Wrapper>
     </DashboardLayout>
     // =======

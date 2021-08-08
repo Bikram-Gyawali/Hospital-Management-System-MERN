@@ -5,6 +5,7 @@ import Funds from "assets/images/dashboarsIcons/funds.svg";
 import Emergency from "assets/images/dashboarsIcons/emergency.svg";
 import BloodBank from "assets/images/dashboarsIcons/blood-bank.svg";
 import Hospital from "assets/images/dashboarsIcons/hospital.svg";
+import Medics from 'assets/images/dashboarsIcons/medicines.svg'
 import { useSelector } from "react-redux";
 
 const useGetHospitalData = () => {
@@ -59,6 +60,12 @@ const useGetHospitalData = () => {
         title: "Blood Bank",
         icon: BloodBank,
       },
+      {
+        id: 8,
+        route: `/doctorsahab/medicines/`,
+        title: "Medicines",
+        icon: Medics
+      }
     ],
   };
 };

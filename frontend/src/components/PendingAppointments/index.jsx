@@ -8,11 +8,16 @@ import axios from 'axios'
 import { useParams } from "react-router-dom";
 import AppointmentDetailsButton from 'components/AppointmentDetailsButton'
 import Button from 'components/GlobalComponents/Button'
-const Container = styled.div``
+
+
+const Container = styled.div`
+    margin-bottom: 60px;
+`
 
 const H2 = styled.h2`
     font-weight: ${fonts.medium};
     font-size: 30px;
+    margin-bottom: 20px;
 `
 
 const Table = styled.table`
@@ -26,16 +31,7 @@ const TH = styled.th``
 const TableRow = styled.tr``
 
 const TD = styled.td``
-/*
 
-        `${local}/userAppointment/${id}/appointment/hospitalallappointments`
-      );
-      setDatas(data);
-      const getApprovedList = async () => {
-        const { data } = await axios.get(
-          `${local}/userAppointment/${id}/approvedList`
-        );
-*/
 
 
 const PendingAppointments = () => {
@@ -204,9 +200,11 @@ const PendingAppointments = () => {
                                                 ref={asignDoc}
                                             >
                                                 <option>None</option>
-                                                <option>Dr.Sanduik Ruit</option>
-                                                <option>Dr.Pathak</option>
-                                                <option>Dr.Achaya</option>
+                                                <option>Ram Prasad</option>
+                                                <option>Hari Prasad</option>
+                                                <option>Mr. Kate</option>
+                                                <option>Bikash</option>
+                                                <option>Yubraj</option>
                                             </select>{" "}
                                         </td>
                                         <td className="p-2 px-2 border-2">

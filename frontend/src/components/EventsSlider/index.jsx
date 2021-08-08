@@ -3,7 +3,7 @@ import DummyImage from 'assets/images/dummy-event-image.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import { colors } from 'colors';
-
+import truncate from 'truncate';
 const EventCard = styled.div`
   background: ${colors.secondaryWhite};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -13,18 +13,24 @@ const EventCard = styled.div`
 const EventCardTop = styled.div``
 const EventCardBottom = styled.div`
     padding: 20px 25px;
+    height: 230px;
 `
 const EventImage = styled.img`
-    max-width: 100%;
+    width: 100%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    height: 250px;
+    object-fit: cover;
 `
 
 const EventTitle = styled.div`
     font-size: 20px;
+    margin-bottom: 15px;
 `
 
-const EventDescription = styled.div``
+const EventDescription = styled.div`
+
+`
 
 
 
@@ -66,14 +72,14 @@ const EventsSlider = forwardRef(({ events }, {navigationNextRef, navigationPrevR
                     <SwiperSlide key={event._id}>
                         <EventCard  >
                             <EventCardTop>
-                                <EventImage src={DummyImage} alt="Event Image" />
+                                {event?.eventImg ? <EventImage src={event.eventImg} alt="Event Image" />: <EventImage src={DummyImage} alt="Event Image" />}
                             </EventCardTop>
                             <EventCardBottom>
                                 <EventTitle>
                                     {event.eventName}
                                 </EventTitle>
                                 <EventDescription>
-                                    {event.desc}
+                                    {truncate(event.desc, 150)}
                                 </EventDescription>
                             </EventCardBottom>
                         </EventCard>

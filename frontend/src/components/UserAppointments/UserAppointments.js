@@ -21,6 +21,7 @@ function UserAppointments() {
 
   return (
     <div>
+
       <table
         class="text-md bg-white shadow-md rounded mb-4"
         style={{ fontSize: "15px" }}

@@ -2,8 +2,35 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Button from 'components/GlobalComponents/Button'
-import { Modal } from "react-bootstrap";
+import Modal from 'components/GlobalComponents/Modal';
+import styled from "styled-components";
+import { colors } from "colors";
 // import "bootstrap/dist/css/bootstrap.css";
+
+
+
+const ModalBody = styled.div`
+    color: ${colors.primary};
+`
+const ModalBodyMain = styled.div``
+
+const ModalSection = styled.div`
+    margin: 20px 0;
+`
+
+const SPAN = styled.span``
+
+const ModalHeader = styled.div`
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: medium;
+`
+
+const DetailsButton = styled(Button)`
+    padding: 6px 15px;
+`
+
+const ModalTitle = styled.h2``
 
 function AppointmentDetailsButton({ res }) {
     const hospitalLogin = useSelector((state) => {
@@ -19,60 +46,56 @@ function AppointmentDetailsButton({ res }) {
         setLgShow(true);
     }
     // console.log("button", res);
+
+
     return (
         <div>
-            <Button
-                className=" bg-primary mx-auto my-auto p-3 rounded-lg"
-                style={{ fontSize: "10px" }}
+            <DetailsButton
                 onClick={() => handleShow()}
+                outlined
             >
                 View Details
-            </Button>
+            </DetailsButton>
             <Modal
-                size="lg t"
-                show={lgShow}
-                fullscreen={fullscreen}
-                onHide={() => setLgShow(false)}
-                aria-labelledby="example-modal-sizes-title-lg"
+                open={lgShow}
+                setOpen={setLgShow}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        <Button>Appointments Details</Button>
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="bg-blue-200">
-                    <div className="flex flex-col flex-wrap" style={{ fontSize: "20px" }}>
-                        <div className=" text-left border-b border-b-2 border-black">
-                            <span className="mr-10 font-semibold">Name:</span>
-                            <span className="font-light">{res?.name && res?.name}</span>
-                        </div>
-                        <br />
-                        <div className="border-b-2 border-b-2 border-black">
-                            <span className="mr-16 font-semibold">Age:</span>
-                            <span className="font-light">{res?.age && res?.age}</span>
-                        </div>
-                        <div className=" text-left border-b border-b-2 border-black">
-                            <div className="border-b-2 border-black">
-                                <span className="mr-3 font-semibold  ">Contacts:</span>
-                                <span>{res?.contact && res?.contact}</span>
-                            </div>
-                            <div className=" text-left border-b border-b-2 border-black">
-                                <span className="mr-8 font-semibold">Service:</span>
-                                <span>{res?.services && res?.services}</span>
-                            </div>
-                            <div className=" text-left border-b border-b-2 border-black ">
-                                <span className="mr-6 font-semibold">Address:</span>
-                                <span>{res?.location && res?.location}</span>
-                            </div>
-                            <div className=" text-left border-b flex flex-row border-b-2 border-black">
-                                <span className="mr-4 font-semibold">Description:</span>
-                                <span className="" style={{ display: "block" }}>
-                                    {res?.desc && res?.desc}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </Modal.Body>
+                <ModalHeader closeButton>
+                    <ModalTitle>
+                        Appointment Details
+                    </ModalTitle>
+                </ModalHeader>
+                <ModalBody>
+                    <ModalBodyMain>
+                        <ModalSection>
+                            <SPAN>Name: </SPAN>
+                            <SPAN>{res?.name && res?.name}</SPAN>
+                        </ModalSection>
+                        <ModalSection>
+                            <SPAN>Age: </SPAN>
+                            <SPAN>{res?.age && res?.age}</SPAN>
+                        </ModalSection>
+                        <ModalSection>
+                            <SPAN>Contacts: </SPAN>
+                            <SPAN>{res?.contact && res?.contact}</SPAN>
+                        </ModalSection>
+                        <ModalSection>
+                            <SPAN>Service: </SPAN>
+                            <SPAN>{res?.services && res?.services}</SPAN>
+                        </ModalSection>
+                        <ModalSection>
+                            <SPAN>Address: </SPAN>
+                            <SPAN>{res?.location && res?.location}</SPAN>
+                        </ModalSection>
+                        <ModalSection>
+                            <SPAN >Description: </SPAN>
+                            <SPAN>
+                                {res?.desc && res?.desc}
+                            </SPAN>
+                        </ModalSection>
+
+                    </ModalBodyMain>
+                </ModalBody>
             </Modal>
         </div>
     );

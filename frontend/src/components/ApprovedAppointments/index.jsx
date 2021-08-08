@@ -13,6 +13,7 @@ const Container = styled.div``
 const H2 = styled.h2`
     font-weight: ${fonts.medium};
     font-size: 30px;
+    margin-bottom: 20px;
 `
 
 const ApprovedAppointments = () => {
